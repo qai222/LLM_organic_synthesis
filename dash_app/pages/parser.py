@@ -60,18 +60,17 @@ with open(test_data_path, "r") as f:
 train_data_ids = set([r['reaction_id'] for r in train_data])
 
 
-def get_json_viewer_card(viewer_cid: str, header: str):
+def get_json_viewer_card(viewer_cid: str, header: str, data_string: str = None):
+    if data_string is None:
+        jv = dash_renderjson.DashRenderjson(id=viewer_cid, max_depth=-1, theme=JsonTheme, invert_theme=True, )
+    else:
+        jv = dash_renderjson.DashRenderjson(id=viewer_cid, max_depth=-1, theme=JsonTheme, invert_theme=True,
+                                            data=data_string)
+
     card = dbc.Card(
         [
             dbc.CardHeader(header),
-            dbc.CardBody(
-                dash_renderjson.DashRenderjson(
-                    id=viewer_cid,
-                    max_depth=-1,
-                    theme=JsonTheme,
-                    invert_theme=True
-                )
-            )
+            dbc.CardBody(jv)
         ]
     )
     return card
@@ -113,6 +112,7 @@ layout = html.Div(
                     get_json_viewer_card(
                         viewer_cid="parser-output-output_reaction_inputs",
                         header="LLM: ReactionInputs",
+                        data_string="RUN INFERENCE!"
                     ),
                     className="col-6"
                 ),
@@ -132,6 +132,7 @@ layout = html.Div(
                     get_json_viewer_card(
                         viewer_cid="parser-output-output_reaction_conditions",
                         header="LLM: ReactionConditions",
+                        data_string="RUN INFERENCE!"
                     ),
                     className="col-6"
                 ),
@@ -187,13 +188,16 @@ def update_input_ref(data):
 def load_and_infer(data, click_infer, click_test, click_train):
     if ctx.triggered_id == "parser-load-button-test" and click_test:
         d = random.choice(test_data)
-        return d, {}, {}
+        return d, "RUN INFERENCE!", "RUN INFERENCE!"
     elif ctx.triggered_id == "parser-load-button-train" and click_train:
         d = random.choice(train_data)
-        return d, {}, {}
+        return d, "RUN INFERENCE!", "RUN INFERENCE!"
     elif ctx.triggered_id == "parser-load-button-infer" and click_infer:
         input_text = data['input_text']
-        completion_text = get_completion(input_text)
+        try:
+            completion_text = get_completion(input_text)
+        except:
+            return data, "", "FAILED TO GET COMPLETION, IS YOUR KEY ALRIGHT?"
         try:
             res = json.loads(completion_text)
             return data, res['output_reaction_conditions'], res['output_reaction_inputs']
