@@ -2,8 +2,7 @@ import json
 
 import dash_bootstrap_components as dbc
 import dash_renderjson
-from dash import Dash, html
-from dash import dcc
+from dash import Dash, html, State, Output, Input, ClientsideFunction, dcc
 
 
 def get_navbar():
@@ -58,7 +57,8 @@ for d in test_results:
         infer = json.loads(d['completion'])['output_reaction_inputs']
     except:
         infer = None
-    DATA[reaction_id] = [input_text, truth, infer]
+    link = f'https://open-reaction-database.org/client/id/{reaction_id}'
+    DATA[reaction_id] = [input_text, truth, infer, link]
 
 reaction_id_0 = sorted(DATA.keys())[42]
 
@@ -113,7 +113,11 @@ page_content = html.Div(
                             options=sorted(DATA.keys()),
                             className="mb-3"
                         ),
-                        DATA[reaction_id_0][0]
+                        html.Div(DATA[reaction_id_0][0], id="reaction_text"),
+                        html.Div(
+                            html.A("ORD link", id="ord_link",
+                                   href=f'https://open-reaction-database.org/client/id/{reaction_id_0}'),
+                        )
                     ]
                 )
             ]
@@ -148,10 +152,24 @@ navbar = get_navbar()
 
 app.layout = html.Div(
     [
+        dcc.Store(data=DATA, id="store-data"),
         navbar,
         content,
     ],
     style={"width": "100vw"}
+)
+
+app.clientside_callback(
+    ClientsideFunction(
+        namespace='clientside',
+        function_name='update_reaction'
+    ),
+    Output('reaction_text', 'children'),
+    Output("parser-ref-output_reaction_inputs", "data"),
+    Output("parser-output-output_reaction_inputs", "data"),
+    Output("ord_link", "href"),
+    Input('reaction_id_dropdown', 'value'),
+    State('store-data', 'data')
 )
 
 if __name__ == '__main__':

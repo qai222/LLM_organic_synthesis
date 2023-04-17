@@ -2,12 +2,14 @@ import os
 from html.parser import HTMLParser
 
 import requests
+
 """
 shamelessly taken from https://gist.github.com/exzhawk/33e5dcfc8859e3b6ff4e5269b1ba0ba4?permalink_comment_id=4001137
 according to https://community.plotly.com/t/deploy-dash-to-github-pages/14399/7
 it is possible to add callbacks using dash clientside callback
 see also https://github.com/covid19-dash/covid-dashboard
 """
+
 
 def patch_file(file_path: str, content: bytes, extra: dict = None) -> bytes:
     if file_path == 'index.html':
@@ -89,6 +91,7 @@ def make_static(base_url, target_dir='target'):
     parser.feed(patched_bytes.decode('utf8'))
     extra_js = [
         '_dash-component-suites/dash/dcc/async-graph.js',
+        '_dash-component-suites/dash/dcc/async-dropdown.js',
         '_dash-component-suites/dash/dcc/async-plotlyjs.js',
         '_dash-component-suites/dash/dash_table/async-table.js',
         '_dash-component-suites/dash/dash_table/async-highlight.js'
