@@ -58,7 +58,7 @@ def create_datasets(word_length=500, dataset_size=1000, train_test_ratio=0.2, se
     print("criterion pool:", word_length)
     print("n_all_reactions:", len(all_reactions))
     print("n_too_long:", n_too_long)
-    print("n_pool:", len(reactions), ":.3f".format(len(reactions) / (len(all_reactions) - n_too_long)))
+    print("n_pool:", len(reactions), "{:.3f}".format(len(reactions) / (len(all_reactions) - n_too_long)))
 
     if show_hist:
         import plotly.express as px
@@ -107,5 +107,5 @@ criterion too long: 3000
 criterion pool: 900
 n_all_reactions: 190764
 n_too_long: 504
-n_pool: 60822 :.3f
+n_pool: 60822 0.320
 """
