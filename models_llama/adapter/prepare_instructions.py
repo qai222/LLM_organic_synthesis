@@ -84,10 +84,10 @@ def save_datasets(word_length=500, dataset_size=1000, train_test_ratio=0.2, seed
                   name="alpaca_data", show_hist=False):
     train, test = create_datasets(word_length, dataset_size, train_test_ratio, seed, show_hist)
 
-    with open(f"{name}_train.json", "w") as f:
+    with open(f"data/{name}_train.json", "w") as f:
         json.dump(train, f)
 
-    with open(f"{name}_test.json", "w") as f:
+    with open(f"data/{name}_test.json", "w") as f:
         json.dump(test, f)
 
 
@@ -97,7 +97,7 @@ if __name__ == '__main__':
         dataset_size=500,
         train_test_ratio=0.2,
         seed=42,
-        name="alpaca_900",
+        name="ins_900",
         # show_hist=False,
         show_hist=True,
     )
