@@ -70,7 +70,7 @@ def create_datasets(word_length=500, dataset_size=1000, train_test_ratio=0.2, se
                 "x": "prompt + response length",
             }
         )
-        plotly.offline.plot(fig, filename='ecdf.html', image="jpeg")
+        plotly.offline.plot(fig, filename='ecdf.html')
 
     random.seed(seed)
     reactions = random.sample(reactions, int(dataset_size * (1 + train_test_ratio)))
