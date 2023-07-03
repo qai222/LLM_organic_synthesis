@@ -88,11 +88,22 @@ class InstructionDataset(BaseModel):
 
     def reaction_dict_to_alpaca_dict(self, r: dict[str, Any]):
         output = {k: r[k] for k in self.ord_target_fields}
+        # TODO this should be done in extracting from postgres...
+        if 'conditions' in self.ord_target_fields:
+            output['conditions'].pop('details', None)
+        if 'workups' in self.ord_target_fields:
+            for w in output['workups']:
+                w.pop('details')
+        if 'outcomes' in self.ord_target_fields:
+            for reaction_outcome in output['outcomes']:
+                for analysis in reaction_outcome['analyses'].values():
+                    analysis.pop('details')
         d = {
             "reaction_id": r['reaction_id'],
             "instruction": r[self.ord_procedure_field],
             "output": json.dumps(output),
         }
+
         for v in d.values():
             assert isinstance(v, str)
         return d
