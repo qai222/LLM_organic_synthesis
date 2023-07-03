@@ -96,6 +96,8 @@ class InstructionDataset(BaseModel):
                 w.pop('details')
         if 'outcomes' in self.ord_target_fields:
             for reaction_outcome in output['outcomes']:
+                if 'analyses' not in reaction_outcome:
+                    continue
                 for analysis in reaction_outcome['analyses'].values():
                     analysis.pop('details')
         d = {
