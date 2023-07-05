@@ -112,16 +112,17 @@ class InstructionDataset(BaseModel):
 
     @staticmethod
     def get_n_tokens(example: str, tokenizer: Tokenizer):
-        example = torch.tensor(tokenizer.encode(example, bos=True, eos=False), dtype=torch.int64)
+        example = torch.tensor(tokenizer.encode(example, bos=True, eos=True), dtype=torch.int64)
         return example.shape[0]
 
     def save(self):
         if len(self.train_data) == 0:
             self.load()
         filename = f"OrdAlpaca_MaxToken{self.max_token}_TrainSize{self.train_size}_TestSize{self.test_size}_{'-'.join(self.ord_target_fields)}.json"
-        ds = self.json()
+        ds = self.dict()
+        ds.pop('all_alpaca_dicts')
         with open(filename, "w") as f:
-            f.write(ds)
+            json.dump(ds, f)
 
     def load(self):
         tmp_filename = f"prepare_instructions_alpaca_dicts_tokenized_{'-'.join(self.ord_target_fields)}.json"
@@ -184,7 +185,7 @@ if __name__ == '__main__':
             'conditions',
             'outcomes',
             'workups',
-        ]
+        ],
     )
     dataset.save()
     dataset.plot_ecdf_n_token_example()
