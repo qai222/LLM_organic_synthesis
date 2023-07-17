@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import glob
 import json
 import os
 import random
@@ -53,8 +52,7 @@ class Tokenizer:
 
 
 class InstructionDataset(BaseModel):
-    ord_dataset_files: list[str] = sorted(
-        glob.glob(f"{THIS_DIR}/../../data_from_pb_no_warning_20230416/data_from_pb_no_warning/*.json"))
+    reactions_file: str = f"{THIS_DIR}/../../ord_data/data_from_pb_no_warning_20230416_dedup.json"
 
     ord_procedure_field: str = "notes__procedureDetails"
 
@@ -79,11 +77,8 @@ class InstructionDataset(BaseModel):
     all_alpaca_dicts: list[dict] = []
 
     def collect_reactions(self) -> list[dict]:
-        reactions = []
-        for jp in tqdm(self.ord_dataset_files):
-            with open(jp, "r") as f:
-                batch_reactions = json.load(f)
-                reactions += batch_reactions
+        with open(self.reactions_file, "r") as f:
+            reactions = json.load(f)
         return reactions
 
     def reaction_dict_to_alpaca_dict(self, r: dict[str, Any]):
