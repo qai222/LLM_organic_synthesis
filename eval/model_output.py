@@ -5,7 +5,7 @@ given the reference json and a string response from the llm, evaluate their diff
 """
 
 
-class modeloutput:
+class ModelOutput:
 
     def __init__(self, identifier: str, raw: str, prompt: str = None, response: str = None, ref: str = None):
         """
