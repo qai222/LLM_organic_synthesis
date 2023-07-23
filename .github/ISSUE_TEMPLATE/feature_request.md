@@ -10,7 +10,8 @@ assignees: ''
 ## What is this feature about?
 1. openai model
 2. open-source model
-3. dash app
+3. web app
+4. evaluation
 
 ## Is your feature request related to a problem? Please describe.
 
