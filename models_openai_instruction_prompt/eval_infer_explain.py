@@ -21,19 +21,17 @@ print("reactions with changed amount:", df[df['inputs_compounds_list__n_compound
 print("identical:", df[df['inputs_compounds_list__average_deep_distance'] == 0].shape[0])
 print(">> list of compound lists in reaction inputs")
 print("reactions with misplaced groups:", df[df['inputs_compounds_lol__n_misplaced_groups'] > 0].shape[0])
-print(">> conditions")
-print("reactions with missing conditions:", df[df['conditions__n_erroneous_condition_types'] > 0].shape[0])
+# print(">> conditions")
+# print("reactions with missing conditions:", df[df['conditions__n_erroneous_condition_types'] > 0].shape[0])
 
 """
-valid ord: 1919 / 2000
+valid ord: 198 / 600
 >> flat compound list in reaction inputs
-reactions with absent/excess compounds: 200 / 68
-reactions with changed identifiers: 234
-reactions with changed reaction role: 371
-reactions with changed amount: 178
-identical: 1389
+reactions with absent/excess compounds: 13 / 51
+reactions with changed identifiers: 67
+reactions with changed reaction role: 62
+reactions with changed amount: 13
+identical: 102
 >> list of compound lists in reaction inputs
-reactions with misplaced groups: 606
->> conditions
-reactions with missing conditions: 247
+reactions with misplaced groups: 96
 """

@@ -134,7 +134,10 @@ class Evaluator:
     #     pass
 
 
-def evaluate_model_outputs(model_outputs: list[ModelOutput]):
+def evaluate_model_outputs(
+        model_outputs: list[ModelOutput],
+        report_compounds_list=True, report_compounds_lol=True, report_conditions=True
+):
     records = []
     for model_output in tqdm(model_outputs):
         # record = model_output.as_dict()
@@ -146,18 +149,21 @@ def evaluate_model_outputs(model_outputs: list[ModelOutput]):
             record["valid_ord"] = False
             records.append(record)
             continue
-        record.update(
-            {"inputs_compounds_list__" + k: v for k, v in
-             inference_evaluator.evaluate_inputs_compounds_list().dict().items() if k != 'index_match'}
-        )
-        record.update(
-            {"inputs_compounds_lol__" + k: v for k, v in
-             inference_evaluator.evaluate_inputs_compounds_lol().dict().items()}
-        )
-        record.update(
-            {"conditions__" + k: v for k, v in
-             inference_evaluator.evaluate_conditions().dict().items()}
-        )
+        if report_compounds_list:
+            record.update(
+                {"inputs_compounds_list__" + k: v for k, v in
+                 inference_evaluator.evaluate_inputs_compounds_list().dict().items() if k != 'index_match'}
+            )
+        if report_compounds_lol:
+            record.update(
+                {"inputs_compounds_lol__" + k: v for k, v in
+                 inference_evaluator.evaluate_inputs_compounds_lol().dict().items()}
+            )
+        if report_conditions:
+            record.update(
+                {"conditions__" + k: v for k, v in
+                 inference_evaluator.evaluate_conditions().dict().items()}
+            )
         records.append(record)
     df = pd.DataFrame.from_records(records)
     return df
