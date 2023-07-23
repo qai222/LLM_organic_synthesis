@@ -12,6 +12,8 @@ from evaluator.ord_dd.utils import DeepDiffKey
 class ConditionsDiffReport(BaseModel):
     erroneous_condition_types: list[str] = []
 
+    n_erroneous_condition_types: int = 0
+
     n_ref_conditions: int = 0
 
     n_act_conditions: int = 0
@@ -45,5 +47,6 @@ def diff_conditions(c1: reaction_pb2.ReactionConditions, c2: reaction_pb2.Reacti
                 condition_type = path_list[0]
                 erroneous_condition_types.append(condition_type)
     report.erroneous_condition_types = erroneous_condition_types
+    report.n_erroneous_condition_types = len(erroneous_condition_types)
     report.deep_distance = deep_distance
     return report

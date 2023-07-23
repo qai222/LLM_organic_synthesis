@@ -3,10 +3,12 @@ from __future__ import annotations
 import json
 from typing import Literal
 
+import pandas as pd
+from tqdm import tqdm
 from ord_schema.message_helpers import json_format, find_submessages, Type, MessageType
 from ord_schema.proto import reaction_pb2
 
-from evaluator.ord_dd import diff_compound_list, diff_conditions, diff_compound_lol
+from evaluator.ord_dd import *
 
 
 class ModelOutput:
@@ -22,6 +24,14 @@ class ModelOutput:
         self.prompt = prompt
         self.response = response
         self.ref = ref
+
+    def as_dict(self):
+        return {
+            "identifier": self.identifier,
+            "prompt": self.prompt,
+            "response": self.response,
+            "reference": self.ref
+        }
 
     @classmethod
     def from_raw_alpaca(
@@ -94,33 +104,60 @@ class Evaluator:
                 messages += find_submessages(v, message_type)
         return messages
 
-    def evaluate_inputs_compounds_list(self):
+    def evaluate_inputs_compounds_list(self) -> CompoundListDiffReport:
         """ compound messages in `inputs` as a flat list """
         ref_compounds = self.find_messages(key='inputs', message_type=reaction_pb2.Compound, ref=True)
         act_compounds = self.find_messages(key='inputs', message_type=reaction_pb2.Compound, ref=False)
         report = diff_compound_list(ref_compounds, act_compounds)
         return report
 
-    def evaluate_inputs_compounds_lol(self):
+    def evaluate_inputs_compounds_lol(self) -> CompoundLolDiffReport:
         """ compound messages in `inputs` as a list of list """
-        ref_lol = [ri.components for ri in
-                   self.find_messages(key='inputs', message_type=reaction_pb2.ReactionInput, ref=True)]
-        act_lol = [ri.components for ri in
-                   self.find_messages(key='inputs', message_type=reaction_pb2.ReactionInput, ref=False)]
+        ref_lol = [ri.components for ri in list(self.reaction_message_ref.inputs.values())]
+        act_lol = [ri.components for ri in list(self.reaction_message.inputs.values())]
         report = diff_compound_lol(ref_lol, act_lol)
         return report
 
-    def evaluate_conditions(self):
+    def evaluate_conditions(self) -> ConditionsDiffReport:
         """ reaction conditions message """
         ref_conditions = self.reaction_message.conditions
         act_conditions = self.reaction_message_ref.conditions
         report = diff_conditions(ref_conditions, act_conditions)
         return report
 
-    def evaluate_outcomes(self):
-        # TODO implement
-        pass
+    # TODO implement
+    # def evaluate_outcomes(self):
+    #     pass
+    #
+    # TODO implement
+    # def evaluate_workups(self):
+    #     pass
 
-    def evaluate_workups(self):
-        # TODO implement
-        pass
+
+def evaluate_model_outputs(model_outputs: list[ModelOutput]):
+    records = []
+    for model_output in tqdm(model_outputs):
+        # record = model_output.as_dict()
+        record = {"identifier": model_output.identifier}
+        try:
+            inference_evaluator = Evaluator(model_output)
+            record["valid_ord"] = True
+        except EvaluatorSniffError:
+            record["valid_ord"] = False
+            records.append(record)
+            continue
+        record.update(
+            {"inputs_compounds_list__" + k: v for k, v in
+             inference_evaluator.evaluate_inputs_compounds_list().dict().items() if k != 'index_match'}
+        )
+        record.update(
+            {"inputs_compounds_lol__" + k: v for k, v in
+             inference_evaluator.evaluate_inputs_compounds_lol().dict().items()}
+        )
+        record.update(
+            {"conditions__" + k: v for k, v in
+             inference_evaluator.evaluate_conditions().dict().items()}
+        )
+        records.append(record)
+    df = pd.DataFrame.from_records(records)
+    return df
