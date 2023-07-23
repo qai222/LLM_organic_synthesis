@@ -1,5 +1,4 @@
 import json
-import os
 
 import pytest
 from tqdm import tqdm
@@ -11,7 +10,7 @@ class TestEvaluator:
 
     @pytest.fixture
     def inference_data_20230716_99(self) -> list[Evaluator]:
-        with open("infer_20230716-99.json", "r") as f:
+        with open("../models_llama/adapter/infer_20230716-99.json", "r") as f:
             data = json.load(f)
         evaluators = []
         for record in data:
