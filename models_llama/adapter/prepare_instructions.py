@@ -14,8 +14,31 @@ from tqdm import tqdm
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 # TODO figure out the context window of llama and if it can change after fine tuning
+import gzip
+
+
+def json_dump(filename, obj, gz=False):
+    if gz:
+        open_file = gzip.open
+        assert filename.endswith(".gz")
+        with open_file(filename, 'wt', encoding="UTF-8") as f:
+            json.dump(obj, f)
+    else:
+        open_file = open
+        with open_file(filename, 'w', encoding="UTF-8") as f:
+            json.dump(obj, f)
+
+
+def json_load(filename):
+    if filename.endswith(".gz"):
+        open_file = gzip.open
+        with open_file(filename, 'rt', encoding="UTF-8") as f:
+            return json.load(f)
+    else:
+        open_file = open
+        with open_file(filename, 'r', encoding="UTF-8") as f:
+            return json.load(f)
 
 
 class Tokenizer:
@@ -64,9 +87,13 @@ class InstructionDataset(BaseModel):
 
     max_token: int = 900  # fits 24 gb gpu
 
-    train_size: int = 10000
+    train_size: float = 10000
 
-    test_size: int = 2000
+    test_size: float = 2000
+
+    n_all_alpaca_dicts: int = 0
+
+    n_accepted_alpaca_dicts: int = 0
 
     seed: int = 42
 
@@ -74,7 +101,21 @@ class InstructionDataset(BaseModel):
 
     test_data: list[dict] = []
 
-    all_alpaca_dicts: list[dict] = []
+    @property
+    def actual_train_size(self):
+        if isinstance(self.train_size, int) and self.train_size > 1:
+            return self.train_size
+        elif isinstance(self.train_size, float) and 0 < self.train_size < 1:
+            return int(self.n_accepted_alpaca_dicts * self.train_size)
+        raise ValueError(f"weird train_size: {self.train_size}")
+
+    @property
+    def actual_test_size(self):
+        if isinstance(self.test_size, int) and self.test_size > 1:
+            return self.test_size
+        elif isinstance(self.test_size, float) and 0 < self.test_size < 1:
+            return self.n_accepted_alpaca_dicts - self.actual_train_size
+        raise ValueError(f"weird test_size: {self.test_size}")
 
     def collect_reactions(self) -> list[dict]:
         with open(self.reactions_file, "r") as f:
@@ -113,17 +154,14 @@ class InstructionDataset(BaseModel):
     def save(self):
         if len(self.train_data) == 0:
             self.load()
-        filename = f"OrdAlpaca_MaxToken{self.max_token}_TrainSize{self.train_size}_TestSize{self.test_size}_{'-'.join(self.ord_target_fields)}.json"
+        filename = f"OrdAlpaca_MaxToken{self.max_token}_TrainSize{self.actual_train_size}_TestSize{self.actual_test_size}_{'-'.join(self.ord_target_fields)}.json.gz"
         ds = self.dict()
-        ds.pop('all_alpaca_dicts')
-        with open(filename, "w") as f:
-            json.dump(ds, f)
+        json_dump(filename, ds, gz=True)
 
-    def load(self):
-        tmp_filename = f"prepare_instructions_alpaca_dicts_tokenized_{'-'.join(self.ord_target_fields)}.json"
+    def load(self, plot_token_ecdf=False):
+        tmp_filename = f"prepare_instructions_alpaca_dicts_tokenized_{'-'.join(self.ord_target_fields)}.json.gz"
         try:
-            with open(tmp_filename, "r") as f:
-                all_alpaca_dicts = json.load(f)
+            all_alpaca_dicts = json_load(tmp_filename)
         except (FileNotFoundError, ValueError) as e:
             tokenizer = Tokenizer(model_path=self.tokenizer_path)
             all_reactions = self.collect_reactions()
@@ -138,33 +176,36 @@ class InstructionDataset(BaseModel):
                 d['n_token_example'] = n_token
                 len_chars.append(len(example))
                 len_tokens.append(n_token)
-            with open(tmp_filename, "w") as f:
-                json.dump(all_alpaca_dicts, f)
+            json_dump(tmp_filename, all_alpaca_dicts, gz=True)
 
-        self.all_alpaca_dicts = all_alpaca_dicts
+        self.n_all_alpaca_dicts = len(all_alpaca_dicts)
+
+        if plot_token_ecdf:
+            self.plot_ecdf_n_token_example(all_alpaca_dicts=all_alpaca_dicts)
 
         accepted_alpaca_dicts = []
         for d in all_alpaca_dicts:
             n_token = d['n_token_example']
             if n_token <= self.max_token:
                 accepted_alpaca_dicts.append(d)
+        self.n_accepted_alpaca_dicts = len(accepted_alpaca_dicts)
         logger.info(f"# of all alpaca dicts: {len(all_alpaca_dicts)}")
         logger.info(
             f"# of accepted alpaca dicts: {len(accepted_alpaca_dicts)} ({round(len(accepted_alpaca_dicts) / len(all_alpaca_dicts), 4) * 100}%)")
 
         random.seed(self.seed)
-        accepted_alpaca_dicts = random.sample(accepted_alpaca_dicts, self.test_size + self.train_size)
+        accepted_alpaca_dicts = random.sample(accepted_alpaca_dicts, self.actual_train_size + self.actual_test_size)
         random.shuffle(accepted_alpaca_dicts)
-        train, test = accepted_alpaca_dicts[:self.train_size], accepted_alpaca_dicts[self.train_size:]
+        train, test = accepted_alpaca_dicts[:self.actual_train_size], accepted_alpaca_dicts[self.actual_train_size:]
         self.train_data = train
         self.test_data = test
 
-    def plot_ecdf_n_token_example(self):
+    def plot_ecdf_n_token_example(self, all_alpaca_dicts):
         assert len(self.train_data) > 0
         import plotly.express as px
         import plotly
         fig = px.ecdf(
-            x=[d['n_token_example'] for d in self.all_alpaca_dicts],
+            x=[d['n_token_example'] for d in all_alpaca_dicts],
             marginal="histogram",
             labels={
                 "x": "n_token(prompt + response)",
@@ -181,6 +222,7 @@ if __name__ == '__main__':
             'outcomes',
             'workups',
         ],
+        train_size=0.8,
+        test_size=0.2,
     )
     dataset.save()
-    dataset.plot_ecdf_n_token_example()
