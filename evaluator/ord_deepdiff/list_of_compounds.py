@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import itertools
 import math
 from collections import Counter
 from collections import defaultdict
 from enum import Enum
 from typing import Optional
 
+import numpy as np
 from deepdiff import DeepDiff
 from deepdiff.helper import NotPresent
 from deepdiff.model import DiffLevel, PrettyOrderedSet, REPORT_KEYS
@@ -119,6 +121,55 @@ class DiffReportListOfCompounds(DiffReport):
             for fct in list(FieldChangeType):
                 field_stats[ck][fct] = 0
         return field_stats
+
+
+def list_of_compounds_exhaustive_matcher(cds1: list[dict], cds2: list[dict]) -> list[int | None]:
+    assert len(cds1) > 0
+
+    indices1 = [*range(len(cds1))]
+    indices2 = [*range(len(cds2))]
+
+    # get distance matrix
+    dist_mat = np.zeros((len(indices1), len(indices2)))
+    for i1 in indices1:
+        cd1 = cds1[i1]
+        name1 = get_compound_name(cd1)
+        for i2 in indices2:
+            cd2 = cds2[i2]
+            name2 = get_compound_name(cd2)
+            try:
+                distance_name = DeepDiff(name1, name2, get_deep_distance=True).to_dict()['deep_distance']
+            except KeyError:
+                distance_name = 0
+            try:
+                distance_full = DeepDiff(cd1, cd2, get_deep_distance=True, ignore_order=True).to_dict()['deep_distance']
+            except KeyError:
+                distance_full = 0
+            distance = distance_name * 100 + distance_full  # large penalty for wrong names
+            dist_mat[i1][i2] = distance
+
+    while len(indices2) < len(indices1):
+        indices2.append(None)
+
+    match_space = itertools.permutations(indices2, r=len(indices1))
+    best_match_distance = math.inf
+    best_match_solution = None
+
+    for match in match_space:
+        match_distance = 0
+        for i1, i2 in zip(indices1, match):
+            if i2 is None:
+                continue
+            match_distance += dist_mat[i1][i2]
+        if match_distance < best_match_distance:
+            best_match_distance = match_distance
+            best_match_solution = match
+
+    assert best_match_solution is not None
+    for i1, i2 in zip(indices1, best_match_solution):
+        if i2 is None:
+            continue
+    return best_match_solution
 
 
 def list_of_compounds_greedy_matcher(cds1: list[dict], cds2: list[dict]) -> list[int | None]:
@@ -259,7 +310,8 @@ def diff_list_of_compounds(
     assert all(len(d['identifiers']) == 1 and d['identifiers'][0]['type'] == 'NAME' for d in ref_compounds_dicts)
     assert all(len(d['identifiers']) == 1 and d['identifiers'][0]['type'] == 'NAME' for d in act_compounds_dicts)
 
-    matched_i2s = list_of_compounds_greedy_matcher(ref_compounds_dicts, act_compounds_dicts)
+    # matched_i2s = list_of_compounds_greedy_matcher(ref_compounds_dicts, act_compounds_dicts)
+    matched_i2s = list_of_compounds_exhaustive_matcher(ref_compounds_dicts, act_compounds_dicts)
 
     # # not used for now
     # # in act

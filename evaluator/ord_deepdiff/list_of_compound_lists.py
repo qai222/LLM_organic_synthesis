@@ -4,7 +4,7 @@ from google.protobuf import json_format
 from ord_schema.proto import reaction_pb2
 
 from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind
-from evaluator.ord_deepdiff.list_of_compounds import list_of_compounds_greedy_matcher
+from evaluator.ord_deepdiff.list_of_compounds import list_of_compounds_exhaustive_matcher
 
 
 def flat_list_of_lists(lol: list[list]) -> tuple[list, dict[tuple[int, int], int]]:
@@ -58,7 +58,8 @@ def diff_list_of_compound_lists(
     flat_to_lol_cd1 = {v: k for k, v in lol_to_flat_cd1.items()}
     flat_to_lol_cd2 = {v: k for k, v in lol_to_flat_cd2.items()}
 
-    matched_i2s = list_of_compounds_greedy_matcher(lol_cd1_flat, lol_cd2_flat)
+    # matched_i2s = list_of_compounds_greedy_matcher(lol_cd1_flat, lol_cd2_flat)
+    matched_i2s = list_of_compounds_exhaustive_matcher(lol_cd1_flat, lol_cd2_flat)
 
     lol1_to_lol2 = dict()
     for lol_index_1 in lol_to_flat_cd1:

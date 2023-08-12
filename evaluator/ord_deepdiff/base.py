@@ -18,9 +18,9 @@ class DiffReportKind(str, Enum):
 class DiffReport(BaseModel):
     kind: DiffReportKind
 
-    reference: dict | list[dict]
+    reference: dict | list[dict] | None = None
 
-    actual: dict | list[dict]
+    actual: dict | list[dict] | None = None
 
     class Config:
         validate_assignment = True
