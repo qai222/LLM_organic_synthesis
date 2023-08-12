@@ -38,9 +38,6 @@ class DiffReportCompoundLol(DiffReport):
     def n_act_groups(self):
         return len(self.actual)
 
-    class Config:
-        validate_assignment = True
-
 
 def diff_list_of_compound_lists(
         lol_c1: list[list[reaction_pb2.Compound]],

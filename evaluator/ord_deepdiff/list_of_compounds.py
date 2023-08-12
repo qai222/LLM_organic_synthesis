@@ -120,9 +120,6 @@ class DiffReportListOfCompounds(DiffReport):
                 field_stats[ck][fct] = 0
         return field_stats
 
-    class Config:
-        validate_assignment = True
-
 
 def list_of_compounds_greedy_matcher(cds1: list[dict], cds2: list[dict]) -> list[int | None]:
     """

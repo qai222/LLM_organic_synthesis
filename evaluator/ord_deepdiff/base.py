@@ -22,6 +22,9 @@ class DiffReport(BaseModel):
 
     actual: dict | list[dict]
 
+    class Config:
+        validate_assignment = True
+
 
 class FieldChangeType(str, Enum):
     """ used to describe an entry from `DeepDiff` """
