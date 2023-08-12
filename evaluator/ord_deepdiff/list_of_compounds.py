@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+from collections import Counter
 from collections import defaultdict
 from enum import Enum
 from typing import Optional
@@ -47,7 +48,8 @@ class CompoundFieldClass(str, Enum):
 
     @staticmethod
     def get_field_class_to_field_path_tuples(compound_dict: dict) -> dict[
-        CompoundFieldClass | None, list[tuple[str | int, ...]]]:
+        CompoundFieldClass | None, list[tuple[str | int, ...]]
+    ]:
         path_to_class = CompoundFieldClass.get_field_path_tuple_to_field_class(compound_dict)
         d = defaultdict(list)
         for path, field_class in path_to_class.items():
@@ -94,12 +96,20 @@ class DiffReportListOfCompounds(DiffReport):
     @property
     def n_absent_compounds(self):
         """ compounds that are absent in the act list but present in the ref list """
-        return self.n_ref_compounds - self.n_act_compounds
+        n = self.n_ref_compounds - self.n_act_compounds
+        if n > 0:
+            return n
+        else:
+            return 0
 
     @property
     def n_excess_compounds(self):
         """ compounds in the act list that has no match to a ref compound """
-        return self.n_act_compounds - self.n_ref_compounds
+        n = self.n_act_compounds - self.n_ref_compounds
+        if n > 0:
+            return n
+        else:
+            return 0
 
     @staticmethod
     def get_empty_field_change_stats() -> compound_field_change_stats_type:
@@ -165,9 +175,17 @@ def list_of_compounds_greedy_matcher(cds1: list[dict], cds2: list[dict]) -> list
 def inspect_compound_pair(
         ref_compound_dict: dict,
         act_compound_dict: dict,
-) -> tuple[list[float], compound_field_change_stats_type]:
+) -> tuple[
+    list[float],
+    compound_field_change_stats_type,
+    dict[CompoundFieldClass | None, int],
+    dict[CompoundFieldClass | None, int],
+]:
     ref_field_path_tuple_to_class = CompoundFieldClass.get_field_path_tuple_to_field_class(ref_compound_dict)
     act_field_path_tuple_to_class = CompoundFieldClass.get_field_path_tuple_to_field_class(act_compound_dict)
+
+    field_counter_ref = Counter(ref_field_path_tuple_to_class.values())
+    field_counter_act = Counter(act_field_path_tuple_to_class.values())
 
     field_stats = DiffReportListOfCompounds.get_empty_field_change_stats()
 
@@ -210,7 +228,7 @@ def inspect_compound_pair(
                     t_key_class = field_path_tuple_to_field_class[t_key]
                     field_stats[t_key_class][fct] += 1
 
-    return deep_distance, field_stats
+    return deep_distance, field_stats, field_counter_ref, field_counter_act
 
 
 def diff_list_of_compounds(
@@ -257,6 +275,9 @@ def diff_list_of_compounds(
 
     field_stats_total = DiffReportListOfCompounds.get_empty_field_change_stats()
 
+    field_counter_ref_total = {ck: 0 for ck in list(CompoundFieldClass) + [None, ]}
+    field_counter_act_total = {ck: 0 for ck in list(CompoundFieldClass) + [None, ]}
+
     compound_pair_deep_distances = []
     for i, j in compound_index_pairs.items():
         ref_compound_dict = ref_compounds_dicts[i]
@@ -265,11 +286,15 @@ def diff_list_of_compounds(
             continue
 
         act_compound_dict = act_compounds_dicts[j]
-        deep_distance, field_stats_pair = inspect_compound_pair(ref_compound_dict, act_compound_dict)
+        deep_distance, field_stats_pair, field_counter_ref, field_counter_act = inspect_compound_pair(
+            ref_compound_dict, act_compound_dict
+        )
         compound_pair_deep_distances.append(deep_distance)
 
         compound_altered = False
         for ck in field_stats_total:
+            field_counter_ref_total[ck] += field_counter_ref[ck]
+            field_counter_act_total[ck] += field_counter_act[ck]
             for fct in field_stats_total[ck]:
                 field_stats_total[ck][fct] += field_stats_pair[ck][fct]
                 if field_stats_pair[ck][fct] > 0:
@@ -279,4 +304,6 @@ def diff_list_of_compounds(
 
     report.deep_distances = compound_pair_deep_distances
     report.field_change_stats = field_stats_total
+    report.field_counter_ref = field_counter_ref_total
+    report.field_counter_act = field_counter_act_total
     return report
