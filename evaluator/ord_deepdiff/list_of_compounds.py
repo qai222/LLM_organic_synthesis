@@ -15,8 +15,6 @@ from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind, FieldChangeT
 from evaluator.ord_deepdiff.utils import DeepDiffKey, flatten, get_compound_name, ORD_PATH_DELIMITER, get_path_tuple, \
     get_leaf_path_tuple_to_leaf_value
 
-CONSIDER_OTHER_COMPOUND_FIELD_CLASS = False
-
 
 class CompoundFieldClass(str, Enum):
     """ they should be disjoint so any leaf of a compound can only be one of the three classes """
@@ -61,7 +59,7 @@ compound_field_change_stats_type = dict[Optional[CompoundFieldClass], dict[Field
 
 
 class DiffReportListOfCompounds(DiffReport):
-    kind: DiffReportKind = DiffReportKind.List_Of_COMPOUNDS
+    kind: DiffReportKind = DiffReportKind.LIST_OF_COMPOUNDS
 
     # num of compound pairs that have at least one field added/removed/changed
     # note # of compound pairs always == n_ref_compounds

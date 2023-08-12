@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import enum
 from collections.abc import MutableMapping
+
 from deepdiff.helper import NotPresent
 
 ORD_PATH_DELIMITER = "..."

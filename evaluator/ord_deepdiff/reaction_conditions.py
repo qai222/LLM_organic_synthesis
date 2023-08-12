@@ -4,34 +4,42 @@ from deepdiff import DeepDiff
 from deepdiff.model import DiffLevel, PrettyOrderedSet
 from google.protobuf import json_format
 from ord_schema.proto import reaction_pb2
-from pydantic import BaseModel
 
-from evaluator.ord_dd.utils import DeepDiffKey
+from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind
+from evaluator.ord_deepdiff.utils import DeepDiffKey
 
 
-class ConditionsDiffReport(BaseModel):
+class DiffReportReactionConditions(DiffReport):
+    kind: DiffReportKind = DiffReportKind.REACTION_CONDITIONS
+
     erroneous_condition_types: list[str] = []
 
-    n_erroneous_condition_types: int = 0
+    @property
+    def n_erroneous_condition_types(self):
+        return len(self.erroneous_condition_types)
 
-    n_ref_conditions: int = 0
+    @property
+    def n_ref_conditions(self):
+        return len(self.reference)
 
-    n_act_conditions: int = 0
+    @property
+    def n_act_conditions(self):
+        return len(self.actual)
 
-    deep_distance: float = 0.0  # not averaged
+    deep_distance: float = 0.0
 
     class Config:
         validate_assignment = True
 
 
-def diff_conditions(c1: reaction_pb2.ReactionConditions, c2: reaction_pb2.ReactionConditions):
-    report = ConditionsDiffReport()
+def diff_reaction_conditions(c1: reaction_pb2.ReactionConditions, c2: reaction_pb2.ReactionConditions):
+    report = DiffReportReactionConditions()
 
     cd1 = json_format.MessageToDict(c1)
     cd2 = json_format.MessageToDict(c2)
 
-    report.n_ref_conditions = len(cd1)
-    report.n_act_conditions = len(cd2)
+    report.reference = cd1
+    report.actual = cd2
 
     erroneous_condition_types = []
     deep_distance = 0.0
@@ -41,12 +49,11 @@ def diff_conditions(c1: reaction_pb2.ReactionConditions, c2: reaction_pb2.Reacti
         v: PrettyOrderedSet[DiffLevel] | float
         if k == DeepDiffKey.deep_distance.value:
             deep_distance = v
-        else:  # this means we include all add/remove/change
+        else:
             for value_changed_level in v:
                 path_list = value_changed_level.path(output_format='list')
                 condition_type = path_list[0]
                 erroneous_condition_types.append(condition_type)
     report.erroneous_condition_types = erroneous_condition_types
-    report.n_erroneous_condition_types = len(erroneous_condition_types)
     report.deep_distance = deep_distance
     return report

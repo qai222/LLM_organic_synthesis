@@ -6,10 +6,9 @@ from pydantic import BaseModel
 
 
 class DiffReportKind(str, Enum):
-
     LIST_OF_COMPOUND_LISTS = "LIST_OF_COMPOUND_LISTS"
 
-    List_Of_COMPOUNDS = "LIST_OF_COMPOUNDS"
+    LIST_OF_COMPOUNDS = "LIST_OF_COMPOUNDS"
 
     REACTION_CONDITIONS = "REACTION_CONDITIONS"
 
@@ -17,7 +16,6 @@ class DiffReportKind(str, Enum):
 
 
 class DiffReport(BaseModel):
-
     kind: DiffReportKind
 
     reference: dict | list[dict]

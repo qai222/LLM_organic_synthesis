@@ -2,12 +2,18 @@ from __future__ import annotations
 
 from google.protobuf import json_format
 from ord_schema.proto import reaction_pb2
-from pydantic import BaseModel
 
-from evaluator.ord_dd.compound_list import compound_list_greedy_matcher
+from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind
+from evaluator.ord_deepdiff.list_of_compounds import list_of_compounds_greedy_matcher
 
 
-def flat_list_of_lists(lol: list[list]):
+def flat_list_of_lists(lol: list[list]) -> tuple[list, dict[tuple[int, int], int]]:
+    """
+    flat to a list
+
+    :param lol: list of lists
+    :return: the flat list, a map of <tuple index of lol (i,j)> -> <flat list index>
+    """
     flat = []
     map_lol_to_flat = dict()
     i_flat = 0
@@ -19,37 +25,43 @@ def flat_list_of_lists(lol: list[list]):
     return flat, map_lol_to_flat
 
 
-class CompoundLolDiffReport(BaseModel):
+class DiffReportCompoundLol(DiffReport):
+    kind: DiffReportKind = DiffReportKind.LIST_OF_COMPOUND_LISTS
+
     n_misplaced_groups: int = 0
 
-    n_ref_groups: int = 0
+    @property
+    def n_ref_groups(self):
+        return len(self.reference)
 
-    n_act_groups: int = 0
+    @property
+    def n_act_groups(self):
+        return len(self.actual)
 
     class Config:
         validate_assignment = True
 
 
-def diff_compound_lol(
+def diff_list_of_compound_lists(
         lol_c1: list[list[reaction_pb2.Compound]],
         lol_c2: list[list[reaction_pb2.Compound]],
-) -> CompoundLolDiffReport:
+) -> DiffReportCompoundLol:
     """ determine how many compound lists in `lol_c1` are misplaced in `lol_c2` using heuristics """
 
-    report = CompoundLolDiffReport()
+    report = DiffReportCompoundLol()
 
     lol_cd1 = [[json_format.MessageToDict(m) for m in sublist] for sublist in lol_c1]
     lol_cd2 = [[json_format.MessageToDict(m) for m in sublist] for sublist in lol_c2]
 
-    report.n_ref_groups = len(lol_cd1)
-    report.n_act_groups = len(lol_cd2)
+    report.reference = lol_cd1
+    report.actual = lol_cd2
 
     lol_cd1_flat, lol_to_flat_cd1 = flat_list_of_lists(lol_cd1)
     lol_cd2_flat, lol_to_flat_cd2 = flat_list_of_lists(lol_cd2)
     flat_to_lol_cd1 = {v: k for k, v in lol_to_flat_cd1.items()}
     flat_to_lol_cd2 = {v: k for k, v in lol_to_flat_cd2.items()}
 
-    matched_i2s = compound_list_greedy_matcher(lol_cd1_flat, lol_cd2_flat)
+    matched_i2s = list_of_compounds_greedy_matcher(lol_cd1_flat, lol_cd2_flat)
 
     lol1_to_lol2 = dict()
     for lol_index_1 in lol_to_flat_cd1:
