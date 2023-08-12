@@ -10,6 +10,11 @@ from ord_schema.proto.dataset_pb2 import Dataset
 from ord_schema.proto.reaction_pb2 import Reaction
 from tqdm import tqdm
 
+"""
+filed name in the output of `protobuf.json_format` is by default camel case
+use `json_format.MessageToJson(r, preserving_proto_field_name=True)` to output unmodified keys
+"""
+
 
 class LData(TypedDict):
     notes__procedureDetails: str  # for prompt
