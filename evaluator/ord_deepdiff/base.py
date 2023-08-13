@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from abc import ABC
 from enum import Enum
 
 from pydantic import BaseModel
@@ -15,12 +16,12 @@ class DiffReportKind(str, Enum):
     LIST_OF_REACTION_WORKUPS = "LIST_OF_REACTION_WORKUPS"
 
 
-class DiffReport(BaseModel):
+class DiffReport(ABC, BaseModel):
     kind: DiffReportKind
 
-    reference: dict | list[dict] | None = None
+    reference: dict | list[dict] | list[list[dict]] | None = None
 
-    actual: dict | list[dict] | None = None
+    actual: dict | list[dict] | list[list[dict]] | None = None
 
     class Config:
         validate_assignment = True

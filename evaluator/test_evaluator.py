@@ -1,38 +1,47 @@
-import json
-
 import pytest
 from tqdm import tqdm
 
-from evaluator.schema import ModelOutput, Evaluator, EvaluatorSniffError
+from evaluator import Evaluator, DiffReportKind, OrdMajorField
 
 
 class TestEvaluator:
 
     @pytest.fixture
-    def inference_data_20230716_99(self) -> list[Evaluator]:
-        with open("../models_llama/adapter/infer_20230716-99.json", "r") as f:
-            data = json.load(f)
-        evaluators = []
-        for record in data:
-            model_output = ModelOutput.from_raw_alpaca(
-                raw=record['response'],
-                ref=record['output'],
-                identifier=record['reaction_id']
+    def evaluators_from_20230716_99(self) -> list[Evaluator]:
+        return Evaluator.evaluators_from_json("../models_llama/adapter/finetune_20230716/infer-99.json", first_k=100)[0]
+
+    def test_diff_report_1(self, evaluators_from_20230716_99):
+        for ev in tqdm(evaluators_from_20230716_99):
+            ev: Evaluator
+            ev.get_diff_report(kind=DiffReportKind.LIST_OF_COMPOUNDS, in_field=OrdMajorField.inputs)
+
+    def test_diff_report_2(self, evaluators_from_20230716_99):
+        for ev in tqdm(evaluators_from_20230716_99):
+            ev: Evaluator
+            ev.get_diff_report(
+                kind=DiffReportKind.LIST_OF_COMPOUND_LISTS, in_field=OrdMajorField.inputs
             )
-            try:
-                evaluators.append(Evaluator(model_output))
-            except EvaluatorSniffError:
-                continue
-        return evaluators
 
-    def test_compound_list(self, inference_data_20230716_99):
-        for ev in tqdm(inference_data_20230716_99):
-            ev.evaluate_inputs_compounds_list()
+    def test_diff_report_3(self, evaluators_from_20230716_99):
+        for ev in tqdm(evaluators_from_20230716_99):
+            ev: Evaluator
+            ev.get_diff_report(
+                kind=DiffReportKind.LIST_OF_COMPOUNDS, in_field=OrdMajorField.outcomes
+            )
 
-    def test_compound_lol(self, inference_data_20230716_99):
-        for ev in tqdm(inference_data_20230716_99):
-            ev.evaluate_inputs_compounds_lol()
+    def test_diff_report_4(self, evaluators_from_20230716_99):
+        for ev in tqdm(evaluators_from_20230716_99):
+            ev: Evaluator
+            ev.get_diff_report(
+                kind=DiffReportKind.LIST_OF_COMPOUND_LISTS, in_field=OrdMajorField.outcomes
+            )
 
-    def test_conditions(self, inference_data_20230716_99):
-        for ev in tqdm(inference_data_20230716_99):
-            ev.evaluate_conditions()
+    def test_diff_report_5(self, evaluators_from_20230716_99):
+        for ev in tqdm(evaluators_from_20230716_99):
+            ev: Evaluator
+            ev.get_diff_report(kind=DiffReportKind.LIST_OF_REACTION_WORKUPS, in_field=OrdMajorField.workups)
+
+    def test_diff_report_6(self, evaluators_from_20230716_99):
+        for ev in tqdm(evaluators_from_20230716_99):
+            ev: Evaluator
+            ev.get_diff_report(kind=DiffReportKind.REACTION_CONDITIONS, in_field=OrdMajorField.conditions)

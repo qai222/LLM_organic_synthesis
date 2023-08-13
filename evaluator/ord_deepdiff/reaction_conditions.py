@@ -29,7 +29,8 @@ class DiffReportReactionConditions(DiffReport):
     deep_distance: float = 0.0
 
 
-def diff_reaction_conditions(c1: reaction_pb2.ReactionConditions, c2: reaction_pb2.ReactionConditions):
+def diff_reaction_conditions(c1: reaction_pb2.ReactionConditions,
+                             c2: reaction_pb2.ReactionConditions) -> DiffReportReactionConditions:
     report = DiffReportReactionConditions()
 
     cd1 = json_format.MessageToDict(c1)

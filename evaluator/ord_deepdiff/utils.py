@@ -91,11 +91,23 @@ def get_leaf_path_tuple_to_leaf_value(t, path_list, delimiter=ORD_PATH_DELIMITER
     since `t` can be non-literal (i.e. non-leaf), this function returns the map of leaf path tuple -> leaf value
     """
     path_tuple = tuple(path_list)
-    if isinstance(t, (list, dict)):
+    if isinstance(t, dict):
         t1 = flatten(t, separator=delimiter)
         t1_from_root = {tuple(path_list + list(get_path_tuple(k))): v for k, v in t1.items()}
+    elif isinstance(t, list):
+        dummy_header = "DUMMY" * 3
+        dummy_t = {dummy_header: t}
+        t1 = flatten(dummy_t, separator=delimiter)
+        t1_from_root = {tuple(path_list + list(get_path_tuple(k))[1:]): v for k, v in t1.items()}
     elif isinstance(t, NotPresent):
         t1_from_root = {path_tuple: None}
     else:
         t1_from_root = {path_tuple: t}
     return t1_from_root
+
+
+def get_dict_depth(d):
+    if not isinstance(d, dict) or not d:
+        return 0
+    else:
+        return max(get_dict_depth(v) for k, v in d.items()) + 1

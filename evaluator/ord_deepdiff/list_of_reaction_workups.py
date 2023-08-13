@@ -101,6 +101,11 @@ def diff_list_of_reaction_workups(
     report.reference = ref_reaction_workups_dicts
     report.actual = act_reaction_workups_dicts
 
+    if len(report.reference) == 0:
+        report.n_workups_excess = len(report.actual)
+        report.n_workups_absent = 0
+        return report
+
     matched_i2s = list_of_reaction_workups_exhaustive_matcher(ref_reaction_workups_dicts, act_reaction_workups_dicts)
     compound_index_pairs = dict([(i, matched_i2s[i]) for i in range(len(ref_reaction_workups_dicts))])
     report.index_match = compound_index_pairs
@@ -109,5 +114,5 @@ def diff_list_of_reaction_workups(
     report.n_workups_excess = len([i2 for i2 in range(len(act_reaction_workups_dicts)) if i2 not in matched_i2s])
 
     # in ref
-    report.n_workups_absent = len([i1 for i1, i2 in compound_index_pairs if i2 is None])
+    report.n_workups_absent = len([i1 for i1, i2 in compound_index_pairs.items() if i2 is None])
     return report

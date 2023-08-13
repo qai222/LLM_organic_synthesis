@@ -62,6 +62,15 @@ class CompoundFieldClass(str, Enum):
 compound_field_change_stats_type = dict[Optional[CompoundFieldClass], dict[FieldChangeType, int]]
 
 
+def get_empty_field_change_stats() -> compound_field_change_stats_type:
+    field_stats = dict()
+    for ck in list(CompoundFieldClass) + [None, ]:
+        field_stats[ck] = dict()
+        for fct in list(FieldChangeType):
+            field_stats[ck][fct] = 0
+    return field_stats
+
+
 class DiffReportListOfCompounds(DiffReport):
     kind: DiffReportKind = DiffReportKind.LIST_OF_COMPOUNDS
 
@@ -70,13 +79,13 @@ class DiffReportListOfCompounds(DiffReport):
     n_altered_compounds: int = 0
 
     # num of fields in ref, `None` means the field class is not included in `CompoundFieldClass`
-    field_counter_ref: dict[CompoundFieldClass | None, int] = dict()
+    field_counter_ref: dict[CompoundFieldClass | None, int] = {ck: 0 for ck in list(CompoundFieldClass) + [None, ]}
 
     # num of fields in act, `None` means the field class is not included in `CompoundFieldClass`
-    field_counter_act: dict[CompoundFieldClass | None, int] = dict()
+    field_counter_act: dict[CompoundFieldClass | None, int] = {ck: 0 for ck in list(CompoundFieldClass) + [None, ]}
 
     # how the values of these fields change
-    field_change_stats: compound_field_change_stats_type = dict()
+    field_change_stats: compound_field_change_stats_type = get_empty_field_change_stats()
 
     # deep distances of compound pairs, https://zepworks.com/deepdiff/current/deep_distance.html
     # note their average may be different from direct comparison between two list with ignore_order=True
@@ -84,6 +93,15 @@ class DiffReportListOfCompounds(DiffReport):
 
     # self.index_match[i] = <the matched index of Compound in self.actual> | None if no match
     index_match: dict[int, int | None] = {}
+
+    @property
+    def compound_change_stats(self) -> dict[FieldChangeType, int]:
+        d = {
+            FieldChangeType.ADDITION: self.n_excess_compounds,
+            FieldChangeType.REMOVAL: self.n_absent_compounds,
+            FieldChangeType.ALTERATION: self.n_altered_compounds,
+        }
+        return d
 
     @property
     def n_ref_compounds(self):
@@ -112,15 +130,6 @@ class DiffReportListOfCompounds(DiffReport):
             return n
         else:
             return 0
-
-    @staticmethod
-    def get_empty_field_change_stats() -> compound_field_change_stats_type:
-        field_stats = dict()
-        for ck in list(CompoundFieldClass) + [None, ]:
-            field_stats[ck] = dict()
-            for fct in list(FieldChangeType):
-                field_stats[ck][fct] = 0
-        return field_stats
 
 
 def list_of_compounds_exhaustive_matcher(cds1: list[dict], cds2: list[dict]) -> list[int | None]:
@@ -233,9 +242,11 @@ def inspect_compound_pair(
     act_field_path_tuple_to_class = CompoundFieldClass.get_field_path_tuple_to_field_class(act_compound_dict)
 
     field_counter_ref = Counter(ref_field_path_tuple_to_class.values())
+    field_counter_ref = {k: field_counter_ref[k] for k in list(CompoundFieldClass) + [None, ]}
     field_counter_act = Counter(act_field_path_tuple_to_class.values())
+    field_counter_act = {k: field_counter_act[k] for k in list(CompoundFieldClass) + [None, ]}
 
-    field_stats = DiffReportListOfCompounds.get_empty_field_change_stats()
+    field_stats = get_empty_field_change_stats()
 
     dd = DeepDiff(
         ref_compound_dict, act_compound_dict,
@@ -322,7 +333,7 @@ def diff_list_of_compounds(
     compound_index_pairs = dict([(i, matched_i2s[i]) for i in range(len(ref_compounds_dicts))])
     report.index_match = compound_index_pairs
 
-    field_stats_total = DiffReportListOfCompounds.get_empty_field_change_stats()
+    field_stats_total = get_empty_field_change_stats()
 
     field_counter_ref_total = {ck: 0 for ck in list(CompoundFieldClass) + [None, ]}
     field_counter_act_total = {ck: 0 for ck in list(CompoundFieldClass) + [None, ]}
