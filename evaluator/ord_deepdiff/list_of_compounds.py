@@ -134,7 +134,8 @@ class DiffReportListOfCompounds(DiffReport):
 
 
 def list_of_compounds_exhaustive_matcher(cds1: list[dict], cds2: list[dict]) -> list[int | None]:
-    assert len(cds1) > 0
+    if len(cds1) == 0:
+        return []
 
     indices1 = [*range(len(cds1))]
     indices2 = [*range(len(cds2))]
@@ -255,6 +256,9 @@ def skip_in_inspect_compound_pair(leaf_key: tuple, leaf_val, prompt: str, rule: 
                 - leaf key contains "units" (values of this field can be present in a different form in prompt)
     :return:
     """
+    if leaf_val is None:
+        raise ValueError  # leaf key should always present in ref
+
     value_present_in_prompt = str(leaf_val).lower() in prompt.lower()
     field_class = CompoundFieldClass.get_field_class(leaf_key)
     if rule == FieldSkipRule.no_skip:
@@ -363,34 +367,39 @@ def inspect_compound_pair(
                     if fct == FieldChangeType.ALTERATION:
                         # actual assignment
                         if t_leaf_key not in t_from_root_1 and t_leaf_key in t_from_root_2:
-                            fct = FieldChangeType.ADDITION
+                            fct_leaf = FieldChangeType.ADDITION
                         elif t_leaf_key in t_from_root_1 and t_leaf_key not in t_from_root_2:
-                            fct = FieldChangeType.REMOVAL
+                            fct_leaf = FieldChangeType.REMOVAL
                         elif t_leaf_key in t_from_root_1 and t_leaf_key in t_from_root_2:
-                            fct = FieldChangeType.ALTERATION
+                            fct_leaf = FieldChangeType.ALTERATION
                         else:
                             raise ValueError
+                    else:
+                        fct_leaf = fct
 
-                    logger_msg = f"{fct} at {'.'.join(str(kk) for kk in t_leaf_key)} ({t_leaf_key_class}):\n"
-                    if fct == FieldChangeType.ADDITION:
+                    logger_msg = f"{fct_leaf} at {'.'.join(str(kk) for kk in t_leaf_key)} ({t_leaf_key_class}):\n"
+                    if fct_leaf == FieldChangeType.ADDITION:
                         logger_msg += f"{None} -> {t_leaf_val}"
-                    elif fct == FieldChangeType.REMOVAL:
+                    elif fct_leaf == FieldChangeType.REMOVAL:
                         logger_msg += f"{t_leaf_val} -> {None}"
-                    elif fct == FieldChangeType.ALTERATION:
+                    elif fct_leaf == FieldChangeType.ALTERATION:
                         logger_msg += f"{t_leaf_val} -> {t_from_root_2[t_leaf_key]}"
                     else:
                         raise ValueError
 
                     logger.info(logger_msg)
 
-                    if skip_in_inspect_compound_pair(t_leaf_key, t_leaf_val, prompt, skip_rule):
+                    # we can only skip when ref key is available, i.e. t_from_root = t_from_root_1
+                    can_skip = fct_leaf in (FieldChangeType.REMOVAL, FieldChangeType.ALTERATION,)
+
+                    if skip_in_inspect_compound_pair(t_leaf_key, t_leaf_val, prompt, skip_rule) and can_skip:
                         logger.warning(f"this diff is skipped by the rule: {skip_rule}")
-                        if fct in (FieldChangeType.REMOVAL, FieldChangeType.ALTERATION,):
+                        if fct_leaf in (FieldChangeType.REMOVAL, FieldChangeType.ALTERATION,):
                             skipped_leaf_keys_ref.append(t_leaf_key)
-                        if fct in (FieldChangeType.ADDITION, FieldChangeType.ALTERATION,):
-                            skipped_leaf_keys_act.append(t_leaf_key)
+                            if fct_leaf == FieldChangeType.ALTERATION:
+                                skipped_leaf_keys_act.append(t_leaf_key)
                     else:
-                        field_stats[t_leaf_key_class][fct] += 1
+                        field_stats[t_leaf_key_class][fct_leaf] += 1
 
     ref_field_path_tuple_to_class_exclude_skipped = {k: v for k, v in ref_field_path_tuple_to_class.items() if
                                                      k not in skipped_leaf_keys_ref}

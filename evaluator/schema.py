@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import pprint
 import textwrap
 from copy import deepcopy
@@ -171,7 +172,7 @@ class EvaluatorReport(BaseModel):
                 try:
                     percent = n_changed / n_ref
                 except ZeroDivisionError:
-                    percent = "N/A"
+                    percent = math.nan
                 record = {
                     "Field Category": fc.value,
                     "Change Type": fct.value,
@@ -185,7 +186,11 @@ class EvaluatorReport(BaseModel):
         """ a more readable table at the sub message level """
 
         def format_cell(n, d):
-            return "{}/{} {:.2%}".format(n, d, n / d)
+            try:
+                r = n / d
+            except ZeroDivisionError:
+                r = 0
+            return "{}/{} {:.2%}".format(n, d, r)
 
         row_inputs_compound = dict(message="Compounds (inputs)")
         row_outputs_compound = dict(message="Compounds (outcomes)")
@@ -329,7 +334,10 @@ class Evaluator:
         report = EvaluatorReport()
 
         logger.info(f">> START INSPECTING: {self.output.identifier}")
-        logger.info(f"PROMPT is:\n{textwrap.fill(self.output.prompt, 140)}")
+        try:
+            logger.info(f"PROMPT is:\n{textwrap.fill(self.output.prompt, 140)}")
+        except AttributeError:
+            logger.info(f"PROMPT is:\n{self.output.prompt}")
 
         # inputs
         r_inputs_list_of_compound = self.get_diff_report(
