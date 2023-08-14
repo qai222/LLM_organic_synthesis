@@ -6,14 +6,13 @@ def run_eval(filename: FilePath, slice_indices: tuple[int, int] | None,
              skip_rule=FieldSkipRule.ignore_absent_in_prompt_with_exceptions):
     res = Evaluator.evaluate_llama_inference_json(filename, slice_indices=slice_indices,
                                                   skip_rule=skip_rule)
-    resport_summary = res["report_summary"]
-    df = resport_summary.get_table_compound_fields(from_inputs=True)
+    report_summary = res["report_summary"]
+    df = report_summary.get_table_compound_fields(from_inputs=True)
     df.to_csv("eval__compound_inputs.csv")
-    df = resport_summary.get_table_compound_fields(from_inputs=False)
+    df = report_summary.get_table_compound_fields(from_inputs=False)
     df.to_csv("eval__compound_outcomes.csv")
-    df = resport_summary.get_table_messages()
+    df = report_summary.get_table_messages()
     df.to_csv("eval__messages.csv")
-    return
 
 
 if __name__ == '__main__':
@@ -22,6 +21,6 @@ if __name__ == '__main__':
     run_eval(
         filename="infer-14.json",
         slice_indices=None,
-        skip_rule=FieldSkipRule.ignore_absent_in_prompt_with_exceptions
+        # skip_rule=FieldSkipRule.ignore_absent_in_prompt_with_exceptions,
+        skip_rule = FieldSkipRule.ignore_absent_in_prompt,
     )
-    # somehow # 1406 took much longer than others
