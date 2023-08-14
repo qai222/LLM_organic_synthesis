@@ -22,6 +22,8 @@ class DiffReportListOfReactionWorkups(DiffReport):
 
     n_workups_excess: int = 0
 
+    n_workups_altered: int = 0
+
     index_match: dict[int, int | None] = dict()
 
     @property
@@ -115,4 +117,15 @@ def diff_list_of_reaction_workups(
 
     # in ref
     report.n_workups_absent = len([i1 for i1, i2 in compound_index_pairs.items() if i2 is None])
+
+    # for pairs
+    # TODO this is just a ghetto version of alteration check...
+    n_altered = 0
+    for i, j in compound_index_pairs.items():
+        if j is None:
+            continue
+        if ref_reaction_workups_dicts[i]['type'] != act_reaction_workups_dicts[j]['type']:
+            n_altered += 1
+
+    report.n_workups_altered = n_altered
     return report
