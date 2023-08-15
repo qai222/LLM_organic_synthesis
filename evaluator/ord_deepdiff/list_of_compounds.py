@@ -12,6 +12,7 @@ from deepdiff import DeepDiff
 from deepdiff.helper import NotPresent
 from deepdiff.model import DiffLevel, PrettyOrderedSet, REPORT_KEYS
 from google.protobuf import json_format
+from loguru import logger
 from ord_schema.proto import reaction_pb2
 
 from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind, FieldChangeType
@@ -20,7 +21,7 @@ from evaluator.ord_deepdiff.utils import DeepDiffKey, flatten, get_compound_name
 
 
 class CompoundFieldClass(str, Enum):
-    """ they should be disjoint so any leaf of a compound can only be one of the three classes """
+    """ they should be "disjoint" so any leaf of a compound can only be one of the these classes """
 
     reaction_role = 'reactionRole'
 
@@ -133,7 +134,8 @@ class DiffReportListOfCompounds(DiffReport):
 
 
 def list_of_compounds_exhaustive_matcher(cds1: list[dict], cds2: list[dict]) -> list[int | None]:
-    assert len(cds1) > 0
+    if len(cds1) == 0:
+        return []
 
     indices1 = [*range(len(cds1))]
     indices2 = [*range(len(cds2))]
@@ -229,24 +231,94 @@ def list_of_compounds_greedy_matcher(cds1: list[dict], cds2: list[dict]) -> list
     return matched_i2s
 
 
+class FieldSkipRule(str, Enum):
+    no_skip = "no_skip"
+    skip_reaction_role = "skip_reaction_role"
+    ignore_absent_in_prompt = "ignore_absent_in_prompt"
+    ignore_absent_in_prompt_with_exceptions = "ignore_absent_in_prompt_with_exceptions"
+
+
+def skip_in_inspect_compound_pair(leaf_key: tuple, leaf_val, prompt: str, rule: FieldSkipRule) -> bool:
+    """
+    :param leaf_key:
+    :param leaf_val:
+    :param prompt:
+    :param rule: this option allows skipping leaf fields as if they are absent in both ref and act
+        "no_skip":
+            don't skip any field
+        "skip_reaction_role":
+            if a leaf field is classified as `reaction_role`, it is skipped
+        "ignore_absent_in_prompt":
+            if the value of a leaf is absent in the prompt, that leaf field is skipped
+        "ignore_absent_in_prompt_with_exceptions":
+            except the leaf field satisfies one of the followings
+                - has class of `reaction_role` (values of this field are usually not present in prompt)
+                - leaf key contains "units" (values of this field can be present in a different form in prompt)
+    :return:
+    """
+    if leaf_val is None:
+        raise ValueError  # leaf key should always present in ref
+
+    value_present_in_prompt = str(leaf_val).lower() in prompt.lower()
+    field_class = CompoundFieldClass.get_field_class(leaf_key)
+    if rule == FieldSkipRule.no_skip:
+        return False
+    elif rule == FieldSkipRule.skip_reaction_role:
+        if field_class == CompoundFieldClass.reaction_role:
+            return True
+        return False
+    elif rule == FieldSkipRule.ignore_absent_in_prompt:
+        if not value_present_in_prompt:
+            return True
+        return False
+    elif rule == FieldSkipRule.ignore_absent_in_prompt_with_exceptions:
+        if not value_present_in_prompt:
+            if field_class == CompoundFieldClass.reaction_role:
+                return False
+            if "units" in leaf_key:
+                return False
+            return True
+        return False
+    else:
+        raise ValueError
+
+
 def inspect_compound_pair(
         ref_compound_dict: dict,
         act_compound_dict: dict,
+        skip_rule: FieldSkipRule = FieldSkipRule.ignore_absent_in_prompt_with_exceptions,
+        prompt: str = "",
 ) -> tuple[
-    list[float],
-    compound_field_change_stats_type,
-    dict[CompoundFieldClass | None, int],
-    dict[CompoundFieldClass | None, int],
+    list[float], compound_field_change_stats_type,
+    dict[CompoundFieldClass | None, int], dict[CompoundFieldClass | None, int],
 ]:
+    """
+    inspect a pair of compounds
+
+    :param ref_compound_dict:
+    :param act_compound_dict:
+    :param skip_rule: this option allows skipping leaf fields as if they are absent in both ref and act
+        "no_skip":
+            don't skip any field
+        "skip_reaction_role":
+            if a leaf field is classified as `reaction_role`, it is skipped
+        "ignore_absent_in_prompt":
+            if the value of a leaf is absent in the prompt, that leaf field is skipped
+        "ignore_absent_in_prompt_with_exceptions":
+            except the leaf field satisfies one of the followings
+                - has class of `reaction_role` (values of this field are usually not present in prompt)
+                - leaf key contains "units" (values of this field can be present in a different form in prompt)
+        NOTE: this would not affect (upstream) compound count, ex. if a compound is missing in the prompt, you will
+        still have that compound appears "removed"
+    :param prompt:
+    :return:
+    """
     ref_field_path_tuple_to_class = CompoundFieldClass.get_field_path_tuple_to_field_class(ref_compound_dict)
     act_field_path_tuple_to_class = CompoundFieldClass.get_field_path_tuple_to_field_class(act_compound_dict)
 
-    field_counter_ref = Counter(ref_field_path_tuple_to_class.values())
-    field_counter_ref = {k: field_counter_ref[k] for k in list(CompoundFieldClass) + [None, ]}
-    field_counter_act = Counter(act_field_path_tuple_to_class.values())
-    field_counter_act = {k: field_counter_act[k] for k in list(CompoundFieldClass) + [None, ]}
-
     field_stats = get_empty_field_change_stats()
+    # TODO the structure of this is still a bit confusing, maybe better to have a field-keyed dictionary,
+    #  ex. stats[<field_tuple>] = {"field_class": "identifiers", "change_type": "ADDITION", ...}
 
     dd = DeepDiff(
         ref_compound_dict, act_compound_dict,
@@ -254,10 +326,11 @@ def inspect_compound_pair(
     )
 
     deep_distance = 0
+    skipped_leaf_keys_ref = []
+    skipped_leaf_keys_act = []
     for k, v in dd.to_dict().items():
         k: str
         v: PrettyOrderedSet[DiffLevel] | float
-
         if k == DeepDiffKey.deep_distance.value:
             deep_distance = v
         else:
@@ -268,31 +341,81 @@ def inspect_compound_pair(
                 t2 = value_altered_level.t2
                 is_ref_none = isinstance(t1, NotPresent)
                 is_act_none = isinstance(t2, NotPresent)
+
+                t_from_root_1 = get_leaf_path_tuple_to_leaf_value(t1, path_list)
+                t_from_root_2 = get_leaf_path_tuple_to_leaf_value(t2, path_list)
+
                 if is_ref_none and not is_act_none:
                     fct = FieldChangeType.ADDITION
-                    t_from_root = get_leaf_path_tuple_to_leaf_value(t2, path_list)
                     field_path_tuple_to_field_class = act_field_path_tuple_to_class
+                    t_from_root = t_from_root_2
                 elif not is_ref_none and is_act_none:
                     fct = FieldChangeType.REMOVAL
-                    t_from_root = get_leaf_path_tuple_to_leaf_value(t1, path_list)
                     field_path_tuple_to_field_class = ref_field_path_tuple_to_class
+                    t_from_root = t_from_root_1
                 elif not is_ref_none and not is_act_none:
+                    # not this assignment is not the final assignment:
+                    # ex. I can have a sub-filed in t_from_root_1 removed
                     fct = FieldChangeType.ALTERATION
-                    t_from_root = get_leaf_path_tuple_to_leaf_value(t1, path_list)
                     field_path_tuple_to_field_class = ref_field_path_tuple_to_class
+                    t_from_root = t_from_root_1
                 else:
                     raise ValueError
 
-                for t_key in t_from_root:
-                    t_key_class = field_path_tuple_to_field_class[t_key]
-                    field_stats[t_key_class][fct] += 1
+                for t_leaf_key, t_leaf_val in t_from_root.items():
+                    t_leaf_key_class = field_path_tuple_to_field_class[t_leaf_key]
+                    if fct == FieldChangeType.ALTERATION:
+                        # actual assignment
+                        if t_leaf_key not in t_from_root_1 and t_leaf_key in t_from_root_2:
+                            fct_leaf = FieldChangeType.ADDITION
+                        elif t_leaf_key in t_from_root_1 and t_leaf_key not in t_from_root_2:
+                            fct_leaf = FieldChangeType.REMOVAL
+                        elif t_leaf_key in t_from_root_1 and t_leaf_key in t_from_root_2:
+                            fct_leaf = FieldChangeType.ALTERATION
+                        else:
+                            raise ValueError
+                    else:
+                        fct_leaf = fct
 
+                    logger_msg = f"{fct_leaf} at {'.'.join(str(kk) for kk in t_leaf_key)} ({t_leaf_key_class}):\n"
+                    if fct_leaf == FieldChangeType.ADDITION:
+                        logger_msg += f"{None} -> {t_leaf_val}"
+                    elif fct_leaf == FieldChangeType.REMOVAL:
+                        logger_msg += f"{t_leaf_val} -> {None}"
+                    elif fct_leaf == FieldChangeType.ALTERATION:
+                        logger_msg += f"{t_leaf_val} -> {t_from_root_2[t_leaf_key]}"
+                    else:
+                        raise ValueError
+
+                    logger.info(logger_msg)
+
+                    # we can only skip when ref key is available, i.e. t_from_root = t_from_root_1
+                    can_skip = fct_leaf in (FieldChangeType.REMOVAL, FieldChangeType.ALTERATION,)
+
+                    if skip_in_inspect_compound_pair(t_leaf_key, t_leaf_val, prompt, skip_rule) and can_skip:
+                        logger.warning(f"this diff is skipped by the rule: {skip_rule}")
+                        if fct_leaf in (FieldChangeType.REMOVAL, FieldChangeType.ALTERATION,):
+                            skipped_leaf_keys_ref.append(t_leaf_key)
+                            if fct_leaf == FieldChangeType.ALTERATION:
+                                skipped_leaf_keys_act.append(t_leaf_key)
+                    else:
+                        field_stats[t_leaf_key_class][fct_leaf] += 1
+
+    ref_field_path_tuple_to_class_exclude_skipped = {k: v for k, v in ref_field_path_tuple_to_class.items() if
+                                                     k not in skipped_leaf_keys_ref}
+    act_field_path_tuple_to_class_exclude_skipped = {k: v for k, v in act_field_path_tuple_to_class.items() if
+                                                     k not in skipped_leaf_keys_act}
+
+    field_counter_ref = Counter(ref_field_path_tuple_to_class_exclude_skipped.values())
+    field_counter_act = Counter(act_field_path_tuple_to_class_exclude_skipped.values())
     return deep_distance, field_stats, field_counter_ref, field_counter_act
 
 
 def diff_list_of_compounds(
         ref_compounds: list[reaction_pb2.Compound] | list[reaction_pb2.ProductCompound],
         act_compounds: list[reaction_pb2.Compound] | list[reaction_pb2.ProductCompound],
+        prompt: str = "",
+        skip_rule: FieldSkipRule = FieldSkipRule.ignore_absent_in_prompt_with_exceptions,
 ) -> DiffReportListOfCompounds:
     """
     find the differences between two lists of compound messages
@@ -331,6 +454,7 @@ def diff_list_of_compounds(
     # absent_compounds = [ref_compounds_dicts[icd] for icd in range(len(ref_compounds_dicts)) if matched_i2s[icd] is None]
 
     compound_index_pairs = dict([(i, matched_i2s[i]) for i in range(len(ref_compounds_dicts))])
+    logger.info(f"found pairs of compounds: {compound_index_pairs}")
     report.index_match = compound_index_pairs
 
     field_stats_total = get_empty_field_change_stats()
@@ -340,27 +464,36 @@ def diff_list_of_compounds(
 
     compound_pair_deep_distances = []
     for i, j in compound_index_pairs.items():
+        logger.info(f"inspecting a pair of compounds: {i} <-> {j}")
         ref_compound_dict = ref_compounds_dicts[i]
         if j is None:
             # TODO we may set act_compound_dict to be an empty dict...
+            logger.warning(f"no matched act compound")
             continue
 
         act_compound_dict = act_compounds_dicts[j]
         deep_distance, field_stats_pair, field_counter_ref, field_counter_act = inspect_compound_pair(
-            ref_compound_dict, act_compound_dict
+            ref_compound_dict, act_compound_dict, prompt=prompt, skip_rule=skip_rule,
         )
         compound_pair_deep_distances.append(deep_distance)
 
-        compound_altered = False
+        n_changed_fields_in_pair = 0
         for ck in field_stats_total:
             field_counter_ref_total[ck] += field_counter_ref[ck]
+            logger.info(f"# of fields in ref: {ck} - {field_counter_ref[ck]}")
             field_counter_act_total[ck] += field_counter_act[ck]
             for fct in field_stats_total[ck]:
+                logger.info(f"of which: {field_stats_pair[ck][fct]} - {fct}")
                 field_stats_total[ck][fct] += field_stats_pair[ck][fct]
-                if field_stats_pair[ck][fct] > 0:
-                    compound_altered = True
-        if compound_altered:
+                n_changed_fields_in_pair += field_stats_pair[ck][fct]
+
+        if n_changed_fields_in_pair:
             report.n_altered_compounds += 1
+            logger.warning(
+                f"# of CHANGED fields: {n_changed_fields_in_pair} -- the ref compound is CHANGED in this pair")
+        else:
+            logger.warning(
+                f"# of CHANGED fields: {n_changed_fields_in_pair} -- the ref and act compounds are IDENTICAL in this pair")
 
     report.deep_distances = compound_pair_deep_distances
     report.field_change_stats = field_stats_total

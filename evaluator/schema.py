@@ -1,9 +1,13 @@
 from __future__ import annotations
 
 import json
+import math
+import pprint
+import textwrap
 from copy import deepcopy
 from enum import Enum
 
+import pandas as pd
 from loguru import logger
 from ord_schema.message_helpers import json_format, find_submessages, Type, MessageType
 from ord_schema.proto import reaction_pb2
@@ -113,10 +117,11 @@ class EvaluatorReport(BaseModel):
     # workups
     workups_n_workups_absent: int = 0
     workups_n_workups_excess: int = 0
+    workups_n_workups_altered: int = 0
     workups_n_workups_ref: int = 0
 
     # conditions
-    conditions_n_erroneous_condition_types: int = 0
+    conditions_condition_type_stats: dict[FieldChangeType, int] = {k: 0 for k in list(FieldChangeType)}
     conditions_n_ref_conditions: int = 0
 
     def __add__(self, other: EvaluatorReport) -> EvaluatorReport:
@@ -148,10 +153,92 @@ class EvaluatorReport(BaseModel):
                 setattr(result, k, result_v)
         return result
 
+    def get_table_compound_fields(self, from_inputs=True):
+        """ a more readable table at the field level """
+        if from_inputs:
+            field_change_stats = self.inputs_compound_field_change_stats
+            field_counter_ref = self.inputs_compound_field_counter_ref
+        else:
+            field_change_stats = self.outcomes_compound_field_change_stats
+            field_counter_ref = self.outcomes_compound_field_counter_ref
+
+        records = []
+        for fc in field_change_stats:
+            if fc is None:
+                continue
+            for fct in field_change_stats[fc]:
+                n_changed = field_change_stats[fc][fct]
+                n_ref = field_counter_ref[fc]
+                try:
+                    percent = n_changed / n_ref
+                except ZeroDivisionError:
+                    percent = math.nan
+                record = {
+                    "Field Category": fc.value,
+                    "Change Type": fct.value,
+                    "fields": "{}/{} {:.2%}".format(n_changed, n_ref, percent)
+                }
+                records.append(record)
+        df = pd.DataFrame.from_records(records)
+        return df.pivot(index="Field Category", columns="Change Type", values="fields")
+
+    def get_table_messages(self):
+        """ a more readable table at the sub message level """
+
+        def format_cell(n, d):
+            try:
+                r = n / d
+            except ZeroDivisionError:
+                r = 0
+            return "{}/{} {:.2%}".format(n, d, r)
+
+        row_inputs_compound = dict(message="Compounds (inputs)")
+        row_outputs_compound = dict(message="Compounds (outcomes)")
+        row_workups = dict(message="workups")
+        row_conditions = dict(message="conditions")
+        for fc in list(FieldChangeType):
+            row_inputs_compound[fc.value] = format_cell(
+                self.inputs_compound_change_stats[fc],
+                self.inputs_compound_n_ref_compounds,
+            )
+            row_outputs_compound[fc.value] = format_cell(
+                self.outcomes_compound_change_stats[fc],
+                self.outcomes_compound_n_ref_compounds,
+            )
+            row_conditions[fc.value] = format_cell(
+                self.conditions_condition_type_stats[fc],
+                self.conditions_n_ref_conditions,
+            )
+            if fc == FieldChangeType.ADDITION:
+                row_workups[fc.value] = format_cell(
+                    self.workups_n_workups_excess,
+                    self.workups_n_workups_ref,
+                )
+            elif fc == FieldChangeType.REMOVAL:
+                row_workups[fc.value] = format_cell(
+                    self.workups_n_workups_absent,
+                    self.workups_n_workups_ref,
+                )
+            elif fc == FieldChangeType.ALTERATION:
+                row_workups[fc.value] = format_cell(
+                    self.workups_n_workups_altered,
+                    self.workups_n_workups_ref,
+                )
+        rows = [
+            row_inputs_compound,
+            row_outputs_compound,
+            row_workups,
+            row_conditions,
+        ]
+        df = pd.DataFrame.from_records(rows)
+        return df
+
 
 class Evaluator:
 
-    def __init__(self, output: ModelOutput):
+    def __init__(self, output: ModelOutput,
+                 skip_rule: FieldSkipRule = FieldSkipRule.ignore_absent_in_prompt_with_exceptions):
+        self.skip_rule = skip_rule
         self.output = output
 
         try:
@@ -204,6 +291,7 @@ class Evaluator:
         :param in_field: does not matter for workups and conditions
         :return:
         """
+        logger.info(f"getting diff report for: {kind} in_field: {in_field}")
         if kind == DiffReportKind.LIST_OF_COMPOUNDS:
             if in_field == "outcomes":
                 compound_class = reaction_pb2.ProductCompound
@@ -213,7 +301,7 @@ class Evaluator:
                 raise EvaluatorError(f"not allowed report for: {kind} in the field of: {in_field}")
             ref_compounds = self.find_messages(in_field=in_field, message_type=compound_class, ref=True)
             act_compounds = self.find_messages(in_field=in_field, message_type=compound_class, ref=False)
-            return diff_list_of_compounds(ref_compounds, act_compounds)
+            r = diff_list_of_compounds(ref_compounds, act_compounds, self.output.prompt, skip_rule=self.skip_rule)
 
         elif kind == DiffReportKind.LIST_OF_COMPOUND_LISTS:
             if in_field == "outcomes":
@@ -224,20 +312,32 @@ class Evaluator:
                 act_lol = [ri.components for ri in list(self.reaction_message.inputs.values())]
             else:
                 raise EvaluatorError(f"not allowed report for: {kind} in the field of: {in_field}")
-            return diff_list_of_compound_lists(ref_lol, act_lol)
+            r = diff_list_of_compound_lists(ref_lol, act_lol)
 
         elif kind == DiffReportKind.REACTION_CONDITIONS:
             ref_conditions = self.reaction_message.conditions
             act_conditions = self.reaction_message_ref.conditions
-            return diff_reaction_conditions(ref_conditions, act_conditions)
+            r = diff_reaction_conditions(ref_conditions, act_conditions)
 
         elif kind == DiffReportKind.LIST_OF_REACTION_WORKUPS:
             ref_workups = self.reaction_message_ref.workups
             act_workups = self.reaction_message.workups
-            return diff_list_of_reaction_workups(ref_workups, act_workups)
+            r = diff_list_of_reaction_workups(ref_workups, act_workups)
+
+        else:
+            raise ValueError
+
+        logger.info("report obtained")
+        return r
 
     def run_evaluate(self) -> EvaluatorReport:
         report = EvaluatorReport()
+
+        logger.info(f">> START INSPECTING: {self.output.identifier}")
+        try:
+            logger.info(f"PROMPT is:\n{textwrap.fill(self.output.prompt, 140)}")
+        except AttributeError:
+            logger.info(f"PROMPT is:\n{self.output.prompt}")
 
         # inputs
         r_inputs_list_of_compound = self.get_diff_report(
@@ -272,38 +372,26 @@ class Evaluator:
         report.workups_n_workups_absent = r_workups.n_workups_absent
         report.workups_n_workups_excess = r_workups.n_workups_excess
         report.workups_n_workups_ref = r_workups.n_workups_ref
+        report.workups_n_workups_altered = r_workups.n_workups_altered
 
         # conditions
         r_conditions = self.get_diff_report(kind=DiffReportKind.REACTION_CONDITIONS, in_field=OrdMajorField.conditions)
-        report.conditions_n_erroneous_condition_types = r_conditions.n_erroneous_condition_types
+        report.conditions_condition_type_stats = r_conditions.condition_type_stats
         report.conditions_n_ref_conditions = r_conditions.n_ref_conditions
 
+        logger.info(pprint.pformat(report.model_dump()))
+        logger.info(f">> FINISH INSPECTING\n")
         return report
 
     @staticmethod
-    def evaluate_model_outputs(model_outputs: list[ModelOutput], ):
-        report_dictionary = dict()
-        report_dictionary: dict[str, EvaluatorReport | None]
-        report_summary = EvaluatorReport()
-
-        for model_output in tqdm(model_outputs, desc="evaluate model outputs"):
-            try:
-                inference_evaluator = Evaluator(model_output)
-            except EvaluatorError:
-                report = None
-                report_dictionary[model_output.identifier] = report
-                logger.warning(f"invalid JSON/ORD: {model_output.identifier}")
-                continue
-            report = inference_evaluator.eval()
-            report_summary += report
-        return dict(report_dictionary=report_dictionary, report_summary=report_summary)
-
-    @staticmethod
-    def evaluators_from_json(json_file: FilePath, first_k=None) -> tuple[list[Evaluator], int]:
+    def evaluators_from_json(
+            json_file: FilePath, slice_indices: tuple[int, int] | None = None,
+            skip_rule: FieldSkipRule = FieldSkipRule.ignore_absent_in_prompt_with_exceptions,
+    ) -> tuple[list[Evaluator], int]:
         with open(json_file, "r") as f:
             data = json.load(f)
-        if first_k:
-            data = data[:first_k]
+        if slice_indices:
+            data = data[slice_indices[0]:slice_indices[1]]
         evals = []
         n_invalid = 0
         for record in tqdm(data, desc="load json to evaluators"):
@@ -313,7 +401,7 @@ class Evaluator:
                 identifier=record['reaction_id']
             )
             try:
-                inference_evaluator = Evaluator(model_output)
+                inference_evaluator = Evaluator(model_output, skip_rule=skip_rule)
             except EvaluatorError:
                 logger.warning(f"invalid JSON/ORD: {model_output.identifier}")
                 n_invalid += 1
@@ -323,8 +411,12 @@ class Evaluator:
         return evals, n_invalid
 
     @staticmethod
-    def evaluate_llama_inference_json(json_file: FilePath, first_k=None):
-        evaluators, n_invalid = Evaluator.evaluators_from_json(json_file, first_k)
+    def evaluate_llama_inference_json(
+            json_file: FilePath, slice_indices: tuple[int, int] | None = None,
+            skip_rule: FieldSkipRule = FieldSkipRule.ignore_absent_in_prompt_with_exceptions,
+    ):
+        evaluators, n_invalid = Evaluator.evaluators_from_json(json_file, slice_indices=slice_indices,
+                                                               skip_rule=skip_rule)
         report_dictionary = dict()
         report_dictionary: dict[str, EvaluatorReport | None]
         report_summary = EvaluatorReport()
@@ -332,5 +424,5 @@ class Evaluator:
             report = evaluator.run_evaluate()
             report_dictionary[evaluator.output.identifier] = report.model_dump()
             report_summary += report
-        return dict(report_dictionary=report_dictionary, report_summary=report_summary.model_dump(),
+        return dict(report_dictionary=report_dictionary, report_summary=report_summary,
                     n_invalid=n_invalid)

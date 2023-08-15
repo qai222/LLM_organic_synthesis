@@ -8,7 +8,8 @@ class TestEvaluator:
 
     @pytest.fixture
     def evaluators_from_20230716_99(self) -> list[Evaluator]:
-        return Evaluator.evaluators_from_json("../models_llama/adapter/finetune_20230716/infer-99.json", first_k=100)[0]
+        return Evaluator.evaluators_from_json("../models_llama/adapter/finetune_20230716/infer-99.json",
+                                              slice_indices=(0, 100))[0]
 
     def test_diff_report_1(self, evaluators_from_20230716_99):
         for ev in tqdm(evaluators_from_20230716_99):
