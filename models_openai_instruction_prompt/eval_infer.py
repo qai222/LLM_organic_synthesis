@@ -2,7 +2,8 @@ from evaluator import *
 
 logger.remove(0)
 
-with open("ord_dataset-03ba810b7f464a06b5d8787af2e8b64e.json_GPT3_5_example0_599.json", "r") as f:
+with open("data_from_test.json", "r") as f:
+# with open("ord_dataset-03ba810b7f464a06b5d8787af2e8b64e.json_GPT3_5_example0_599.json", "r") as f:
     data = json.load(f)
 
 model_outputs = []
