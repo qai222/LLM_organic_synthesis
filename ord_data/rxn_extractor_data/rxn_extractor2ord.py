@@ -1,12 +1,12 @@
-i# further improved version
+i  # further improved version
 
 import string
-from datetime import datetime
 
 import numpy as np
-from ord_schema import message_helpers, validations
+from ord_schema import message_helpers
 from ord_schema.proto import reaction_pb2, dataset_pb2
 from ord_schema.units import UnitResolver
+
 
 # lit = LineIterator(filename="data/role/test_subset.txt")
 # with open("data/role/test_subset.txt", "r", newline="") as f:
@@ -337,9 +337,9 @@ def build_ord_database(record_list, output_file=None):
 
     # create a dataset
     dataset = dataset_pb2.Dataset(
-    name="Dataset from ChemRxnExtractor paper",
-    description="Reaction data from J.Chem.Inf.Model.2022,62,2035−2045 (https://doi.org/10.1021/acs.jcim.1c00284)",
-    reactions=reactions_ord_list)
+        name="Dataset from ChemRxnExtractor paper",
+        description="Reaction data from J.Chem.Inf.Model.2022,62,2035−2045 (https://doi.org/10.1021/acs.jcim.1c00284)",
+        reactions=reactions_ord_list)
 
     if output_file is not None:
         message_helpers.write_message(dataset, output_file)
@@ -355,4 +355,3 @@ if __name__ == "__main__":
     record_list = parse_rxn_roles(input_file)
     _, _ = reactions_ord_list, dataset = build_ord_database(record_list,
                                                             output_file=output_file)
-
