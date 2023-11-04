@@ -27,3 +27,8 @@ tqdm==4.65.0
 urllib3==1.26.15
 Werkzeug==2.2.3
 yarl==1.8.2
+pydantic
+loguru
+sentencepiece
+torch>=2.0.1
+numpy

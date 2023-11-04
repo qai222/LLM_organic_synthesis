@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import gzip
 import json
 import os
+import pathlib
 import random
 from typing import Any
 from typing import List
@@ -14,20 +16,17 @@ from tqdm import tqdm
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# TODO figure out the context window of llama and if it can change after fine tuning
-import gzip
 
-
-def json_dump(filename, obj, gz=False):
+def json_dump(filename, obj, gz=False, indent=None):
     if gz:
         open_file = gzip.open
         assert filename.endswith(".gz")
         with open_file(filename, 'wt', encoding="UTF-8") as f:
-            json.dump(obj, f)
+            json.dump(obj, f, indent=indent)
     else:
         open_file = open
         with open_file(filename, 'w', encoding="UTF-8") as f:
-            json.dump(obj, f)
+            json.dump(obj, f, indent=indent)
 
 
 def json_load(filename):
@@ -75,21 +74,21 @@ class Tokenizer:
 
 
 class InstructionDataset(BaseModel):
-    reactions_file: str = f"{THIS_DIR}/../../ord_data/data_from_pb_no_warning_20230416_dedup.json"
+    reactions_file: str = f"{THIS_DIR}/../../ord_data/uspto/data_from_pb_no_warning_20230416_dedup.json"
 
     ord_procedure_field: str = "notes__procedureDetails"
 
     ord_target_fields: list[str] = ["inputs", ]
 
-    prompt_template: str = "### Procedure:\n{instruction}\n\n### ORD-JSON:\n"
+    prompt_template: str = "Below is the procedure of an organic reaction. Convert it to a JSON in ORD data schema.\n\n### Procedure:\n{instruction}\n\n### ORD-JSON:\n"
 
     tokenizer_path: str = f"{THIS_DIR}/7B_tokenizer/tokenizer.model"
 
     max_token: int = 900  # fits 24 gb gpu
 
-    train_size: float = 10000
+    train_size: int | float = 10000
 
-    test_size: float = 2000
+    test_size: int | float = 2000
 
     n_all_alpaca_dicts: int = 0
 
@@ -118,9 +117,7 @@ class InstructionDataset(BaseModel):
         raise ValueError(f"weird test_size: {self.test_size}")
 
     def collect_reactions(self) -> list[dict]:
-        with open(self.reactions_file, "r") as f:
-            reactions = json.load(f)
-        return reactions
+        return json_load(self.reactions_file)
 
     def reaction_dict_to_alpaca_dict(self, r: dict[str, Any]):
         output = {k: r[k] for k in self.ord_target_fields}
@@ -151,14 +148,25 @@ class InstructionDataset(BaseModel):
         example = torch.tensor(tokenizer.encode(example, bos=True, eos=True), dtype=torch.int64)
         return example.shape[0]
 
-    def save(self):
+    def save(self, dataset_name: str):
         if len(self.train_data) == 0:
             self.load()
-        filename = f"OrdAlpaca_MaxToken{self.max_token}_TrainSize{self.actual_train_size}_TestSize{self.actual_test_size}_{'-'.join(self.ord_target_fields)}.json.gz"
-        ds = self.dict()
-        json_dump(filename, ds, gz=True)
 
-    def load(self, plot_token_ecdf=False):
+        save_dir = os.path.join(THIS_DIR, dataset_name)
+        pathlib.Path(save_dir).mkdir(parents=True, exist_ok=True)
+
+        data = self.model_dump()
+        train_data = data.pop('train_data')
+        test_data = data.pop('test_data')
+
+        data["train_data_size"] = len(train_data)
+        data["test_data_size"] = len(test_data)
+
+        json_dump(os.path.join(save_dir, f"params.json"), data, indent=2)
+        json_dump(os.path.join(save_dir, f"train.json"), train_data)
+        json_dump(os.path.join(save_dir, f"test.json"), test_data)
+
+    def load(self, plot_token_ecdf=True):
         tmp_filename = f"prepare_instructions_alpaca_dicts_tokenized_{'-'.join(self.ord_target_fields)}.json.gz"
         try:
             all_alpaca_dicts = json_load(tmp_filename)
@@ -201,7 +209,6 @@ class InstructionDataset(BaseModel):
         self.test_data = test
 
     def plot_ecdf_n_token_example(self, all_alpaca_dicts):
-        assert len(self.train_data) > 0
         import plotly.express as px
         import plotly
         fig = px.ecdf(
@@ -211,7 +218,7 @@ class InstructionDataset(BaseModel):
                 "x": "n_token(prompt + response)",
             }
         )
-        plotly.offline.plot(fig, filename=f'ecdf_n_token_{"-".join(self.ord_target_fields)}.html')
+        plotly.offline.plot(fig, "n_token_ecdf.html")
 
 
 if __name__ == '__main__':
@@ -222,7 +229,8 @@ if __name__ == '__main__':
             'outcomes',
             'workups',
         ],
-        train_size=0.8,
-        test_size=0.2,
+        train_size=0.9,
+        test_size=0.1,
+        max_token=900,
     )
-    dataset.save()
+    dataset.save(dataset_name="USPTO-20231101")
