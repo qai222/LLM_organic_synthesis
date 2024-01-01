@@ -7,6 +7,9 @@ from loguru import logger
 from ord_schema.message_helpers import json_format
 from ord_schema.proto.reaction_pb2 import Reaction
 
+"""
+used in exporting reaction data ready for LLM
+"""
 
 class LData(TypedDict):
     reaction_id: str
