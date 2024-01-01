@@ -14,9 +14,36 @@ from ord_schema.proto import reaction_pb2
 from pandas._typing import FilePath
 from pydantic import BaseModel
 from tqdm import tqdm
-
 from evaluator.ord_deepdiff import *
+import signal
+from functools import wraps
 
+
+def timeout(seconds, default=None):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            def signal_handler(signum, frame):
+                raise TimeoutError("Timed out!")
+
+            # Set up the signal handler for timeout
+            signal.signal(signal.SIGALRM, signal_handler)
+
+            # Set the initial alarm for the integer part of seconds
+            signal.setitimer(signal.ITIMER_REAL, seconds)
+
+            try:
+                result = func(*args, **kwargs)
+            except TimeoutError:
+                return default
+            finally:
+                signal.alarm(0)
+
+            return result
+
+        return wrapper
+
+    return decorator
 
 class ModelOuputError(Exception):
     pass
@@ -24,12 +51,13 @@ class ModelOuputError(Exception):
 
 class ModelOutput:
 
-    def __init__(self, identifier: str, raw: str, prompt: str = None, response: str = None, ref: str = None):
+    def __init__(self, identifier: str, raw: str, prompt: str = None, response: str = None, ref: str = None, instruction: str = None):
         """
         the full output of a model should be
         `prompt_header` + `prompt` + `response_header` + `response`
         there can be arbitrary number of line breaks between any two of them
         """
+        self.instruction = instruction
         self.identifier = identifier
         self.raw = raw
         self.prompt = prompt
@@ -72,13 +100,14 @@ class ModelOutput:
             prompt_template="### Procedure:\n{instruction}\n\n### ORD-JSON:\n",
             prompt_header="### Procedure:",
             response_header="### ORD-JSON:",
+            instruction:str=None,
     ):
         """ create from responses to alpaca-like instruction prompts """
         try:
             prompt, response = ModelOutput.parse_raw(raw, prompt_template, prompt_header, response_header)
         except Exception:
             raise ModelOuputError
-        model_output = cls(identifier, raw, prompt, response, ref)
+        model_output = cls(identifier, raw, prompt, response, ref, instruction)
         return model_output
 
 
@@ -330,6 +359,7 @@ class Evaluator:
         logger.info("report obtained")
         return r
 
+    @timeout(1)
     def run_evaluate(self) -> EvaluatorReport:
         report = EvaluatorReport()
 

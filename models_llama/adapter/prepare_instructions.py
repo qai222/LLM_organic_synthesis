@@ -80,7 +80,8 @@ class InstructionDataset(BaseModel):
 
     ord_target_fields: list[str] = ["inputs", ]
 
-    prompt_template: str = "Below is the procedure of an organic reaction. Convert it to a JSON in ORD data schema.\n\n### Procedure:\n{instruction}\n\n### ORD-JSON:\n"
+    # prompt_template: str = "Below is the procedure of an organic reaction. Convert it to a JSON in ORD data schema.\n\n### Procedure:\n{instruction}\n\n### ORD-JSON:\n"
+    prompt_template: str = "### Procedure:\n{instruction}\n\n### ORD-JSON:\n"
 
     tokenizer_path: str = f"{THIS_DIR}/7B_tokenizer/tokenizer.model"
 
@@ -163,8 +164,8 @@ class InstructionDataset(BaseModel):
         data["test_data_size"] = len(test_data)
 
         json_dump(os.path.join(save_dir, f"params.json"), data, indent=2)
-        json_dump(os.path.join(save_dir, f"train.json"), train_data)
-        json_dump(os.path.join(save_dir, f"test.json"), test_data)
+        json_dump(os.path.join(save_dir, f"train.json"), train_data, indent=2)
+        json_dump(os.path.join(save_dir, f"test.json"), test_data, indent=2)
 
     def load(self, plot_token_ecdf=True):
         tmp_filename = f"prepare_instructions_alpaca_dicts_tokenized_{'-'.join(self.ord_target_fields)}.json.gz"
@@ -222,15 +223,16 @@ class InstructionDataset(BaseModel):
 
 
 if __name__ == '__main__':
-    dataset = InstructionDataset(
-        ord_target_fields=[
-            'inputs',
-            'conditions',
-            'outcomes',
-            'workups',
-        ],
-        train_size=0.9,
-        test_size=0.1,
-        max_token=900,
-    )
-    dataset.save(dataset_name="USPTO-20231101")
+    for MAX_TOKEN in [900, 1200]:
+        dataset = InstructionDataset(
+            ord_target_fields=[
+                'inputs',
+                'conditions',
+                'outcomes',
+                'workups',
+            ],
+            train_size=90000,
+            test_size=10000,
+            max_token=MAX_TOKEN,
+        )
+        dataset.save(dataset_name=f"USPTO-t{MAX_TOKEN}")
