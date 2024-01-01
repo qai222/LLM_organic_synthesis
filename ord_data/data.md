@@ -7,7 +7,7 @@ An extracted reaction has the following fields:
 - `conditions`: `ord.Reaction.conditions`
 - `workups`: `ord.Reaction.workups`
 - `outcomes`: `ord.Reaction.outcomes`
-- `warning_messages`: a list of warning messages from extraction, should be empty
+- `warning_messages`: a list of warning messages from extraction, should be empty if used in training/testing
 
 ### USPTO
 
@@ -15,7 +15,7 @@ The folder [uspto](uspto) contains USPTO data extracted from ORD.
 The latest json data file is
 [data_from_pb_no_warning_20230416_dedup.7z](uspto/data_from_pb_no_warning_20230416_dedup.7z)
 
-The scripts for extraction and deduplication are also included:
+The scripts for extraction and deduplication are also included, to recreate:
 
 1. download ORD datasets from https://github.com/open-reaction-database/ord-data
 2. use [setup_db.py](uspto/setup_db.py) to set up ORD postgres database, a list of dataset
