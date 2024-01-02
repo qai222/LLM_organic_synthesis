@@ -1,22 +1,24 @@
+from __future__ import annotations
+
+from pydantic import BaseModel
+
+
 class ModelOuputError(Exception):
     pass
 
 
-class ModelOutput:
-
-    def __init__(self, identifier: str, raw: str, prompt: str = None, response: str = None, ref: str = None,
-                 instruction: str = None):
-        """
-        the full output of a model should be
-        `prompt_header` + `prompt` + `response_header` + `response`
-        there can be arbitrary number of line breaks between any two of them
-        """
-        self.instruction = instruction
-        self.identifier = identifier
-        self.raw = raw
-        self.prompt = prompt
-        self.response = response
-        self.ref = ref
+class ModelOutput(BaseModel):
+    """
+    the full output of a model should be
+    `prompt_header` + `prompt` + `response_header` + `response`
+    there can be arbitrary number of line breaks between any two of them
+    """
+    identifier: str
+    raw: str
+    prompt: str | None = None
+    response: str | None = None
+    ref: str | None = None
+    instruction: str | None = None
 
     def as_dict(self):
         return {
@@ -27,7 +29,7 @@ class ModelOutput:
         }
 
     @staticmethod
-    def parse_raw(
+    def parse_raw_output(
             raw,
             prompt_template="### Procedure:\n{instruction}\n\n### ORD-JSON:\n",
             prompt_header="### Procedure:",
@@ -58,8 +60,10 @@ class ModelOutput:
     ):
         """ create from responses to alpaca-like instruction prompts """
         try:
-            prompt, response = ModelOutput.parse_raw(raw, prompt_template, prompt_header, response_header)
+            prompt, response = ModelOutput.parse_raw_output(raw, prompt_template, prompt_header, response_header)
         except Exception:
             raise ModelOuputError
-        model_output = cls(identifier, raw, prompt, response, ref, instruction)
+        model_output = cls(
+            identifier=identifier, raw=raw, prompt=prompt, response=response, ref=ref, instruction=instruction
+        )
         return model_output
