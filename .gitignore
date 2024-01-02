@@ -161,3 +161,5 @@ cython_debug/
 .idea/
 
 /models_llama/adapter/7B_tokenizer/
+/models_llama/adapter/infer-expt_*/
+/models_llama/adapter/prepare_instructions_alpaca_dicts_tokenized_inputs-conditions-outcomes-workups.json.gz
