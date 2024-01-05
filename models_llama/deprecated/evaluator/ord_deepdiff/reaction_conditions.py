@@ -6,8 +6,8 @@ from deepdiff.model import DiffLevel, PrettyOrderedSet
 from google.protobuf import json_format
 from ord_schema.proto import reaction_pb2
 
-from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind, FieldChangeType
-from evaluator.ord_deepdiff.utils import DeepDiffKey
+from models_llama.deprecated.evaluator.ord_deepdiff.base import DiffReport, DiffReportKind, FieldChangeType
+from models_llama.deprecated.evaluator.ord_deepdiff.utils import DeepDiffKey
 
 
 class DiffReportReactionConditions(DiffReport):

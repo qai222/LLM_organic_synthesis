@@ -1,4 +1,4 @@
-from evaluator import *
+from models_llama.deprecated.evaluator import *
 
 logger.remove(0)
 

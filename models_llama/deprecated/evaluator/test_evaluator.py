@@ -1,7 +1,7 @@
 import pytest
 from tqdm import tqdm
 
-from evaluator import Evaluator, DiffReportKind, OrdMajorField
+from models_llama.deprecated.evaluator import Evaluator, DiffReportKind, OrdMajorField
 
 
 class TestEvaluator:

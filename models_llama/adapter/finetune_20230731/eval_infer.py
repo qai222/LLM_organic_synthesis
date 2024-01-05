@@ -1,5 +1,5 @@
 from __future__ import annotations
-from evaluator import *
+from models_llama.deprecated.evaluator import *
 
 
 def run_eval(filename: FilePath, slice_indices: tuple[int, int] | None,

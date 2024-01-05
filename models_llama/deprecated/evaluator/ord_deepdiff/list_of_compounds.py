@@ -15,8 +15,8 @@ from google.protobuf import json_format
 from loguru import logger
 from ord_schema.proto import reaction_pb2
 
-from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind, FieldChangeType
-from evaluator.ord_deepdiff.utils import DeepDiffKey, flatten, get_compound_name, ORD_PATH_DELIMITER, get_path_tuple, \
+from models_llama.deprecated.evaluator.ord_deepdiff.base import DiffReport, DiffReportKind, FieldChangeType
+from models_llama.deprecated.evaluator.ord_deepdiff.utils import DeepDiffKey, flatten, get_compound_name, ORD_PATH_DELIMITER, get_path_tuple, \
     get_leaf_path_tuple_to_leaf_value
 
 

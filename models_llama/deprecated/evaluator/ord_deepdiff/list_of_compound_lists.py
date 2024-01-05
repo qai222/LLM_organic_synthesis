@@ -3,8 +3,8 @@ from __future__ import annotations
 from google.protobuf import json_format
 from ord_schema.proto import reaction_pb2
 
-from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind
-from evaluator.ord_deepdiff.list_of_compounds import list_of_compounds_exhaustive_matcher
+from models_llama.deprecated.evaluator.ord_deepdiff.base import DiffReport, DiffReportKind
+from models_llama.deprecated.evaluator.ord_deepdiff.list_of_compounds import list_of_compounds_exhaustive_matcher
 
 
 def flat_list_of_lists(lol: list[list]) -> tuple[list, dict[tuple[int, int], int]]:

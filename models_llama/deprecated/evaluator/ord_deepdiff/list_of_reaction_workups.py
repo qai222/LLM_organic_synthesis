@@ -8,7 +8,7 @@ from deepdiff import DeepDiff
 from google.protobuf import json_format
 from ord_schema.proto import reaction_pb2
 
-from evaluator.ord_deepdiff.base import DiffReport, DiffReportKind
+from models_llama.deprecated.evaluator.ord_deepdiff.base import DiffReport, DiffReportKind
 
 # TODO use `WorkupFieldClass` to describe changes at leaf levels
 

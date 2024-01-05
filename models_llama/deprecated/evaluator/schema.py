@@ -14,7 +14,7 @@ from ord_schema.proto import reaction_pb2
 from pandas._typing import FilePath
 from pydantic import BaseModel
 from tqdm import tqdm
-from evaluator.ord_deepdiff import *
+from models_llama.deprecated.evaluator.ord_deepdiff import *
 import signal
 from functools import wraps
 
