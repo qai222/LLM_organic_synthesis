@@ -136,6 +136,9 @@ def parse_deepdiff(dd: DeepDiff):
 
             path_list_to_t1 = value_altered_level.path(output_format='list', use_t2=False)
             path_list_to_t2 = value_altered_level.path(output_format='list', use_t2=True)
+            # TODO there seems to be a bug in deepdiff: sometimes the path of `DiffLevel` maps to an wrong path in d2
+            #  this only happens when `ignore_order` is used and the path for d1 remains correct
+            #  this originates from `DeepDiff` rather than `DiffLevel`
 
             t1_leafs_from_root = flat_deepdiff_entry(value_altered_level.t1, path_list_to_t1)
             t2_leafs_from_root = flat_deepdiff_entry(value_altered_level.t2, path_list_to_t2)

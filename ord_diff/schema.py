@@ -213,6 +213,16 @@ class MDictListDiff(BaseModel):
     """ num of md pairs that have at least one field added/removed/changed """
 
     @property
+    def n_intact(self):
+        n = 0
+        for pc in self.pair_comparisons:
+            if pc is None:
+                continue
+            if pc.deep_distance < 1e-5:
+                n += 1
+        return n
+
+    @property
     def n_md1(self):
         """ number of messages in the md1 list """
         return len(self.md1_list)
@@ -256,8 +266,8 @@ class MDictListDiff(BaseModel):
             md2_list: list[MDict],
     ):
         """
-        find the differences between two lists of compound messages
-        1. each compound in ref_compounds is matched with one from act_compounds, matched with None if missing
+        find the differences between two lists of messages
+        1. each message in ref_list is matched with one from act_list, matched with None if missing
         2. use deepdiff to inspect matched pairs
         """
         assert len(md1_list) and len(md2_list)
