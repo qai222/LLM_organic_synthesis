@@ -63,7 +63,7 @@ def run_eval(expt_name: str):
 
     # to summary table
     summary_table = os.path.join(wdir, "message_level_summary.csv")
-    summary_table_df = get_summary_table(df)
+    summary_table_df = get_summary_table(df).transpose()
     summary_table_df.to_csv(summary_table)
 
 
