@@ -3,17 +3,8 @@ from __future__ import annotations
 import pandas as pd
 
 from ord_diff.base import CompoundLeafType, DeltaType
-from ord_diff.schema import MDict, MDictListDiff, MDictDiff, MessageType, Leaf
+from ord_diff.schema import MDict, MDictListDiff, MDictDiff, MessageType, get_compound_leaf_type
 from ord_diff.utils import flat_list_of_lists
-
-
-def get_compound_leaf_type(leaf: Leaf):
-    for ck in list(CompoundLeafType):
-        if ck == CompoundLeafType.other:
-            continue
-        if ck in leaf.path_list:
-            return CompoundLeafType(ck)
-    return CompoundLeafType.other
 
 
 def get_compound_leaf_type_counter(cd: MDict):

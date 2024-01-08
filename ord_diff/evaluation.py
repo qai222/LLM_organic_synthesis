@@ -142,120 +142,83 @@ class PairEvaluator(BaseModel):
         return self.parsed_model_output.identifier
 
     @timeout(120)
-    def eval_instance_level(self):
+    def eval_message_level_all(self):
         data = dict(reaction_id=self.identifier)
-        data.update(self.eval_compound_list(extracted_from="inputs"))
-        data.update(self.eval_compound_list(extracted_from="outcomes"))
-        data.update(self.eval_workup_list())
-        data.update(self.eval_conditions())
+        data.update(self.eval_message_level(message_type=ord_diff.MessageType.COMPOUND, extracted_from="inputs",
+                                            return_record_with_header=True))
+        data.update(
+            self.eval_message_level(message_type=ord_diff.MessageType.PRODUCT_COMPOUND, extracted_from="outcomes",
+                                    return_record_with_header=True))
+        data.update(self.eval_message_level(message_type=ord_diff.MessageType.REACTION_CONDITIONS, extracted_from="",
+                                            return_record_with_header=True))
+        data.update(self.eval_message_level(message_type=ord_diff.MessageType.REACTION_WORKUP, extracted_from="",
+                                            return_record_with_header=True))
         return data
 
-    def eval_conditions(self):
+    def eval_message_level(self, message_type: ord_diff.MessageType, extracted_from: str,
+                           return_record_with_header: bool = True):
+
         text = self.parsed_model_output.instruction
-        conditions_inf = self.reaction_message_inf.conditions
-        conditions_ref = self.reaction_message_ref.conditions
-        assert conditions_ref is not None
-        assert conditions_inf is not None
-        diff = ord_diff.MDictDiff.from_message_pair(conditions_ref, conditions_inf,
-                                                    ord_diff.MessageType.REACTION_CONDITIONS, text, text)
-        intact = 1
-        if diff.deep_distance > 0:
-            intact = 0
+
         record = {
-            f"n_ref_conditions": 1,
-            f"n_inf_conditions": 1,
-            f"n_removal_conditions": 0,
-            f"n_addition_conditions": 0,
-            f"n_alteration_conditions": 1 - intact,
-            f"n_intact_conditions": intact,
+            "n_ref": 0,
+            "n_inf": 0,
+            "n_removal": 0,
+            "n_addition": 0,
+            "n_alteration_strict": 0,
+            "n_alteration_nonstrict": 0,
+            "n_intact_strict": 0,
+            "n_intact_nonstrict": 0,
         }
-        return record
 
-    def eval_workup_list(self):
-        text = self.parsed_model_output.instruction
-        workups_inf = self.reaction_message_inf.workups
-        workups_ref = self.reaction_message_ref.workups
-
-        if len(workups_ref) == 0:
-            record = {
-                f"n_ref_workup": 0,
-                f"n_inf_workup": len(workups_inf),
-                f"n_removal_workup": 0,
-                f"n_addition_workup": len(workups_inf),
-                f"n_alteration_workup": 0,
-                f"n_intact_workup": 0,
-            }
-        elif len(workups_inf) == 0:
-            record = {
-                f"n_ref_workup": len(workups_ref),
-                f"n_inf_workup": 0,
-                f"n_removal_workup": len(workups_ref),
-                f"n_addition_workup": 0,
-                f"n_alteration_workup": 0,
-                f"n_intact_workup": 0,
-            }
+        # special treatment for conditions as it is a message rather than a list of message
+        if message_type == ord_diff.MessageType.REACTION_CONDITIONS:
+            conditions_inf = self.reaction_message_inf.conditions
+            conditions_ref = self.reaction_message_ref.conditions
+            assert conditions_ref is not None
+            assert conditions_inf is not None
+            mt = ord_diff.MessageType.REACTION_CONDITIONS
+            diff = ord_diff.MDictDiff.from_message_pair(conditions_ref, conditions_inf, mt, text, text)
+            record["n_ref"] = 1
+            record["n_inf"] = 1
+            record["n_removal"] = 0
+            record["n_addition"] = 0
+            record["n_alteration_strict"] = 1 if diff.is_altered(strict=True) else 0
+            record["n_alteration_nonstrict"] = 1 if diff.is_altered(strict=False) else 0
+            record["n_intact_strict"] = 0 if diff.is_altered(strict=True) else 1
+            record["n_intact_nonstrict"] = 0 if diff.is_altered(strict=False) else 1
+            if return_record_with_header:
+                record = {message_type.value + "__" + k: v for k, v in record.items()}
+            return record
+        elif message_type in (ord_diff.MessageType.COMPOUND, ord_diff.MessageType.PRODUCT_COMPOUND):
+            messages_inf = get_compounds(self.reaction_message_inf, extracted_from=extracted_from)
+            messages_ref = get_compounds(self.reaction_message_ref, extracted_from=extracted_from)
+        elif message_type == ord_diff.MessageType.REACTION_WORKUP:
+            messages_inf = self.reaction_message_inf.workups
+            messages_ref = self.reaction_message_ref.workups
+        else:
+            raise ValueError
+        record["n_ref"] = len(messages_ref)
+        record["n_inf"] = len(messages_inf)
+        if len(messages_ref) == 0 or len(messages_inf) == 0:
+            record["n_removal"] = len(messages_ref)
+            record["n_addition"] = len(messages_inf)
+            record["n_alteration_strict"] = 0
+            record["n_alteration_nonstrict"] = 0
+            record["n_intact_strict"] = 0
+            record["n_intact_nonstrict"] = 0
         else:
             diff = ord_diff.MDictListDiff.from_message_list_pair(
-                workups_ref, workups_inf, ord_diff.MessageType.REACTION_WORKUP, text, text
+                messages_ref, messages_inf, message_type, text, text
             )
-            record = {
-                f"n_ref_workup": diff.n_md1,
-                f"n_inf_workup": diff.n_md2,
-                f"n_removal_workup": diff.n_absent,
-                f"n_addition_workup": diff.n_excess,
-                f"n_alteration_workup": diff.n_changed,
-                f"n_intact_workup": diff.n_intact
-            }
-        return record
-
-    def eval_compound_list(self, extracted_from: str):
-        """
-        compare the reference and the inferred at the level of <list of Compound>
-
-        :param extracted_from: where the list of compounds is extracted, this can be
-        - "inputs": Compound from Ord.Reaction.inputs
-        - "outcomes": ProductCompound from Ord.Reaction.outcomes
-        - "workups": Compound from Ord.Reaction.workups
-        :return:
-        """
-        text = self.parsed_model_output.instruction
-        compounds_inf = get_compounds(self.reaction_message_inf, extracted_from=extracted_from)
-        compounds_ref = get_compounds(self.reaction_message_ref, extracted_from=extracted_from)
-        if extracted_from in ["inputs", "workups"]:
-            mt = ord_diff.MessageType.COMPOUND
-        else:
-            mt = ord_diff.MessageType.PRODUCT_COMPOUND
-
-        if len(compounds_ref) == 0:
-            record = {
-                f"n_ref_compound_{extracted_from}": 0,
-                f"n_inf_compound_{extracted_from}": len(compounds_inf),
-                f"n_removal_compound_{extracted_from}": 0,
-                f"n_addition_compound_{extracted_from}": len(compounds_inf),
-                f"n_alteration_compound_{extracted_from}": 0,
-                f"n_intact_compound_{extracted_from}": 0
-            }
-        elif len(compounds_inf) == 0:
-            record = {
-                f"n_ref_compound_{extracted_from}": len(compounds_ref),
-                f"n_inf_compound_{extracted_from}": 0,
-                f"n_removal_compound_{extracted_from}": len(compounds_ref),
-                f"n_addition_compound_{extracted_from}": 0,
-                f"n_alteration_compound_{extracted_from}": 0,
-                f"n_intact_compound_{extracted_from}": 0
-            }
-        else:
-            diff = ord_diff.MDictListDiff.from_message_list_pair(
-                compounds_ref, compounds_inf, mt, text, text
-            )
-            record = {
-                f"n_ref_compound_{extracted_from}": diff.n_md1,
-                f"n_inf_compound_{extracted_from}": diff.n_md2,
-                f"n_removal_compound_{extracted_from}": diff.n_absent,
-                f"n_addition_compound_{extracted_from}": diff.n_excess,
-                f"n_alteration_compound_{extracted_from}": diff.n_changed,
-                f"n_intact_compound_{extracted_from}": diff.n_intact
-            }
+            record["n_removal"] = diff.n_absent
+            record["n_addition"] = diff.n_excess
+            record["n_alteration_strict"] = diff.n_changed_strict
+            record["n_alteration_nonstrict"] = diff.n_changed_nonstrict
+            record["n_intact_strict"] = diff.n_md1 - diff.n_changed_strict
+            record["n_intact_nonstrict"] = diff.n_md1 - diff.n_changed_nonstrict
+        if return_record_with_header:
+            record = {message_type.value + "__" + k: v for k, v in record.items()}
         return record
 
 
@@ -277,14 +240,14 @@ class BatchEvaluator(BaseModel):
     def __getitem__(self, item: int):
         return self.pair_evaluators[item]
 
-    def eval_instance_level(self) -> pd.DataFrame:
+    def eval_message_level(self) -> pd.DataFrame:
         records = []
         n_invalid_json = 0
         n_invalid_ord = 0
         for pe in tqdm(self.pair_evaluators, desc="batch evaluation -- instance level"):
             if pe.valid_ord:
                 try:
-                    record = pe.eval_instance_level()
+                    record = pe.eval_message_level_all()
                 except:
                     logger.critical(f"evaluation error for: {pe.identifier}")
                     continue

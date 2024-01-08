@@ -6,12 +6,35 @@ from google.protobuf import json_format
 from ord_schema import reaction_pb2
 from pydantic import BaseModel
 
-from ord_diff.base import MessageType, DeltaType
+from ord_diff.base import MessageType, DeltaType, CompoundLeafType
 from ord_diff.utils import parse_deepdiff, flatten, find_best_match
 
 
 # TODO for `Reaction.workups`, the order in the repeated field DOES matter,
 #  so using `ignore_order` in deepdiff seems fishy.
+
+
+def get_compound_leaf_type(leaf: Leaf):
+    for ck in list(CompoundLeafType):
+        if ck == CompoundLeafType.other:
+            continue
+        if ck in leaf.path_list:
+            return CompoundLeafType(ck)
+    return CompoundLeafType.other
+
+
+def should_consider_leaf_in_nonstrict(leaf: Leaf, message_type: MessageType):
+    if leaf.is_explicit:
+        return True
+    if message_type in (MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND) and get_compound_leaf_type(
+            leaf) != CompoundLeafType.other:
+        return True
+    if message_type == MessageType.REACTION_WORKUP:
+        return True
+    if message_type == MessageType.REACTION_CONDITIONS:
+        return True
+    return False
+
 
 class Leaf(BaseModel):
     """ base model for a literal field """
@@ -143,8 +166,26 @@ class MDictDiff(BaseModel):
         validate_assignment = True
         arbitrary_types_allowed = True
 
+    @property
+    def delta_leafs_nonstrict(self):
+        return {
+            k: [vv for vv in v if should_consider_leaf_in_nonstrict(vv, self.md1.type)]
+            for k, v in self.delta_leafs.items()
+        }
+
+    def is_altered(self, strict: bool):
+        if strict:
+            return self.deep_distance > 0
+        else:
+            n_altered_leaf = 0
+            for v in self.delta_leafs_nonstrict.values():
+                n_altered_leaf += len(v)
+            return n_altered_leaf > 0
+
     @classmethod
     def from_md_pair(cls, md1: MDict, md2: MDict):
+        assert md1.type == md2.type
+
         dd = DeepDiff(
             md1.d, md2.d,
             ignore_order=True, verbose_level=2, view='tree', get_deep_distance=True
@@ -209,18 +250,10 @@ class MDictListDiff(BaseModel):
     note the num of pairs == len(m1_list)
     """
 
-    n_changed: int
+    n_changed_strict: int
     """ num of md pairs that have at least one field added/removed/changed """
 
-    @property
-    def n_intact(self):
-        n = 0
-        for pc in self.pair_comparisons:
-            if pc is None:
-                continue
-            if pc.deep_distance < 1e-5:
-                n += 1
-        return n
+    n_changed_nonstrict: int
 
     @property
     def n_md1(self):
@@ -279,7 +312,8 @@ class MDictListDiff(BaseModel):
         matched_i2s = MDictListDiff.get_index_match(md1_list, md2_list, message_type=message_type)
 
         pair_comparisons = []
-        n_changed = 0
+        n_changed_strict = 0
+        n_changed_nonstrict = 0
         for i, m1 in enumerate(md1_list):
             j = matched_i2s[i]
             if j is None:
@@ -287,15 +321,18 @@ class MDictListDiff(BaseModel):
             else:
                 m2 = md2_list[j]
                 pair_comparison = MDictDiff.from_md_pair(m1, m2)
-                if pair_comparison.deep_distance > 0:
-                    n_changed += 1
+                if pair_comparison.is_altered(strict=True):
+                    n_changed_strict += 1
+                if pair_comparison.is_altered(strict=False):
+                    n_changed_nonstrict += 1
             pair_comparisons.append(pair_comparison)
 
         return cls(
             md1_list=md1_list,
             md2_list=md2_list,
             pair_comparisons=pair_comparisons,
-            n_changed=n_changed,
+            n_changed_strict=n_changed_strict,
+            n_changed_nonstrict=n_changed_nonstrict,
             index_match=matched_i2s,
         )
 
