@@ -3,7 +3,7 @@ from __future__ import annotations
 import pandas as pd
 
 from ord_diff.base import CompoundLeafType, DeltaType
-from ord_diff.schema import MDict, MDictListDiff, MDictDiff, MessageType, get_compound_leaf_type
+from ord_diff.schema import MDict, MDictListDiff, MDictDiff, MessageType, get_compound_leaf_type, should_consider_leaf_in_nonstrict
 from ord_diff.utils import flat_list_of_lists
 
 
@@ -13,6 +13,24 @@ def get_compound_leaf_type_counter(cd: MDict):
         counter[get_compound_leaf_type(leaf)] += 1
     return counter
 
+
+def report_diff_leafs(md: MDict, ct: DeltaType | None, from_m1: bool):
+    records = []
+    for leaf in md.leafs:
+        record = {
+            "from": "m1" if from_m1 else "m2",
+            "path": ".".join([str(p) for p in leaf.path_list]),
+            "change_type": ct,
+            "is_explicit": leaf.is_explicit,
+            "considered_in_nonstrict": should_consider_leaf_in_nonstrict(leaf, md.type),
+            "value": leaf.value,
+        }
+        if md.type in [MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND]:
+            record['leaf_type'] = get_compound_leaf_type(leaf)
+        else:
+            record['leaf_type'] = md.type
+        records.append(record)
+    return pd.DataFrame.from_records(records)
 
 def report_diff(
         diff: MDictDiff, message_type: MessageType = None
@@ -30,10 +48,13 @@ def report_diff(
             "path": ".".join([str(p) for p in leaf.path_list]),
             "change_type": ct,
             "is_explicit": leaf.is_explicit,
+            "considered_in_nonstrict": should_consider_leaf_in_nonstrict(leaf, diff.md1.type),
             "value": leaf.value,
         }
         if message_type in [MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND]:
             record['leaf_type'] = get_compound_leaf_type(leaf)
+        else:
+            record['leaf_type'] = message_type
         records.append(record)
     for leaf in diff.md2.leafs:
         if leaf in diff.delta_leafs[DeltaType.ADDITION]:
@@ -42,10 +63,13 @@ def report_diff(
                 "path": ".".join([str(p) for p in leaf.path_list]),
                 "change_type": DeltaType.ADDITION,
                 "is_explicit": leaf.is_explicit,
+                "considered_in_nonstrict": should_consider_leaf_in_nonstrict(leaf, diff.md2.type),
                 "value": leaf.value,
             }
-            if message_type == MessageType.COMPOUND:
+            if message_type in [MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND]:
                 record['leaf_type'] = get_compound_leaf_type(leaf)
+            else:
+                record['leaf_type'] = message_type
             records.append(record)
     return pd.DataFrame.from_records(records)
 

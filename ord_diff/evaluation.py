@@ -142,6 +142,14 @@ class PairEvaluator(BaseModel):
         return self.parsed_model_output.identifier
 
     @timeout(120)
+    def eval_leaf_level_all(self):
+        df1 = self.eval_leaf_level(message_type=ord_diff.MessageType.COMPOUND, extracted_from="inputs")
+        df2 = self.eval_leaf_level(message_type=ord_diff.MessageType.PRODUCT_COMPOUND, extracted_from="outcomes")
+        df3 = self.eval_leaf_level(message_type=ord_diff.MessageType.REACTION_CONDITIONS, extracted_from="")
+        df4 = self.eval_leaf_level(message_type=ord_diff.MessageType.REACTION_WORKUP, extracted_from="")
+        return pd.concat([df1, df2, df3, df4], axis=0)
+
+    @timeout(120)
     def eval_message_level_all(self):
         data = dict(reaction_id=self.identifier)
         data.update(self.eval_message_level(message_type=ord_diff.MessageType.COMPOUND, extracted_from="inputs",
@@ -215,12 +223,56 @@ class PairEvaluator(BaseModel):
             record["n_addition"] = diff.n_excess
             record["n_alteration_strict"] = diff.n_changed_strict
             record["n_alteration_nonstrict"] = diff.n_changed_nonstrict
-            record["n_intact_strict"] = diff.n_md1 - diff.n_changed_strict
-            record["n_intact_nonstrict"] = diff.n_md1 - diff.n_changed_nonstrict
+            record["n_intact_strict"] = diff.n_md1 - diff.n_changed_strict - diff.n_absent
+            record["n_intact_nonstrict"] = diff.n_md1 - diff.n_changed_nonstrict - diff.n_absent
         if return_record_with_header:
             record = {message_type.value + "__" + k: v for k, v in record.items()}
         return record
 
+    def eval_leaf_level(self, message_type: ord_diff.MessageType, extracted_from: str) -> pd.DataFrame:
+
+        text = self.parsed_model_output.instruction
+
+        # special treatment for conditions as it is a message rather than a list of message
+        if message_type == ord_diff.MessageType.REACTION_CONDITIONS:
+            conditions_inf = self.reaction_message_inf.conditions
+            conditions_ref = self.reaction_message_ref.conditions
+            assert conditions_ref is not None
+            assert conditions_inf is not None
+            mt = ord_diff.MessageType.REACTION_CONDITIONS
+            diff = ord_diff.MDictDiff.from_message_pair(conditions_ref, conditions_inf, mt, text, text)
+            df = ord_diff.report_diff(diff, message_type)
+            df["reaction_id"] = self.identifier
+            return df
+
+        elif message_type in (ord_diff.MessageType.COMPOUND, ord_diff.MessageType.PRODUCT_COMPOUND):
+            messages_inf = get_compounds(self.reaction_message_inf, extracted_from=extracted_from)
+            messages_ref = get_compounds(self.reaction_message_ref, extracted_from=extracted_from)
+        elif message_type == ord_diff.MessageType.REACTION_WORKUP:
+            messages_inf = self.reaction_message_inf.workups
+            messages_ref = self.reaction_message_ref.workups
+        else:
+            raise ValueError
+
+        if len(messages_ref) == 0:
+            dfs = []
+            for md in messages_inf:
+                df = ord_diff.report_diff_leafs(md, ct=ord_diff.DeltaType.ADDITION, from_m1=False)
+                dfs.append(df)
+            df = pd.concat(dfs, axis=0)
+        elif len(messages_inf) == 0:
+            dfs = []
+            for md in messages_ref:
+                df = ord_diff.report_diff_leafs(md, ct=ord_diff.DeltaType.REMOVAL, from_m1=True)
+                dfs.append(df)
+            df = pd.concat(dfs, axis=0)
+        else:
+            diff = ord_diff.MDictListDiff.from_message_list_pair(
+                messages_ref, messages_inf, message_type, text, text
+            )
+            df = ord_diff.report_diff_list(diff, message_type=message_type)
+        df["reaction_id"] = self.identifier
+        return df
 
 class BatchEvaluator(BaseModel):
     """ evaluate inferences produced by a finetuned model """
@@ -240,11 +292,27 @@ class BatchEvaluator(BaseModel):
     def __getitem__(self, item: int):
         return self.pair_evaluators[item]
 
+    def eval_leaf_level(self) -> pd.DataFrame:
+        dfs = []
+        for pe in tqdm(self.pair_evaluators, desc="batch evaluation -- leaf level"):
+            if pe.valid_ord:
+                try:
+                    df = pe.eval_leaf_level_all()
+                except:
+                    logger.critical(f"evaluation error for: {pe.identifier}")
+                    continue
+                if df is None:
+                    logger.critical(f"timeout error for: {pe.identifier}")
+                    continue
+                dfs.append(df)
+        return pd.concat(dfs, axis=0)
+
+
     def eval_message_level(self) -> pd.DataFrame:
         records = []
         n_invalid_json = 0
         n_invalid_ord = 0
-        for pe in tqdm(self.pair_evaluators, desc="batch evaluation -- instance level"):
+        for pe in tqdm(self.pair_evaluators, desc="batch evaluation -- message level"):
             if pe.valid_ord:
                 try:
                     record = pe.eval_message_level_all()
