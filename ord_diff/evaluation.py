@@ -256,16 +256,24 @@ class PairEvaluator(BaseModel):
 
         if len(messages_ref) == 0:
             dfs = []
-            for md in messages_inf:
+            for m in messages_inf:
+                md = ord_diff.MDict.from_message(m, message_type, text)
                 df = ord_diff.report_diff_leafs(md, ct=ord_diff.DeltaType.ADDITION, from_m1=False)
                 dfs.append(df)
-            df = pd.concat(dfs, axis=0)
+            if len(dfs) == 0:
+                df = pd.DataFrame()
+            else:
+                df = pd.concat(dfs, axis=0)
         elif len(messages_inf) == 0:
             dfs = []
-            for md in messages_ref:
+            for m in messages_ref:
+                md = ord_diff.MDict.from_message(m, message_type, text)
                 df = ord_diff.report_diff_leafs(md, ct=ord_diff.DeltaType.REMOVAL, from_m1=True)
                 dfs.append(df)
-            df = pd.concat(dfs, axis=0)
+            if len(dfs) == 0:
+                df = pd.DataFrame()
+            else:
+                df = pd.concat(dfs, axis=0)
         else:
             diff = ord_diff.MDictListDiff.from_message_list_pair(
                 messages_ref, messages_inf, message_type, text, text
