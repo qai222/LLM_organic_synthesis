@@ -83,7 +83,7 @@ class InstructionDataset(BaseModel):
     def actual_train_size(self):
         if isinstance(self.train_size, int) and self.train_size > 1:
             return self.train_size
-        elif isinstance(self.train_size, float) and 0 < self.train_size < 1:
+        elif isinstance(self.train_size, float) and 0 <= self.train_size <= 1:
             return int(self.n_accepted_alpaca_dicts * self.train_size)
         raise ValueError(f"weird train_size: {self.train_size}")
 
@@ -91,7 +91,7 @@ class InstructionDataset(BaseModel):
     def actual_test_size(self):
         if isinstance(self.test_size, int) and self.test_size > 1:
             return self.test_size
-        elif isinstance(self.test_size, float) and 0 < self.test_size < 1:
+        elif isinstance(self.test_size, float) and 0 <= self.test_size <= 1:
             return self.n_accepted_alpaca_dicts - self.actual_train_size
         raise ValueError(f"weird test_size: {self.test_size}")
 
@@ -99,14 +99,21 @@ class InstructionDataset(BaseModel):
         return json_load(self.reactions_file)
 
     def reaction_dict_to_alpaca_dict(self, r: dict[str, Any]):
-        output = {k: r[k] for k in self.ord_target_fields}
+        output = dict()
+        for k in self.ord_target_fields:
+            try:
+                output[k] = r[k]
+            except KeyError:
+                logger.warning(f"filed missing in record: {r['reaction_id']} @ {k}")
+                continue
+
         # TODO this should be done in extracting from postgres...
-        if 'conditions' in self.ord_target_fields:
+        if 'conditions' in self.ord_target_fields and 'conditions' in output.keys():
             output['conditions'].pop('details', None)
-        if 'workups' in self.ord_target_fields:
+        if 'workups' in self.ord_target_fields and 'workups' in output.keys():
             for w in output['workups']:
                 w.pop('details')
-        if 'outcomes' in self.ord_target_fields:
+        if 'outcomes' in self.ord_target_fields and 'outcomes' in output.keys():
             for reaction_outcome in output['outcomes']:
                 if 'analyses' not in reaction_outcome:
                     continue
@@ -201,6 +208,7 @@ class InstructionDataset(BaseModel):
 
 
 if __name__ == '__main__':
+    # for USPTO dataset
     for MAX_TOKEN in [900, 1200]:
         dataset = InstructionDataset(
             ord_target_fields=[
@@ -214,3 +222,14 @@ if __name__ == '__main__':
             max_token=MAX_TOKEN,
         )
         dataset.save(dataset_name=f"USPTO-t{MAX_TOKEN}")
+
+    # for CRE
+    dataset = InstructionDataset(
+        reactions_file="../../ord_data/cre/CRE_data.json",
+        ord_target_fields=["inputs", "conditions", "outcomes", "workups", "CRE"],
+        # CRE is just to make sure we have a different tmp gz filename
+        max_token=900,
+        train_size=0.0,
+        test_size=1.0,
+    )
+    dataset.save(dataset_name="CRE-ORD")
