@@ -6,34 +6,8 @@ from google.protobuf import json_format
 from ord_schema import reaction_pb2
 from pydantic import BaseModel
 
-from ord_diff.base import MessageType, DeltaType, CompoundLeafType
-from ord_diff.utils import parse_deepdiff, flatten, find_best_match
-
-
-# TODO for `Reaction.workups`, the order in the repeated field DOES matter,
-#  so using `ignore_order` in deepdiff seems fishy.
-
-
-def get_compound_leaf_type(leaf: Leaf):
-    for ck in list(CompoundLeafType):
-        if ck == CompoundLeafType.other:
-            continue
-        if ck in leaf.path_list:
-            return CompoundLeafType(ck)
-    return CompoundLeafType.other
-
-
-def should_consider_leaf_in_nonstrict(leaf: Leaf, message_type: MessageType):
-    if leaf.is_explicit:
-        return True
-    if message_type in (MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND) and get_compound_leaf_type(
-            leaf) != CompoundLeafType.other:
-        return True
-    if message_type == MessageType.REACTION_WORKUP:
-        return True
-    if message_type == MessageType.REACTION_CONDITIONS:
-        return True
-    return False
+from .base import MessageType, DeltaType, CompoundLeafType
+from .utils import parse_deepdiff, flatten, find_best_match
 
 
 class Leaf(BaseModel):
@@ -44,9 +18,6 @@ class Leaf(BaseModel):
 
     value: str | int | float
     """ literal value of this leaf """
-
-    is_explicit: bool | None = None
-    """ if this information is explicitly included in the text, only used for IE evaluation """
 
     @property
     def path_tuple(self):
@@ -61,6 +32,34 @@ class Leaf(BaseModel):
 
     class Config:
         validate_assignment = True
+
+    def get_compound_leaf_type(self) -> CompoundLeafType:
+        """
+        determine compound leaf type based on their paths
+        """
+        for ck in list(CompoundLeafType):
+            if ck == CompoundLeafType.other:
+                continue
+            elif ck in self.path_list:
+                return CompoundLeafType(ck)
+        return CompoundLeafType.other
+
+    def should_consider_leaf_in_nonstrict(self, message_type: MessageType):
+        """
+        if we should count this leaf in a non-strict setting
+
+        :param message_type: the type of the message which this leaf belongs to
+        :return:
+        """
+        if message_type in (
+                MessageType.COMPOUND,
+                MessageType.PRODUCT_COMPOUND) and self.get_compound_leaf_type() != CompoundLeafType.other:
+            return True
+        if message_type == MessageType.REACTION_WORKUP:
+            return True
+        if message_type == MessageType.REACTION_CONDITIONS:
+            return True
+        return False
 
 
 class MDict(BaseModel):
@@ -102,15 +101,7 @@ class MDict(BaseModel):
         """ get message from a nested dictionary """
         leafs = []
         for path_tuple, value in flatten(message_dictionary).items():
-            if text_input:
-                # TODO not sure this is the best way...
-                if str(value).lower() in text_input.lower():
-                    explicit = True
-                else:
-                    explicit = False
-            else:
-                explicit = None
-            leaf = Leaf(path_list=list(path_tuple), value=value, is_explicit=explicit)
+            leaf = Leaf(path_list=list(path_tuple), value=value)
             leafs.append(leaf)
         return cls(leafs=leafs, d=message_dictionary, type=message_type)
 
@@ -169,7 +160,7 @@ class MDictDiff(BaseModel):
     @property
     def delta_leafs_nonstrict(self):
         return {
-            k: [vv for vv in v if should_consider_leaf_in_nonstrict(vv, self.md1.type)]
+            k: [vv for vv in v if vv.should_consider_leaf_in_nonstrict(self.md1.type)]
             for k, v in self.delta_leafs.items()
         }
 
