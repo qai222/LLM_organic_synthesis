@@ -7,7 +7,7 @@ from ord_schema import reaction_pb2
 from pydantic import BaseModel
 
 from .base import MessageType, DeltaType, CompoundLeafType
-from .utils import parse_deepdiff, flatten, find_best_match
+from ..utils import parse_deepdiff, flatten, find_best_match
 
 
 class Leaf(BaseModel):
@@ -74,7 +74,7 @@ class MDict(BaseModel):
     leafs: list[Leaf]
     """ all leafs of this message """
 
-    def is_type(self, message_type: MessageType):
+    def is_type(self, message_type: MessageType) -> bool:
         """ type checker """
         if message_type == MessageType.COMPOUND:
             mt = reaction_pb2.Compound
@@ -88,7 +88,7 @@ class MDict(BaseModel):
         except TypeError:
             return False
 
-    def get_leaf(self, path: tuple[str | int, ...] | list[str | int]):
+    def get_leaf(self, path: tuple[str | int, ...] | list[str | int]) -> Leaf:
         """ access leaf directly """
         path_tuple = tuple([*path])
         for leaf in self.leafs:
@@ -97,7 +97,7 @@ class MDict(BaseModel):
         raise KeyError
 
     @classmethod
-    def from_dict(cls, message_dictionary: dict, message_type: MessageType):
+    def from_dict(cls, message_dictionary: dict, message_type: MessageType) -> MDict:
         """ get message from a nested dictionary """
         leafs = []
         for path_tuple, value in flatten(message_dictionary).items():
@@ -106,12 +106,12 @@ class MDict(BaseModel):
         return cls(leafs=leafs, d=message_dictionary, type=message_type)
 
     @classmethod
-    def from_message(cls, m, message_type: MessageType):
+    def from_message(cls, m, message_type: MessageType) -> MDict:
         d = json_format.MessageToDict(m)
         return MDict.from_dict(d, message_type)
 
     @property
-    def compound_name(self):
+    def compound_name(self) -> str:
         assert self.is_type(MessageType.COMPOUND)
         for identifier in self.d["identifiers"]:
             if identifier['type'] == 'NAME':
@@ -119,7 +119,7 @@ class MDict(BaseModel):
         raise ValueError('`NAME` not found in the compound dict')
 
     @property
-    def workup_type(self):
+    def workup_type(self) -> str:
         assert self.is_type(MessageType.REACTION_WORKUP)
         try:
             t = self.d['type']

@@ -39,7 +39,8 @@ class ModelOutput(BaseModel):
         assert response_header in raw
         n_line_breaks = prompt_template.count("\n")
         assert n_line_breaks == 4
-        assert raw.count("\n") == n_line_breaks
+        print(raw)
+        assert raw.count("\n") == n_line_breaks, str(raw.count('\n')) + f"/{n_line_breaks}"
 
         p_header, prompt, _, r_header, response = raw.split("\n")
         # try:

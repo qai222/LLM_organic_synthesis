@@ -2,15 +2,15 @@ from __future__ import annotations
 
 import pandas as pd
 
-from ord_diff.base import CompoundLeafType, DeltaType
-from ord_diff.schema import MDict, MDictListDiff, MDictDiff, MessageType, get_compound_leaf_type, should_consider_leaf_in_nonstrict
-from ord_diff.utils import flat_list_of_lists
+from .base import CompoundLeafType, DeltaType
+from .schema import MDict, MDictListDiff, MDictDiff, MessageType
+from ..utils import flat_list_of_lists
 
 
 def get_compound_leaf_type_counter(cd: MDict):
     counter = {clt: 0 for clt in list(CompoundLeafType) + [None, ]}
     for leaf in cd.leafs:
-        counter[get_compound_leaf_type(leaf)] += 1
+        counter[leaf.get_compound_leaf_type(leaf)] += 1
     return counter
 
 
@@ -22,15 +22,16 @@ def report_diff_leafs(md: MDict, ct: DeltaType | None, from_m1: bool):
             "path": ".".join([str(p) for p in leaf.path_list]),
             "change_type": ct,
             "is_explicit": leaf.is_explicit,
-            "considered_in_nonstrict": should_consider_leaf_in_nonstrict(leaf, md.type),
+            "considered_in_nonstrict": leaf.should_consider_leaf_in_nonstrict(md.type),
             "value": leaf.value,
         }
         if md.type in [MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND]:
-            record['leaf_type'] = get_compound_leaf_type(leaf)
+            record['leaf_type'] = leaf.get_compound_leaf_type()
         else:
             record['leaf_type'] = md.type
         records.append(record)
     return pd.DataFrame.from_records(records)
+
 
 def report_diff(
         diff: MDictDiff, message_type: MessageType = None
@@ -48,11 +49,11 @@ def report_diff(
             "path": ".".join([str(p) for p in leaf.path_list]),
             "change_type": ct,
             "is_explicit": leaf.is_explicit,
-            "considered_in_nonstrict": should_consider_leaf_in_nonstrict(leaf, diff.md1.type),
+            "considered_in_nonstrict": leaf.should_consider_leaf_in_nonstrict(diff.md1.type),
             "value": leaf.value,
         }
         if message_type in [MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND]:
-            record['leaf_type'] = get_compound_leaf_type(leaf)
+            record['leaf_type'] = leaf.get_compound_leaf_type()
         else:
             record['leaf_type'] = message_type
         records.append(record)
@@ -63,11 +64,11 @@ def report_diff(
                 "path": ".".join([str(p) for p in leaf.path_list]),
                 "change_type": DeltaType.ADDITION,
                 "is_explicit": leaf.is_explicit,
-                "considered_in_nonstrict": should_consider_leaf_in_nonstrict(leaf, diff.md2.type),
+                "considered_in_nonstrict": leaf.should_consider_leaf_in_nonstrict(diff.md2.type),
                 "value": leaf.value,
             }
             if message_type in [MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND]:
-                record['leaf_type'] = get_compound_leaf_type(leaf)
+                record['leaf_type'] = leaf.get_compound_leaf_type()
             else:
                 record['leaf_type'] = message_type
             records.append(record)
@@ -79,11 +80,23 @@ def report_diff_list(
         message_type: MessageType,
 ):
     dfs = []
-    for i, diff in enumerate(compound_list_diff.pair_comparisons):
+
+    matched_js = []
+    for i, md1 in enumerate(compound_list_diff.md1_list):
+        diff = compound_list_diff.pair_comparisons[i]
         if diff is None:
-            continue
-        df = report_diff(diff, message_type=message_type)
+            df = report_diff_leafs(md1, DeltaType.REMOVAL, from_m1=True)
+        else:
+            df = report_diff(diff, message_type=message_type)
         df['pair_index'] = i
+        dfs.append(df)
+        matched_js.append(compound_list_diff.index_match[i])
+
+    remaining_js = [j for j in range(compound_list_diff.n_md2) if j not in matched_js]
+    for j in remaining_js:
+        md2 = compound_list_diff.md2_list[j]
+        df = report_diff_leafs(md2, DeltaType.ADDITION, from_m1=False)
+        df['pair_index'] = -j
         dfs.append(df)
     return pd.concat(dfs, ignore_index=True)
 
