@@ -97,7 +97,7 @@ class MDict(BaseModel):
         raise KeyError
 
     @classmethod
-    def from_dict(cls, message_dictionary: dict, message_type: MessageType, text_input: str | None = None):
+    def from_dict(cls, message_dictionary: dict, message_type: MessageType):
         """ get message from a nested dictionary """
         leafs = []
         for path_tuple, value in flatten(message_dictionary).items():
@@ -106,9 +106,9 @@ class MDict(BaseModel):
         return cls(leafs=leafs, d=message_dictionary, type=message_type)
 
     @classmethod
-    def from_message(cls, m, message_type: MessageType, text_input: str | None = None):
+    def from_message(cls, m, message_type: MessageType):
         d = json_format.MessageToDict(m)
-        return MDict.from_dict(d, message_type, text_input)
+        return MDict.from_dict(d, message_type)
 
     @property
     def compound_name(self):
@@ -209,10 +209,10 @@ class MDictDiff(BaseModel):
         )
 
     @classmethod
-    def from_message_pair(cls, m1, m2, message_type: MessageType, text1: str = None, text2: str = None):
+    def from_message_pair(cls, m1, m2, message_type: MessageType):
         return MDictDiff.from_md_pair(
-            md1=MDict.from_message(m1, message_type, text1),
-            md2=MDict.from_message(m2, message_type, text2),
+            md1=MDict.from_message(m1, message_type),
+            md2=MDict.from_message(m2, message_type),
         )
 
 
@@ -277,10 +277,9 @@ class MDictListDiff(BaseModel):
     @classmethod
     def from_message_list_pair(
             cls, m1_list, m2_list, message_type: MessageType,
-            m1_text: str = None, m2_text: str = None
     ):
-        md1_list = [MDict.from_message(m, message_type, m1_text) for m in m1_list]
-        md2_list = [MDict.from_message(m, message_type, m2_text) for m in m2_list]
+        md1_list = [MDict.from_message(m, message_type) for m in m1_list]
+        md2_list = [MDict.from_message(m, message_type) for m in m2_list]
         return MDictListDiff.from_md_list_pair(md1_list, md2_list)
 
     @classmethod
