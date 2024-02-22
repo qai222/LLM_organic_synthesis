@@ -17,6 +17,7 @@ def create_dataset_for_cot(base_dataset: FilePath, size: int = 500):
         ref_string = test_dict[test_id]['output']
         procedure_text = test_dict[test_id]['instruction'].split("\n")[3]  # this relies on the prompt template
         record = {
+            "reaction_id": test_id,
             "procedure_text": procedure_text,
             "reference_string": ref_string,
         }
