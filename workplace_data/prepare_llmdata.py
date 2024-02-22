@@ -2,11 +2,12 @@ import os.path
 
 from loguru import logger
 
-from ord.data_llm import LlmDataset, DEFAULT_PROMPT_TEMPLATE
+from ord.data.data_llm import LlmDataset, DEFAULT_PROMPT_TEMPLATE
 from ord.utils import json_dump, json_load
 
 
 def prepare_USPTO_master():
+    """ this function produces a master `LlmDataset` for all USPTO reactions """
     master_file = "USPTO-master.json.gz"
     if os.path.isfile(master_file):
         logger.warning("Skip creating master file as the master file already exists: `USPTO-master.json.gz`")
@@ -27,6 +28,17 @@ def prepare_USPTO_master():
 
 
 def make_USPTO_split(master_dataset: LlmDataset, total_size: int, n_token_limit: int, name: str = None):
+    """
+    1. make a cdf for the sentence lengths in master dataset
+    2. apply a token limit (max)
+    3. random sample from the remaining
+
+    :param master_dataset:
+    :param total_size:
+    :param n_token_limit:
+    :param name:
+    :return:
+    """
     fig = master_dataset.plot_n_token_cdf(n_token_limit=n_token_limit)
     fig.savefig("cdf.png", dpi=600)
     if name is None:
@@ -40,4 +52,4 @@ def make_USPTO_split(master_dataset: LlmDataset, total_size: int, n_token_limit:
 
 if __name__ == '__main__':
     USPTO_MASTER = prepare_USPTO_master()
-    # make_USPTO_split(USPTO_MASTER, 100 * 1000, 2048)
+    make_USPTO_split(USPTO_MASTER, 100 * 1000, 2048)
