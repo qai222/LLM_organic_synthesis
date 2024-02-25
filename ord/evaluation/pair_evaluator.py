@@ -102,8 +102,9 @@ class PairEvaluator(BaseModel):
 
         test_dataset = json_load(f"{dataset_folder}/test.json")
         meta_info = json_load(f"{dataset_folder}/meta.json")
-        test_dataset_ids = meta_info['train_data_identifiers']
-        assert len(test_dataset_ids) == len(inferred_data)
+        test_dataset_ids = meta_info['test_data_identifiers']
+        assert len(test_dataset_ids) == len(
+            inferred_data), f"test set has # {len(test_dataset_ids)}, inferred has # {len(inferred_data)}"
         pes = []
         for inf_string, test_record, test_id in zip(inf_strings, test_dataset, test_dataset_ids):
             ref_string = test_record['output']
@@ -116,8 +117,6 @@ class PairEvaluator(BaseModel):
 
     @property
     def reaction_message_inf(self) -> reaction_pb2.Reaction:
-        if self.inferred_dict is None:
-            raise ValueError
         return json_format.Parse(self.inference_text, reaction_pb2.Reaction())
 
     def eval_message_level(
@@ -195,7 +194,7 @@ class PairEvaluator(BaseModel):
             mt = MessageType.REACTION_CONDITIONS
             diff = MDictDiff.from_message_pair(conditions_ref, conditions_inf, mt)
             df = report_diff(diff, message_type)
-            df["reaction_id"] = self.identifier
+            df["reaction_id"] = self.reaction_id
             return df
 
         elif message_type in (MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND):
@@ -230,27 +229,34 @@ class PairEvaluator(BaseModel):
         else:
             diff = MDictListDiff.from_message_list_pair(messages_ref, messages_inf, message_type)
             df = report_diff_list(diff, message_type=message_type)
-        df["reaction_id"] = self.identifier
+        df["reaction_id"] = self.reaction_id
         return df
 
-    @timeout(120)
-    def eval_leaf_level_all(self):
-        df1 = self.eval_leaf_level(message_type=MessageType.COMPOUND, extracted_from="inputs")
-        df2 = self.eval_leaf_level(message_type=MessageType.PRODUCT_COMPOUND, extracted_from="outcomes")
-        df3 = self.eval_leaf_level(message_type=MessageType.REACTION_CONDITIONS, extracted_from="")
-        df4 = self.eval_leaf_level(message_type=MessageType.REACTION_WORKUP, extracted_from="")
-        return pd.concat([df1, df2, df3, df4], axis=0)
+    @timeout(30)
+    def eval_leaf_level_all(self) -> pd.DataFrame:
+        dfs = []
+        for message_type, extracted_from in (
+                (MessageType.COMPOUND, "inputs"),
+                (MessageType.PRODUCT_COMPOUND, "outcomes"),
+                (MessageType.REACTION_CONDITIONS, ""),
+                (MessageType.REACTION_WORKUP, ""),
+        ):
+            df = self.eval_leaf_level(message_type=message_type, extracted_from=extracted_from)
+            dfs.append(df)
+        return pd.concat(dfs, axis=0)
 
-    @timeout(120)
-    def eval_message_level_all(self):
-        data = dict(reaction_id=self.identifier)
-        data.update(self.eval_message_level(message_type=MessageType.COMPOUND, extracted_from="inputs",
-                                            return_record_with_header=True))
-        data.update(
-            self.eval_message_level(message_type=MessageType.PRODUCT_COMPOUND, extracted_from="outcomes",
-                                    return_record_with_header=True))
-        data.update(self.eval_message_level(message_type=MessageType.REACTION_CONDITIONS, extracted_from="",
-                                            return_record_with_header=True))
-        data.update(self.eval_message_level(message_type=MessageType.REACTION_WORKUP, extracted_from="",
-                                            return_record_with_header=True))
+    @timeout(30)
+    def eval_message_level_all(self) -> dict:
+        data = dict(reaction_id=self.reaction_id)
+        for message_type, extracted_from in (
+                (MessageType.COMPOUND, "inputs"),
+                (MessageType.PRODUCT_COMPOUND, "outcomes"),
+                (MessageType.REACTION_CONDITIONS, ""),
+                (MessageType.REACTION_WORKUP, ""),
+        ):
+            data.update(
+                self.eval_message_level(
+                    message_type=message_type, extracted_from=extracted_from, return_record_with_header=True
+                )
+            )
         return data

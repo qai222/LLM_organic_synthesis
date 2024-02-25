@@ -9,12 +9,14 @@ from collections.abc import MutableMapping
 from enum import Enum
 from functools import wraps
 
+import numpy as np
 import ord_schema.message_helpers
 from deepdiff import DeepDiff
 from deepdiff.helper import NotPresent
 from deepdiff.model import DiffLevel, PrettyOrderedSet, REPORT_KEYS
 from google.protobuf import json_format
 from ord_schema.proto import reaction_pb2
+from scipy.optimize import linear_sum_assignment
 
 
 class DeepDiffKey(str, Enum):
@@ -93,8 +95,36 @@ def get_dict_depth(d):
         return max(get_dict_depth(v) for k, v in d.items()) + 1
 
 
-def find_best_match(indices1: list[int], indices2: list[int | None], distance_matrix):
+def find_best_match(indices1: list[int], indices2: list[int | None], distance_matrix: np.ndarray):
     """ given a distance matrix and two lists of indices, find the best index match """
+
+    row_ind, col_ind = linear_sum_assignment(distance_matrix)
+    row = [indices1[i] for i in row_ind]
+    col = [indices2[i] for i in col_ind]
+
+    assignment = dict(zip(row, col))
+    for i1 in indices1:
+        try:
+            assignment[i1]
+        except KeyError:
+            assignment[i1] = None
+    if len(indices1) < 5:
+        cost = distance_matrix[row_ind, col_ind].sum()
+        assignment_bf, cost_bf = find_best_match_bf(indices1, indices2, distance_matrix)
+        try:
+            assert abs(cost - cost_bf) < 1e-5
+        except AssertionError:
+            print(assignment)
+            print(assignment_bf)
+            raise AssertionError
+    return assignment
+
+
+def find_best_match_bf(indices1: list[int], indices2: list[int | None], distance_matrix):
+    """
+    given a distance matrix and two lists of indices, find the best index match
+    brutal force implementation, only used for debug
+    """
     match_space = itertools.permutations(indices2, r=len(indices1))
     best_match_distance = math.inf
     best_match_solution = None
@@ -110,7 +140,7 @@ def find_best_match(indices1: list[int], indices2: list[int | None], distance_ma
             best_match_solution = match
 
     assert best_match_solution is not None
-    return dict(zip(indices1, [*best_match_solution]))
+    return dict(zip(indices1, [*best_match_solution])), best_match_distance
 
 
 def parse_deepdiff(dd: DeepDiff):
@@ -218,7 +248,8 @@ def strip_empty_fields(d: dict):
     :param d:
     :return:
     """
-    return json_format.MessageToDict(json_format.ParseDict(d, reaction_pb2.Reaction()))
+    return json_format.MessageToDict(json_format.ParseDict(d, reaction_pb2.Reaction()),
+                                     preserving_proto_field_name=Truenn)
 
 
 def timeout(seconds, default=None):
