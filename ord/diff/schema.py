@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import Levenshtein
 import numpy as np
 from deepdiff import DeepDiff
 from google.protobuf import json_format
@@ -51,9 +52,8 @@ class Leaf(BaseModel):
         :param message_type: the type of the message which this leaf belongs to
         :return:
         """
-        if message_type in (
-                MessageType.COMPOUND,
-                MessageType.PRODUCT_COMPOUND) and self.get_compound_leaf_type() != CompoundLeafType.other:
+        if message_type in (MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND) \
+                and self.get_compound_leaf_type() not in (CompoundLeafType.other, CompoundLeafType.reaction_role):
             return True
         if message_type == MessageType.REACTION_WORKUP:
             return True
@@ -107,7 +107,7 @@ class MDict(BaseModel):
 
     @classmethod
     def from_message(cls, m, message_type: MessageType) -> MDict:
-        d = json_format.MessageToDict(m)
+        d = json_format.MessageToDict(m, preserving_proto_field_name=True)
         return MDict.from_dict(d, message_type)
 
     @property
@@ -300,7 +300,6 @@ class MDictListDiff(BaseModel):
 
         message_type = md1_list[0].type
         matched_i2s = MDictListDiff.get_index_match(md1_list, md2_list, message_type=message_type)
-
         pair_comparisons = []
         n_changed_strict = 0
         n_changed_nonstrict = 0
@@ -330,6 +329,8 @@ class MDictListDiff(BaseModel):
     def index_match_distance_matrix(m1_list: list[MDict], m2_list: list[MDict], message_type: MessageType):
         assert len(m1_list) and len(m2_list)
 
+        default_message_id = ""
+
         indices1 = [*range(len(m1_list))]
         indices2 = [*range(len(m2_list))]
 
@@ -341,7 +342,7 @@ class MDictListDiff(BaseModel):
             elif message_type == MessageType.REACTION_WORKUP:
                 md1_id = md1.workup_type
             else:
-                md1_id = None
+                md1_id = default_message_id
             for i2 in indices2:
                 assert isinstance(i2, int)
                 md2 = m2_list[i2]
@@ -350,18 +351,27 @@ class MDictListDiff(BaseModel):
                 elif message_type == MessageType.REACTION_WORKUP:
                     md2_id = md2.workup_type
                 else:
-                    md2_id = None
-                try:
-                    distance_id = DeepDiff(md1_id, md2_id, get_deep_distance=True).to_dict()['deep_distance']
-                except KeyError:
+                    md2_id = default_message_id
+
+                # # compute distance between ids use deep distance
+                # try:
+                #     distance_id = DeepDiff(md1_id, md2_id, get_deep_distance=True).to_dict()['deep_distance']
+                # except KeyError:
+                #     distance_id = 0
+
+                # # or use edit distance
+                if len(md1_id) == len(md2_id) == 0:
                     distance_id = 0
+                else:
+                    distance_id = Levenshtein.distance(md1_id, md2_id) / max([len(md1_id), len(md2_id)])
+
                 try:
                     distance_full = DeepDiff(
                         md1.d, md2.d, get_deep_distance=True, ignore_order=True
                     ).to_dict()['deep_distance']
                 except KeyError:
                     distance_full = 0
-                distance = distance_id * 100 + distance_full  # large penalty for wrong names
+                distance = distance_id * 10 + distance_full
                 dist_mat[i1][i2] = distance
         return dist_mat
 
@@ -380,9 +390,8 @@ class MDictListDiff(BaseModel):
         indices1 = [*range(len(m1_list))]
         indices2 = [*range(len(m2_list))]
 
-        distance_matrix = MDictListDiff.index_match_distance_matrix(m1_list, m2_list, message_type)
-
         while len(indices2) < len(indices1):
             indices2.append(None)
 
+        distance_matrix = MDictListDiff.index_match_distance_matrix(m1_list, m2_list, message_type)
         return find_best_match(indices1, indices2, distance_matrix)
