@@ -29,26 +29,25 @@ def main_evaluate(inference_folder: FilePath, data_folder: FilePath, wdir: FileP
 
     pairs = get_pair_evaluators(inference_folder, data_folder, cot)
 
-    logger.remove()
-    logger.add(doc_level_log)
+    doc_level_log_handle = logger.add(doc_level_log)
     repaired_pairs = evaluation_document_level(pairs)
-    logger.remove()
+    logger.remove(doc_level_log_handle)
 
-    logger.add(message_level_log)
-    df1 = evaluation_message_level(repaired_pairs, n_jobs=10)
+    message_level_log_handle = logger.add(message_level_log)
+    df1 = evaluation_message_level(repaired_pairs, n_jobs=16)
     df1.to_csv(message_level_csv, index=False)
     sdf1 = get_summary_table_message(df1)
     sdf1.to_csv(message_level_summary_csv)
-    logger.remove()
+    logger.remove(message_level_log_handle)
 
-    logger.add(leaf_level_log)
+    leaf_level_log_handle = logger.add(leaf_level_log)
     df2 = evaluation_leaf_level(repaired_pairs, n_jobs=16)
     df2.to_csv(leaf_level_csv, index=False)
     sdf2 = get_summary_table_leaf(df2, strict=True)
     sdf2.to_csv(leaf_level_summary_strict_csv)
     sdf2 = get_summary_table_leaf(df2, strict=False)
     sdf2.to_csv(leaf_level_summary_nonstrict_csv)
-    logger.remove()
+    logger.remove(leaf_level_log_handle)
 
 
 if __name__ == '__main__':
