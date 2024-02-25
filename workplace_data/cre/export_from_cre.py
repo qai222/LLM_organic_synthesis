@@ -10,7 +10,8 @@ from ord_schema.message_helpers import build_compound
 from ord_schema.units import UnitResolver
 from pandas._typing import FilePath
 
-from data_schema import CrePassage, CreLabel, CreReaction, reaction_to_llm_data
+from ord.data.cre_data import CrePassage, CreLabel, CreReaction
+from ord.data.data_reaction import ReactionData
 
 """
 1. the set of passage_id in prod.txt is a proper superset of that in role.txt, 
@@ -24,15 +25,17 @@ For LLM, we have the choice to use passage (from prod.txt) or subpassage (from r
 The latter should be an easier task.
 """
 
-_SINGULAR_ROLES = ("Yield", "Temperature", "Time", "Reaction", "Prod")
+_SINGULAR_ROLES = ("Yield", "Temperature", "Time", "Reaction", "Prod", "Solvent")
 
 
-def is_arithmetic(seq):
+def is_arithmetic(seq: list[int | float]):
+    """ if the sequence is an arithmetic sequence"""
     gen = (i - j for i, j in zip(seq[:-1], seq[1:]))
     return all(d == d0 for d in gen for d0 in gen)
 
 
 def to_sections(filename: FilePath, delimiter: str = "\n\n"):
+    """ split a file to sections """
     with open(filename, "r") as f:
         text = f.read()
     pattern = re.compile(delimiter)
@@ -41,6 +44,7 @@ def to_sections(filename: FilePath, delimiter: str = "\n\n"):
 
 
 def parse_prod_section(sec: str, sentence_term="sentence="):
+    """ parse one section in the `prod.txt` file """
     if not len(sec.strip()):
         return
     lines = sec.split("\n")
@@ -113,7 +117,7 @@ def reaction_from_ann_token_list(
             return
         if len(unique_entities) == 0:
             unique_entities = ""
-        elif len(unique_entities) == 1:
+        elif len(unique_entities) == 1 and is_singular_role:
             unique_entities = unique_entities[0]
         role_to_unique_entities[role] = unique_entities
     reaction = CreReaction(passage_id=passage_id, sentence_id=sentence_id, reaction_index=reaction_index,
@@ -196,13 +200,13 @@ def collect_passages(
     passage_id_to_reactions = defaultdict(list)
 
     for r in reactions:
-        passage_id_to_reactions[r['passage_id']].append(r)
+        passage_id_to_reactions[r.passage_id].append(r)
 
     passages = []
     for passage_id in sentence_dict:
         text = ""
         if use_subpassage:
-            sentence_ids = [r['sentence_id'] for r in passage_id_to_reactions[passage_id]]
+            sentence_ids = [r.sentence_id for r in passage_id_to_reactions[passage_id]]
         else:
             sentence_ids = sentence_dict[passage_id]
         for sentence_id in sentence_ids:
@@ -214,21 +218,24 @@ def collect_passages(
             contains=passage_id_to_reactions[passage_id]
         )
         if only_one_reaction and len(passage['contains']) != 1:
+            logger.warning(f"more than one reaction found for: {passage_id}, this passage is therefore skipped!")
             continue
         else:
+            if len(passage['contains']) > 1:
+                logger.warning(f"more than one reaction found for: {passage_id}")
             passages.append(passage)
     logger.info(f"collected passages: {len(passages)}")
     logger.info(f"collected reactions: {len([r for p in passages for r in p['contains']])}")
     return passages
 
 
-def reaction_to_ld(reaction: CreReaction, text: str):
+def convert_cre_reaction_to_reaction_data(reaction: CreReaction, text: str) -> ReactionData:
     unit_resolver = UnitResolver()
 
     ord_reaction = reaction_pb2.Reaction()
 
     ord_reaction.notes.procedure_details = text
-    ord_reaction_id = f"ord-CRE-{reaction['passage_id']}-{reaction['sentence_id']}-{reaction['reaction_index']}"
+    ord_reaction_id = f"ord-CRE-{reaction.passage_id}-{reaction.sentence_id}-{reaction.reaction_index}"
     ord_reaction.reaction_id = ord_reaction_id
 
     reaction_role_dict = {
@@ -236,13 +243,13 @@ def reaction_to_ld(reaction: CreReaction, text: str):
         "Catalyst_Reagents": "CATALYST",
         "Solvent": "SOLVENT",
     }
-    for k in reaction.keys():
+    for k in reaction.model_fields_set:
         if k in reaction_role_dict:
             ord_role = reaction_role_dict[k]
-            if isinstance(reaction[k], list):
-                names = reaction[k]
-            elif isinstance(reaction[k], str):
-                names = [reaction[k], ]
+            if isinstance(getattr(reaction, k), list):
+                names = getattr(reaction, k)
+            elif isinstance(getattr(reaction, k), str):
+                names = [getattr(reaction, k), ]
             else:
                 raise TypeError
             for name in names:
@@ -270,14 +277,14 @@ def reaction_to_ld(reaction: CreReaction, text: str):
     # only one product
     outcome = ord_reaction.outcomes.add()
     product = outcome.products.add()
-    product.identifiers.add(type="NAME", value=reaction['Prod'])
+    product.identifiers.add(type="NAME", value=reaction.Prod)
     product.reaction_role = reaction_pb2.ReactionRole.PRODUCT
 
     if "Time" in reaction:
         time_text = reaction["Time"]
         try:
             time_message = unit_resolver.resolve(time_text)
-        except ValueError:
+        except (ValueError, KeyError) as e:
             logger.error(f"failed to resolve time text: {time_text}")
             time_message = None
         if time_message is not None:
@@ -292,30 +299,49 @@ def reaction_to_ld(reaction: CreReaction, text: str):
         except (AssertionError, ValueError):
             logger.error(f"failed to resolve yield text: {yield_text}")
 
-    return reaction_to_llm_data(ord_reaction)
+    return ReactionData.from_reaction_message(ord_reaction)
 
 
-def passage_to_ord(p: CrePassage):
+def passage_to_reaction_data_list(p: CrePassage) -> list[ReactionData]:
     reactions = p["contains"]
     passage_text = p['passage_text']
     ld_data = []
     for r in reactions:
-        ld = reaction_to_ld(r, text=passage_text)
+        ld = convert_cre_reaction_to_reaction_data(r, text=passage_text)
         ld_data.append(ld)
     return ld_data
 
 
 if __name__ == '__main__':
-    logger.remove(0)
-    logger.add(__file__.replace(".py", ".log"))
-    PASSAGES = collect_passages(
-        use_subpassage=True,
-        only_one_reaction=True,
-        singular_roles=_SINGULAR_ROLES,
-    )
-    LD_DATA = []
-    for PASSAGE in PASSAGES:
-        LD_DATA += passage_to_ord(PASSAGE)
+    for version in ["singular", "multi", "one2many"]:
+        logger.remove()
+        logger.add(__file__.replace(".py", f"-{version}.log"))
 
-    with open("CRE_data.json", 'w') as output_fp:
-        json.dump(LD_DATA, output_fp, indent=2)
+        if version == "singular":
+            one_reaction = True
+        else:
+            one_reaction = False
+
+        PASSAGES = collect_passages(
+            use_subpassage=True,
+            only_one_reaction=one_reaction,
+            singular_roles=_SINGULAR_ROLES,
+        )
+        LD_DATA = []
+        for PASSAGE in PASSAGES:
+            LD_DATA += passage_to_reaction_data_list(PASSAGE)
+
+        if version in ["singular", "multi"]:
+            logger.info(f"# of reactions: {len(LD_DATA)}")
+            with open(f"CRE_data_{version}.json", 'w') as output_fp:
+                json.dump([ld.model_dump() for ld in LD_DATA], output_fp, indent=2)
+        else:
+            LD_DATA_one2many = dict()
+            for LD_DATA_entry in LD_DATA:
+                try:
+                    LD_DATA_one2many[LD_DATA_entry.procedure_text].append(LD_DATA_entry.model_dump())
+                except KeyError:
+                    LD_DATA_one2many[LD_DATA_entry.procedure_text] = [LD_DATA_entry.model_dump()]
+
+            with open(f"CRE_data_{version}.json", 'w') as output_fp:
+                json.dump(LD_DATA_one2many, output_fp, indent=2)
