@@ -1,0 +1,256 @@
+You are asked to extact information from a given `reaction_text` and export the information to a ORD JSON record. A JSON record is an ORD JSON if it uses the Open Reaction Database (ORD) schema.
+I will describe the 5 steps of this task. I will then guide you step by step to perform this task on one examplar `reaction_text`. I will then give you a new `reaction_text` and you need to generate the JSON record.
+
+Step 1: Identify all the chemicals in the given `reaction_text`. An chemical identifier can be the name of a compound, for example, `methanol`. An identifier can also be an index or a generic description, for example, `compound 6`, or `desired compound`.
+Step 2: For each chemical, get its corresponding amount, such as its volume, mass, or mole amount. If there are two or more amounts reported for the same chemical, only select the first appearing one. For example (4-Pentynoic acid (441 mg, 4.5 mmol)) uses both mass in mg and mole in mmol, only choose the first appearing one, 441 mg.
+Step 3: For each chemical, identify the role it plays in this reaction. You must choose one of the four roles: REACTANT, SOLVENT, CATALYST, PRODUCT. Most of the time there can only be at most one SOLVENT, at most one CATALYST.
+Step 4: For the PRODUCT chemical, identify its yield. Yield is often reported as a percentage.
+Setp 5: Export the information to an ORD JSON record. All information should be from the given reaction_text. You should not add any extra information.
+
+Here is the first example. `reaction_text` is the text between two delimiters ```and ```. The exported ORD JSON record is the text between two delimiters ### and ###.
+`reaction_text` = ```To a solution of 4-aminobenzotriazole(550 milligram (hereinafter \u201cmg\u201d), 4.1 mmol) in acetic acid (10 ml) was added potassium bromide (520 mg, 4.4 mmol ), ammonium molybdate(67 mg, 0.55 mmol) and hydrogen peroxide (0.5 ml, 30%). The mixture was stirred at 25\u00b0 C. for 3 hors. The solvent was evaporated and chromatography of the resulting solid on silica gel (EtOAc/Hexane(1equiv./1equiv.)) gave the desired product(400 mg, 45%). 1H NMR (CD3SO2CD3): \u03b47.29 (d,
+1H), 6.49 (d, 1H), 6.05 (bs, 3H).```
+Here is the workflow how to extract information from this `reaction_text` and export them to a ORD JSON record.
+Step 1: This reaction involves six chemicals. 4-aminobenzotriazole, acetic acid, potassium bromide, ammonium molybdate, hydrogen peroxide, desired product.
+Step 2: Find the amount for each chemical. 4-aminobenzotriazole is 550 mg, acetic acid is 10 mL, potassium bromide is 520 mg, ammonium molybdate is 67 mg, hydrogen peroxide is 0.5 mL, desired product is 400 mg.
+Step 3: Identify the role for each chemical. acetic acid is a SOLVENT because it is a liquid and it has the largest amount. ammonium molybdate is most likely the CATALYST because it is the only chemical having metallic atoms. 4-aminobenzotriazole, potassium bromide, hydrogen peroxide are all REACTANT. desired product is the PRODUCT.
+Step 4: For the chemical with a PRODUCT role, its yield is found to be 45%.
+Setp 5: Export the information to an ORD JSON record.
+example_ORD_JSON = ###{
+  "inputs": {
+    "m1_m4_m2_m5_m3": {
+      "components": [
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "4-aminobenzotriazole"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 550.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "REACTANT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "potassium bromide"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 520.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "REACTANT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "hydrogen peroxide"
+            }
+          ],
+          "amount": {
+            "volume": {
+              "value": 0.5,
+              "units": "MILLILITER"
+            }
+          },
+          "reactionRole": "REACTANT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "acetic acid"
+            }
+          ],
+          "amount": {
+            "volume": {
+              "value": 10.0,
+              "units": "MILLILITER"
+            }
+          },
+          "reactionRole": "SOLVENT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "ammonium molybdate"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 67.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "CATALYST"
+        }
+      ]
+    }
+  },
+  "outcomes": [
+    {
+      "products": [
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "desired product"
+            }
+          ],
+          "measurements": [
+            {
+              "type": "AMOUNT",
+              "details": "MASS",
+              "amount": {
+                "mass": {
+                  "value": 400.0,
+                  "units": "MILLIGRAM"
+                }
+              }
+            },
+            {
+              "type": "YIELD",
+              "details": "PERCENTYIELD",
+              "percentage": {
+                "value": 45.0
+              }
+            }
+          ],
+          "reactionRole": "PRODUCT"
+        }
+      ]
+    }
+  ]
+}###
+
+Here is the second example. Again, `reaction_text` is the text between two delimiters ```and ```. The exported ORD JSON record is the text between two delimiters ### and ###.
+`reaction_text` = ```The mixture of compound 62 (166 mg, 0.3 mmol), cyclopropyl boronic acid (129 mg, 1.5 mmol), K3PO4 (212 mg, 1 mmol), Pd(OAc)2 (26 mg, 0.12 mmol), Sphos (100 mg, 0.24 mmol) and dioxane (3 mL) was purged with nitrogen, and then heated at 100\u00b0 C. overnight. The reaction mixture was directly purified by CombiFlash. The compound 63.1 was generated as a colorless oil. LC-MS ESI (pos.) M/E: 515 (M+H).```
+Here is the workflow how to extract information from this `reaction_text` and export them to a ORD JSON record.
+Step 1: This reaction involves seven chemicals. compound 62, cyclopropyl boronic acid, K3PO4, Pd(OAc)2, Sphos, dioxane, compound 63
+Step 2: Find the amount for each chemical. compound 62 is 166 mg, cyclopropyl boronic acid is 129 mg, K3PO4 is 212 mg, Pd(OAc)2 is 26 mg, Sphos is 100 mg, dioxane is 3 mL, compound 63 does not have an amount.
+Step 3: Identify the role for each chemical. dioxane is a SOLVENT because it is the only liquid. Pd(OAc)2 is most likely the CATALYST because it contains Palladium, a common catalyst. compound 63 is the PRODUCT. All other chemicals are REACTANT.
+Step 4: There is no yield reported for the PRODUCT (compound 63).
+Setp 5: Export the information to an ORD JSON record.
+example_ORD_JSON = ###{
+  "inputs": {
+    "m1_m2_m3_m5_m4_m6": {
+      "components": [
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "compound 62"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 166.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "REACTANT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "cyclopropyl boronic acid"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 129.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "REACTANT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "K3PO4"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 212.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "REACTANT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "Sphos"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 100.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "REACTANT"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "Pd(OAc)2"
+            }
+          ],
+          "amount": {
+            "mass": {
+              "value": 26.0,
+              "units": "MILLIGRAM"
+            }
+          },
+          "reactionRole": "CATALYST"
+        },
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "dioxane"
+            }
+          ],
+          "amount": {
+            "volume": {
+              "value": 3.0,
+              "units": "MILLILITER"
+            }
+          },
+          "reactionRole": "SOLVENT"
+        }
+      ]
+    }
+  },
+  "outcomes": [
+    {
+      "products": [
+        {
+          "identifiers": [
+            {
+              "type": "NAME",
+              "value": "(S)-Ethyl 3-(1-methyl-1H-imidazol-2-yl)-3-(4-((3,5,5,8,8-pentamethyl-5,6,7,8-tetrahydronaphthalen-2-yl)methoxy)phenyl)propanoate"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}###
