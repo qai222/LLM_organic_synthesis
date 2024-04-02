@@ -1,0 +1,6718 @@
+[
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00488-11-1-0",
+    "procedure_text": "The N-monosubstituted \u03b2- ketothioamide 1q can also be transformed to the corresponding product 3qa in lower yield when KOAc was added.",
+    "inputs": {
+      "1q": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1q"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "KOAc": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "KOAc"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "N-monosubstituted\u03b2-ketothioamide": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "N-monosubstituted\u03b2-ketothioamide"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3qa"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja000247w-0-1-0",
+    "procedure_text": "Robson prepared and struc- turally characterized a [Cu12(tapp)8] cubelike cage , which was derived from the self - assembly reaction of tri-bidentate ligand 2,4,6-triazophenyl-1,3,5-trihydroxybenzene ( H3tapp ) and copper(II) ions.14 Stang presented NMR and MS evidence for cuboctahedral and dodecahedral cations from tridentate and bidentate subunits.15 Fujita obtained a trigonal - bipyramidal capsule with 36+ by reaction of [Pd(NO3)2(en)] with 1,3,5-tris(3,5-",
+    "inputs": {
+      "H3tapp": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "H3tapp"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "2,4,6-triazophenyl-1,3,5-trihydroxybenzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2,4,6-triazophenyl-1,3,5-trihydroxybenzene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "copper(II)ions.14": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "copper(II)ions.14"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "[Cu12(tapp)8]"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00025a033-0-0-0",
+    "procedure_text": "In the accompanying paper , we describe the facile photo- cyclization of several a-(o-toly1)acetophenones to 2-indanols.' The reaction proceeds by rapid triplet - state & hydrogen abstraction that generates 1,Sbiradical intermediates.",
+    "inputs": {
+      "a-(o-toly1)acetophenones": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "a-(o-toly1)acetophenones"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2-indanols.'"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00534-2-0-0",
+    "procedure_text": "This type of reactivity has already been reported.6 By using LiAlH4 as reducing agent , degradation of the reaction mixture was observed ( Table 1 , entry 3 ) , but treatment of compound 1 with 1.5 equiv of diisobutylaluminium hydride in THF at room temperature provided the desired imidazo[1,2-a]- imidazole derivative 2 in a good yield of 74 % ( Table 1 , entry 4 ) .",
+    "inputs": {
+      "diisobutylaluminiumhydride": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "diisobutylaluminiumhydride"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "THF": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "THF"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00023a045-2-1-0",
+    "procedure_text": "Instead , when this reaction was conducted in THF , the vinylcyclopropane-methoxyfuran system 4 was obtained in 32 % yield.",
+    "inputs": {
+      "THF": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "THF"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00025a029-0-9-0",
+    "procedure_text": "It has been revealed that thermal transformation of the enol AQM to the initial quinone AQ can occur as an intramolecular process via reverse transfer of a H atom , or as a second - order reaction.",
+    "inputs": {
+      "enolAQM": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "enolAQM"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "AQ"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00019a039-1-2-0",
+    "procedure_text": "fluorescens ( ATCC 1 1250)4 , under the conditions described by Bild and Morris : resulted in 2-amino-4-hydroxy-4-phenylbutanoic acid ( eq 2 ) , which was purified by preparative HPLC in nearly quantitative yield based on L-kynurenine.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2-amino-4-hydroxy-4-phenylbutanoicacid"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00020a065-3-9-0",
+    "procedure_text": "\" Chromium(V) may disproportionate more rapidly than it reacts with alcohols , but even a two - electron oxidation of methanol by chro- mium(V) will yield Cr(lll) , not Cr(l1) .",
+    "inputs": {
+      "chro-mium(V)": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "chro-mium(V)"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "methanol": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "methanol"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Cr(lll)"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja001379s-3-3-0",
+    "procedure_text": "For example , no cyclization product 2a was obtained with the benzyl-substituted bisoxazoline ligand 4a ( Table 2 , entry 1 ) and only a 29 % yield of 2a with disappointing zero enantiomeric excess employing the isopropyl-substituted bisoxazoline 4b as the ligand ( Table 2 , entry 2 ).",
+    "inputs": {
+      "4b": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4b"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00247-8-1-0",
+    "procedure_text": "Adding an electron - donating group at the 3-position of 1,4-naphtho- quinone ( 1a ) , such as an alkyl substituent , a\ufb00ords the thioether ( 3m ) with improved yield.",
+    "inputs": {
+      "1a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1,4-naphtho-quinone": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1,4-naphtho-quinone"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3m"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00026a016-3-5-0",
+    "procedure_text": "~ Compound 8b was debenzylated by catalytic hydrogenolysis over palladium black to afford 9a ( 89 % ).",
+    "inputs": {
+      "palladiumblack": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "palladiumblack"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "8b": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "8b"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "9a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00360-1-2-0",
+    "procedure_text": "We found that a signi\ufb01cant amount of byproducts with polarity similar to that of C60 was always concurrently formed , although the desired fullerene - fused dioxane 2a was obtained in 17 % isolated yield ( entry 1 , Table 1 ).",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00028a054-6-3-0",
+    "procedure_text": "These observations led to the assignment of a triplet ground state for la.6 The formation of product 3 in the thermal ( 80 \u201c C ) reaction of ketone 2a in solution with fumaric ester was interpreted as chemical trapping of the biradical l a formed by loss of CO from 2a.6",
+    "inputs": {
+      "2a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "fumaricesterwas": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "fumaricesterwas"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja000238n-5-5-0",
+    "procedure_text": "The reaction of ethylene ( 2b ) with 1a in 1,4-dioxane also gave the corresponding cyclo- pentenone 3e in 65 % yield ( eq 2 ) .",
+    "inputs": {
+      "1,4-dioxane": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1,4-dioxane"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "ethylene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "ethylene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "2b": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2b"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3e"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00147a007-8-2-0",
+    "procedure_text": "Analogous to 1's anodic oxidation dynamics , it appears that monomer 2m forms from 2'+ under CV conditions because the second oxidation wave is always observed , even from colorless solutions of 2 at low temperatures which must contain very little 2m.",
+    "inputs": {
+      "2'+": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2'+"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2m"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00023a072-2-2-0",
+    "procedure_text": "While no cyclo- addition was detected at room temperature , the cyclization pro- ceeded smoothly in refluxing xylene to give adduct f ( mp 186-1 88 \" C ) in 51 % overall yield.",
+    "inputs": {
+      "xylene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "xylene"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "f"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00143a013-2-1-0",
+    "procedure_text": "However , in the presence of a radical trap X-Y ( Scheme 1 , reactions 4 and 5 ) , the quenching of R ' by X-Y results in the formation of R-X , the trapped product bearing a new functional group , and Y ' , a free radical capable of chain propagation by addition to the thiocarbonyl group of another molecule of precursor.",
+    "inputs": {
+      "R": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "R"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "X-Y": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "X-Y"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "R-X"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00028a040-7-1-0",
+    "procedure_text": "We also prepared 3DCA directly , using enhanced intersystem crossing with 2,s-dimethyliodobenzene and determined the yield of IO2 by this path .",
+    "inputs": {
+      "2,s-dimethyliodobenzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2,s-dimethyliodobenzene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3DCA"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00146a034-0-0-0",
+    "procedure_text": "Department of Chemistry , University of Iowa Iowa City , Iowa 52242 Received June 8 , 1995 The alkane elimination reaction of Cp*MMe3 ( Cp* = C5- Me5 ; M = Zr , H 9 with C2B9H13 yields new metallocarborane complexes of stoichiometry [ CP*(C ~ B ~ HI 1)MMe ] , ( la , M = Zr ; lb , M = H9.I These species polymerize ethylene and oligomerize propylene , form Lewis base adducts , insert 2-bu- tyne , and undergo thermal elimination of methane yielding 2-4 , respectively.",
+    "inputs": {
+      "Cp*MMe3(Cp*=C5-Me5;M=Zr,H9": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Cp*MMe3(Cp*=C5-Me5;M=Zr,H9"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "C2B9H13": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "C2B9H13"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "[CP*(C~B~HI1)MMe],(la,M=Zr;lb,M=H9.I"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00315-0-1-0",
+    "procedure_text": "Reaction of the known thiazole 410 with a 2-fold molar excess11 of organolithium species 58 a\ufb00orded 2 in 74 % yield.",
+    "inputs": {
+      "58": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "58"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "410": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "410"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00024a059-1-0-0",
+    "procedure_text": "When 1 ( 0.079 g , 0.10 mmol ) is reacted ( eq 1 ) with equimolar Pt(PEt,) , ( 0.066 g , 0.10 mmol ) in 5 mL of hexanes at room temperature under nitrogen for 2 h , red crystals of 2 are isolated8 in 65 % yield by reducing the volume of the reaction solution and cooling it to -30 OC .",
+    "inputs": {
+      "nitrogen": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "nitrogen"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "Pt(PEt,)": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Pt(PEt,)"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "hexanes": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "hexanes"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00145a007-7-2-0",
+    "procedure_text": "Steady - state photolysis ( A > 370 nm ) of acetonitrile solutions of DCA or TCA in the presence of Azo-Q affords N in virtually quantitative yield at 2-50 % conversion of Azo-Q ; the valence isomer Q was not detected.",
+    "inputs": {
+      "TCA": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "TCA"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "DCA": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "DCA"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "acetonitrile": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "acetonitrile"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "Azo-Q": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Azo-Q"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "N"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00028a042-12-1-0",
+    "procedure_text": "The use of the tert-butyl-substituted species 5 under identical reaction conditions afforded the expected dihydrophenanthrene 8 , but with markedly lower yields ( Table I , k and 1 ).",
+    "inputs": {
+      "5": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "8"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00059-9-2-0",
+    "procedure_text": "Complex 5 proved to be an active catalyst because when it was designated as a catalyst ( 7 mol % ) in the presence of AgSbF6 for the coupling between 1a and 2a , product 3aa was isolated in a comparable yield ( eq 3 ).",
+    "inputs": {
+      "AgSbF6": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "AgSbF6"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "1a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "5": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "2a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3aa"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00019a025-4-3-0",
+    "procedure_text": "The combination of 1-bromo-1-(p-ethoxypheny1)ethene 1Ab and eth- oxide anion gave the best yield of ipso adduct 3Ab , which was isolated as crystals .",
+    "inputs": {
+      "eth-oxideanion": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "eth-oxideanion"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1Ab": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1Ab"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1-bromo-1-(p-ethoxypheny1)ethene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1-bromo-1-(p-ethoxypheny1)ethene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3Ab"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00135a035-2-0-0",
+    "procedure_text": "Diyne 1 , prepared by the method of Grissom and co-workers,' was easily converted to the air - stable vinylidene complex 2 by treatment with CpRu(PMe3)2C18 and NH4PF6 in methanol solution ( Scheme 2 ) ? Saturation of the PMe3 NMR resonances of 2 resulted in strong NOE enhancement of the vinylidene and aromatic C-H signals and not those of the methylene bridge ( 1 ) Reviews : ( a ) Nicolaou , K.",
+    "inputs": {
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "CpRu(PMe3)2C18": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "CpRu(PMe3)2C18"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "methanol": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "methanol"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "NH4PF6": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "NH4PF6"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00019a048-2-2-0",
+    "procedure_text": "Also illustrated are the addition of [Cp*WO,]- to the electrophilic carbyne carbon of [ Cp(CO),Re = CTol]+ to form the bimetallic carbene complex 13 and the oxidation of 11 to form 12.",
+    "inputs": {
+      "[Cp*WO,]-": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "[Cp*WO,]-"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "[Cp(CO),Re=CTol]+": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "[Cp(CO),Re=CTol]+"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "13"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00025a027-7-1-0",
+    "procedure_text": "After the reaction mixture was allowed to warm to room temperature , workup by column chromatography of the resulting orange - brown solution afforded crystals of 12 in 27 % yield based on l l a .",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "12"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00132a015-1-6-0",
+    "procedure_text": "The hydrosilylation of 1,5-hexadiene effected by Cp\u20192SmCH(SiMe3)2 affords predominantly cyclopentylCH2SiH2Ph , while Me2SiCp \u201d zSmCH- (SiMe3)2 and (R)-MezSiCp \u201d [ ( -)-menthylCp]SmCH(SiMe3)2 also yield hydrosilylation products derived from 1,5- hexadiene skeletal rearrangement.",
+    "inputs": {
+      "Cp\u20192SmCH(SiMe3)2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Cp\u20192SmCH(SiMe3)2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1,5-hexadiene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1,5-hexadiene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "cyclopentylCH2SiH2Ph"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00136a036-0-1-0",
+    "procedure_text": "~ ~ , ~ Producing 1 through Norrish type I photocleavage of 2 enabled us to show that 5,6-dihydrothymid-5-y1 does not abstract hydrogen atoms from isopropyl alcohol or glycolaldehyde dimethyl acetal.4a These observations suggest that 1 is incompetent at inducing nucleic acid strand scission via direct hydrogen atom abstraction from a sugar moiety of an adjacent nucleotide .",
+    "inputs": {
+      "2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja0014335-8-4-0",
+    "procedure_text": "Hydrolysis of 9 under acidic conditions affords the R\u00a2 - monohydroxymethyl ketone 5.",
+    "inputs": {
+      "9": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "9"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00384-4-0-0",
+    "procedure_text": "was found in the reaction of 2a with 5a , which gave 6a in more than 99 % ee , > 20 : 1 dr ratio , and 77 % yield ( Scheme 1 ).",
+    "inputs": {
+      "2a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "5a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "6a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00025a022-0-0-0",
+    "procedure_text": "Abstract : The reaction of RU(NH ~ ) ~ OH ? + with CoP(py) , ( cobalt meso-tetrakis(4-pyridy1)porphyrin ) within Nafion coatings on graphite electrodes produces [ COP( ~ ~ RU(NH ~ ) ~ ),]*'.",
+    "inputs": {
+      "RU(NH~)~OH?": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "RU(NH~)~OH?"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "CoP(py)": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "CoP(py)"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "Nafioncoatingsongraphiteelectrodes": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Nafioncoatingsongraphiteelectrodes"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "cobaltmeso-tetrakis(4-pyridy1)porphyrin": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "cobaltmeso-tetrakis(4-pyridy1)porphyrin"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "[COP(~~RU(NH~)~),]*'."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00028a029-18-2-0",
+    "procedure_text": "We now find that the addition of benzil to 1 produces low yields of > 99 % pure 3,3( \" -')-dibenzoyl[n]staffanes [n] If , even in the presence of ether ( 1.7 - 4.5 % , 2.3 - 3.8 % , 0.5 - 0.7 % , and 0.1 % based on 8 , for n = 1 , 2 , 3 , and 4 , respectively ).",
+    "inputs": {
+      "benzil": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "benzil"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "ether": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "ether"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3,3(\"-')-dibenzoyl[n]staffanes[n]"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00455-0-1-0",
+    "procedure_text": "The bifunctional salicylate synthase MbtI catalyzes the \ufb01rst step of mycobactin biosynthesis through the conversion of the primary metabolite chorismate into salicylic acid via isochorismate.",
+    "inputs": {
+      "isochorismate.": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "isochorismate."
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "chorismate": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "chorismate"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "salicylicacid"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00144a005-25-1-0",
+    "procedure_text": "A typical reaction procedure is described for the synthesis of 4a.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4a."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00477-4-1-0",
+    "procedure_text": "The oxidative annulation of other 2-pyridylacetates such as \u2212COOMe , \u2212COOiPr , \u2212COOnBu , \u2212COOtBu , and \u2212COOCy , reacted well with 4-chloroaceto- phenone and produced the corresponding indolizine esters 3b\u22123f in moderate to good yields.",
+    "inputs": {
+      "4-chloroaceto-phenone": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4-chloroaceto-phenone"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "2-pyridylacetates": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2-pyridylacetates"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "esters3b\u22123f"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00025a057-0-2-0",
+    "procedure_text": "Therefore , our attention was shifted to the Stille coupling rea ~ ti0n.l ~ The required 6-iodo amide 1415 was readily prepared by coupling ( p-TsC1 / DMAP / CH2CI2 / room temperature ) of 5-iodopentadienoic acidI6 and iV \" ,N \" ' -diacetyl- L-arginine trimethylsilylethyl ester.",
+    "inputs": {
+      "iV\",N\"'-diacetyl-L-argininetrimethylsilylethylester.": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "iV\",N\"'-diacetyl-L-argininetrimethylsilylethylester."
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "CH2CI2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "CH2CI2"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "DMAP": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "DMAP"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "5-iodopentadienoicacidI6": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5-iodopentadienoicacidI6"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "p-TsC1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "p-TsC1"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1415"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00023a089-3-1-0",
+    "procedure_text": "( 23 ) A concerted rearrangement of 9 ( Scheme I ) could also lead to com- pounds 10 and 12 .",
+    "inputs": {
+      "9": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "9"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "10"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00131a033-1-18-0",
+    "procedure_text": "A repre- sentative procedure is exemplified by the preparation of 7b : To a solution of 1 ( 24.4 mg , 37.1 pmol ) , EDC ( 7.1 mg , 37.1 pmol ) , and DMAP ( 4.0 mg , 37.1 pmol ) in absolute CHzClz ( 1 mL ) was added a solution of 7a ( 5 mg , 12.4 pmol ) in CHzClz ( 1 mL ) at room temperature.",
+    "inputs": {
+      "7a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "DMAP": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "DMAP"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "EDC": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "EDC"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "CHzClz": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "CHzClz"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7b"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00022a077-6-0-0",
+    "procedure_text": "Chorismate synthase ( EC 4.6.1,4 ) , the seventh enzyme in the shikimate pathway,' catalyzes the conversion of 5-enolpyruvyl- shikimate 3-phosphate ( EPSP ) to chorismate in a reaction that involves the trans 1,4-elimination of the C-6-pro-R proton and ( Scheme I ).",
+    "inputs": {
+      "Chorismatesynthase": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Chorismatesynthase"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "5-enolpyruvyl-shikimate3-phosphate": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5-enolpyruvyl-shikimate3-phosphate"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "EPSP": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "EPSP"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "EC4.6.1,4": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "EC4.6.1,4"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "chorismate"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja001456j-4-3-0",
+    "procedure_text": "The observed high selectivity suggests the following : ( 1 ) both diastereomers produce the same radical intermediate , ( 2 ) the intermediate radical is chelated to the Lewis acid as an s-cis rotamer and approach of the reagent occurs from the face opposite to the bulky chiral auxiliary , ( 3 ) assuming that bromine atom abstraction may or may not occur from a chelated form of the substrate 1 and 2 , rotation across the radical-carbonyl ( COCHCH3 ) bond ( structures 4f3 ) as well as ( 10 ) Enolate allylation of 3-(1-oxopropyl)-4-(diphenylmethyl)-2-oxazo- lidinone gave 8 in 63 % yield with > 99 % de.",
+    "inputs": {
+      "3-(1-oxopropyl)-4-(diphenylmethyl)-2-oxazo-lidinone": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3-(1-oxopropyl)-4-(diphenylmethyl)-2-oxazo-lidinone"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "8"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00138a017-1-1-0",
+    "procedure_text": "\u2019 The reaction involves the conversion of the conjugate base of benzisoxazole-3-carboxylic acid ( 1 ) to cy- anophenoxide 3 , without formation of an intermediate ( Scheme 1 ).",
+    "inputs": {
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00657-0-1-0",
+    "procedure_text": "The product was determined to be 9,9,10,10- tetra\ufb02uoro-1,2,4,12-tetraphenyl[2.2]paracyclophan-1-ene by X-ray crystallography and is proposed to be formed via the \ufb01rst reported example of reductive de\ufb02uorination by a Grignard reagent .",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "9,9,10,10-tetra\ufb02uoro-1,2,4,12-tetraphenyl[2.2]paracyclophan-1-ene"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja001366e-1-1-0",
+    "procedure_text": "As shown in Scheme 1 , the reaction of the [Et2C2B4H4]2- dianion with TiCl4(PMe3)2 13 in toluene affords 1 as a red solid in 46 % yield , characterized by 1H , 13C , 11B , and 31P NMR spectroscopy and elemental analysis.",
+    "inputs": {
+      "13": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "13"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "[Et2C2B4H4]2-": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "[Et2C2B4H4]2-"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "TiCl4(PMe3)2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "TiCl4(PMe3)2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "toluene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "toluene"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00145a036-1-1-0",
+    "procedure_text": "the slower reactions quantitatively gave Et20 after 1.5 h.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Et20"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00021a056-2-1-0",
+    "procedure_text": "Because of the unsurpassed effectiveness and control inherent in the cyclization of 1 to form 2 , we have for some time been interested in obtaining the sterol cyclase in pure form for X-ray crystallographic studies with a bound substrate - based inhibitor , e.g.",
+    "inputs": {
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00101-6-2-0",
+    "procedure_text": "Ine\ufb03cient reactions were caused by the homocoupling reaction of amines , producing secondary amines.16 The reaction of \u03b5- caprolactone ( 1e ) a\ufb00orded only the corresponding aminoamide 6ea in 88 % yield , indicating that an aminoamide may be the intermediate before intramolecular transamidation to furnish the corresponding lactam ( entry 18 ) .",
+    "inputs": {
+      "1e": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1e"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "\u03b5-caprolactone": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "\u03b5-caprolactone"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "6ea"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00426-2-4-0",
+    "procedure_text": "In contrast to IOOC , we reported that O-silylated oximes 6 having ole\ufb01n \u00b7OEt2 , underwent intramolecular moieties , on treatment BF3 cycloaddition via N-boranonitrones 7 under very mild conditions.6 More recently , it was also reported that intermolecular cycloaddition of C-ester substituted O-silylated oxime 8a a\ufb00orded 3,5-trans-cycloadducts as the major isomers.7 In this paper , we would like to report that cycloaddition of C- \u00b7 amide substituted O-silylated oxime 8b in the presence of BF3 OEt2 produces 3,5-cis-cycloadducts predominantly probably via \u00b714 ( Scheme 3 ).",
+    "inputs": {
+      "6": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "6"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00143a030-1-4-0",
+    "procedure_text": "A third dialkyl 3 , was ob- dithiophosphate cluster , { CU ~ [ S ~ P(OE ~ ) ~ ] ~ .",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00494-8-0-0",
+    "procedure_text": "Treatment of the diynes 17a,b with Zn(OTf)2 / Et3N in the presence of (\u2212)-N-methylephedrine ( NME ) as a chiral inducer in CH2Cl2 , followed by addition of the ynal 21 , led to the bis- alkynylated products (R,R)-22a,b in 85 % yield ( Scheme 4 ) .",
+    "inputs": {
+      "(\u2212)-N-methylephedrine": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "(\u2212)-N-methylephedrine"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "NME": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "NME"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "21": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "21"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "17a,b": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "17a,b"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "CH2Cl2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "CH2Cl2"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "Zn(OTf)2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Zn(OTf)2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "Et3N": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Et3N"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "(R,R)-22a,b"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00144-8-1-0",
+    "procedure_text": "Using 1.0 g of 1a as the substrate , the tri\ufb02uoromethyl- thiolated product 3a was obtained in 86 % yield ( Scheme 2 ) .",
+    "inputs": {
+      "1a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00021a064-0-0-0",
+    "procedure_text": "Reaction of o-nitrobenzaldehyde with 1 -methoxy-I-lithio- b ~ t a d i e n e ' ~ generates carbinol 5 ( Scheme I ).",
+    "inputs": {
+      "1-methoxy-I-lithio-b~tadiene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1-methoxy-I-lithio-b~tadiene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "o-nitrobenzaldehyde": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "o-nitrobenzaldehyde"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00380-19-3-0",
+    "procedure_text": "Monitoring the reaction in toluene , we observed the presence of equilibrium between the open and closed forms , lactol 15 and hydroxy aldehyde 27 , in favor of the closed form 15 ( 15 : 27 ratio 3 : 1 ) as shown in Scheme 6.",
+    "inputs": {
+      "15": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "15"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "toluene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "toluene"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "27"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00135a002-14-0-0",
+    "procedure_text": "a-Methoxybenzyl cation [ la-BF30Me-1.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "[la-BF30Me-1."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00769-5-2-0",
+    "procedure_text": "For diketone 4c , with the electron - donating methoxy group in the phenyl ring , a higher temperature was needed , and the reaction was run at room temperature , a\ufb00ording product 5c in high yield and ee ( Table 4 , entry 3 ).",
+    "inputs": {
+      "diketone": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "diketone"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "4c": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4c"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5c"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00034-2-2-0",
+    "procedure_text": "The resulting acid chloride 7 was then condensed in situ with the substituted trimethylsilyl acetylenes to furnish the corresponding \u03b1,\u03b2-acetylenic ketones 8 ( Scheme 2 ) .",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00725-8-4-0",
+    "procedure_text": "The optimized lithiation conditions were used to prepare a selection of 1-substituted tetrahydro-\u03b2-carboline products 3a \u2212 f after electrophilic quenching ( Scheme 2 , Figure 3 ).",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00019a035-1-4-0",
+    "procedure_text": "Evaporation of solvent in vacuo and recrys- tallization from acetone gave the white powder of 3-(octadecyloxy)- acetanilide ( 23.5 g , 88.1 % ) : mp 89-90 OC ; IR ( KBr , cm-I ) 3292 'H NMR ( 60 ( Y N H a m i d , 2916 ( u a s ~ ~ 2 ) .",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3-(octadecyloxy)-acetanilide"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00146-7-1-0",
+    "procedure_text": "As expected , the desired product 3ab was formed in 30 % yield ( Table 4 , entry 1 ) under the standard conditions ( I2 10",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3ab"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00024a053-4-1-0",
+    "procedure_text": "I2 Notice the compatibility of ester , hydroxyl , sulfide , and lactone functionalities with this carbon-arbon bond forming event which produced 9 in 86 % yield.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "9"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00024a038-6-9-0",
+    "procedure_text": "The homologated oxazinone 7s ( R , = Me , R2 = allyl ) was detected only in trace amounts by TLC.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7s"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00572-1-9-0",
+    "procedure_text": "Initial screening results indicated that a combina- tion of KOAc / Pd(OAc)2 / Cy3P in toluene was capable of giving high yields of the desired boronate 6 ( > 95 % conversion with \u223c 99 : 1 selectivity for Miyaura borylation over proto-dehaloge- nation ).",
+    "inputs": {
+      "Pd(OAc)2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Pd(OAc)2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "KOAc": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "KOAc"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "Cy3P": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Cy3P"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "toluene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "toluene"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "6"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00143a008-0-1-0",
+    "procedure_text": "The 1,4,2-0xathiazolidines were characterized and their dissociation of the adduct 28 from 16 and constants measured by 'H NMR analysis and by visible spectrophotometry.",
+    "inputs": {
+      "16": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "16"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "28"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00767-2-2-0",
+    "procedure_text": "The electron - rich aryl-substituted alanes were e\ufb00ective , a\ufb00ording the corresponding products 3aa \u2212 ad in high yields.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3aa"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00136a008-27-5-0",
+    "procedure_text": "Selective hydrolysis of the C(6) and C(7) acetates with 0.2 % K2C03 in MeOH ( 0.5 h ) yielded 81 .",
+    "inputs": {
+      "K2C03": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "K2C03"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "MeOH": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "MeOH"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "81"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00027a016-0-0-0",
+    "procedure_text": "Abstract : Difluorocyclopropenone was prepared by gas - phase photolysis of difluoromaleic anhydride and was characterized spectroscopically.",
+    "inputs": {
+      "difluoromaleicanhydride": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "difluoromaleicanhydride"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Difluorocyclopropenone"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00445-19-1-0",
+    "procedure_text": "Careful analysis revealed that the monomeric cyclopeptoid 6b was selectively formed instead of the dimeric derivative.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "6b"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00028a058-4-3-0",
+    "procedure_text": "Par- ticularly noteworthy is the conversion of 13 into the anomeric azide 14 ( entry 6 ).",
+    "inputs": {
+      "13": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "13"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "14"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00051-15-0-0",
+    "procedure_text": "extensive screening of reaction conditions , we learned that treatment of 19 with TFAA ( 1.2 equiv ) and pyridine at 0 \u00b0 C readily activated the hydroxyl lactam to an intermediate acyl iminium ion , and subsequent addition of a solution of the indole ( 5.0 equiv ) in CH2Cl2 produced the desired adduct 28 in 82 % yield as a single diastereomer.",
+    "inputs": {
+      "19": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "19"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "CH2Cl2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "CH2Cl2"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "TFAA": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "TFAA"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "pyridine": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "pyridine"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "28"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00021a053-0-0-0",
+    "procedure_text": "In addition , although ozonides are more robust than is commonly perceived , they are known to be sensitive to solvolysis condition^.^ Nevertheless , we have found that these potential problems can be overcome through suitable design of the substrate , and we report here the first cationic ring expansion of a 1,2,4-trioxolane to a 1,2,4-trioxane.",
+    "inputs": {
+      "1,2,4-trioxolane": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1,2,4-trioxolane"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1,2,4-trioxane."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00137a023-0-0-0",
+    "procedure_text": "The azobenzene - containing amino acid was incorporated into linear peptide 2 by a solid phase methodology on a p - alkoxybenzyl alcohol resin5 with Fmoc as the semipermanent protecting group.6 Cyclization of peptide 2 ( 0.5 mM ) with BOP ( 1.1 equiv ) and DIEA ( 2 equiv ) at room temperature in DMSO afforded cyclic peptide lt , , , , in a 48 % yield after HPLC purification ( Scheme 1 ) .",
+    "inputs": {
+      "DIEA": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "DIEA"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "BOP": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "BOP"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "DMSO": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "DMSO"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "lt"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja001316+-3-1-0",
+    "procedure_text": "Recently , a straightforward synthesis of [n]por- phyracene containing doubly meso-(cid : 226 ) -linkages has been reported independently by two Japanese groups.9,10 Oxidation of nickel- ( II ) or palladium(II) 5,10,15-triarylporphyrins with 1 equiv of hexachloroantimonate gave the dimeric species 4 , whose visible spectra are broader and shifted to longer wavelength compared with those of the corresponding monomers.",
+    "inputs": {
+      "hexachloroantimonate": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "hexachloroantimonate"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "palladium(II)5,10,15-triarylporphyrins": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "palladium(II)5,10,15-triarylporphyrins"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00027a067-0-1-0",
+    "procedure_text": "In the second step , the intermediate 4 would decarboxylate , thus driving the reaction toward 5.",
+    "inputs": {
+      "4": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00132a047-4-4-0",
+    "procedure_text": "Thus , intermediate i below yields U as the major product upon free radical cyclization as described fok 13 and 16.",
+    "inputs": {
+      "i": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "i"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "U"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00020a029-18-3-0",
+    "procedure_text": "Therefore , the ester products 3a,b may arise either by rear- rangement of the dioxyl diradical 2 ( eq 1 ) or by @ -scission followed by in-cage coupling of the resulting acetyloxy and methyl radical pairs ( eq 2 ) .",
+    "inputs": {
+      "2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3a,b"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00020a042-1-4-0",
+    "procedure_text": "For instance , re- duction of permanganate in neutral solution yields manganese dioxide , an insoluble material with bridging oxide ions.I2 The rhenium-oxo-acetylene compounds Re(O)X(RC = CR')2 have",
+    "inputs": {
+      "neutralsolution": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "neutralsolution"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "permanganate": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "permanganate"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "manganesedioxide"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00145a009-0-0-0",
+    "procedure_text": "Abstract : The series of new bis(tetrathiafulva1ene) [bis(TTF)] compounds 10-12a,b have been synthetized with the TTF - like synthon 8a,b , previously used to prepare the pyrazine - fused bis( \" F ) 7a,b.",
+    "inputs": {
+      "8a,b": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "8a,b"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "10-12a,b"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00140a025-4-1-0",
+    "procedure_text": "Boc-amine deprotection of tripeptide 3 , followed by neutralization and treatment with the dipeptide , activated ester 14 , provided the desired protected pentapeptide 15.",
+    "inputs": {
+      "3": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "14": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "14"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "15."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00759-0-1-0",
+    "procedure_text": "The synthesis of 2 was achieved by regioselective oxidation using o-iodoxybenzoic acid.",
+    "inputs": {
+      "o-iodoxybenzoicacid.": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "o-iodoxybenzoicacid."
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00738-6-4-0",
+    "procedure_text": "In addition , 2-naphthaldehyde reacted to furnish 7r in good yield , which upon recrystallization in MeOH \u2212 CH2Cl2 ( 1 : 1 ) gave single crystals whose structure was con\ufb01rmed by X-ray analysis ( see Supporting Information ).",
+    "inputs": {
+      "2-naphthaldehyde": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2-naphthaldehyde"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7r"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00023a092-0-0-0",
+    "procedure_text": "Hydrogen peroxide , essential for eliminating the interferants , can not be externally added in in vivo assays but can be produced in situ by oxidases ; thus , lactate oxidase ( LOD ) generates hydrogen peroxide in the presence of lactate and oxygen ( eq 2 ).",
+    "inputs": {
+      "lactateoxidase": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "lactateoxidase"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "oxygen": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "oxygen"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "lactate": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "lactate"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "hydrogenperoxide"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00020a082-2-3-0",
+    "procedure_text": "For example , addition of phenylmagnesium bromide in ether at -78 OC to 4 followed by heating with catalytic tosic acid in benzene furnished the phenyl allenic lactone 2b in 55 % yield.5 Thus this is a good approach to allenic lactones of this sort .",
+    "inputs": {
+      "4": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "phenylmagnesiumbromide": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "phenylmagnesiumbromide"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "tosicacid": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "tosicacid"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "benzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "benzene"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "ether": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "ether"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2b"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00678-25-1-0",
+    "procedure_text": "20-TSM1-re ( Scheme 12 ) has a structure very similar to that of 14-TSM1-re ( Figure S4 in the SI ) and leads directly to the intermediate 20-Int-re , analogous to 14-Int-re , from which the formation of 20-[1,2]R and 20-[2,3]R is possible.",
+    "inputs": {
+      "20-TSM1-re": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "20-TSM1-re"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "20-Int-re"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00505-4-2-0",
+    "procedure_text": "To our delight , in the presence of Pd(OAc)2 as a catalyst , in DMF , the expected product 6a was detected albeit in very low yield ( entry 1 ).",
+    "inputs": {
+      "Pd(OAc)2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Pd(OAc)2"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "6a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00134a045-1-0-0",
+    "procedure_text": "Conversion of farnesyl diphosphate into squalene in the biosynthesis of cholesterol offers an attractive point for thera- peutic intervention for the treatment of hypercholesterolemia.",
+    "inputs": {
+      "farnesyldiphosphate": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "farnesyldiphosphate"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "squalene"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00028a003-1-4-0",
+    "procedure_text": "13C , ' Li , and 3iP chemical shifts for the various H M P A solvates are reported.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "13C"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00145a043-5-2-0",
+    "procedure_text": "( i ) Treatment of compound 2 with methyl triflate gave none of the products , while Martin and co-workers found that an anionic sulfur ate complex reacted with CH3- OSOlF to afford the S-methylated ( ii ) the 77Se peak in the 77Se NMR spectrum of 2 appeared at a remarkable low field , which indicates the cationic property of selenium.",
+    "inputs": {
+      "CH3-OSOlF": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "CH3-OSOlF"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "anionicsulfuratecomplex": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "anionicsulfuratecomplex"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "S-methylated(ii)"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00662-8-4-0",
+    "procedure_text": "However , we were not able to detect or isolate any acylimine species.26 The only product we could obtain from the two - component reaction was bisamide 11 , derived from a two-fold addition of benzamide to formaldehyde.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "11"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00568-9-1-0",
+    "procedure_text": "Most of the 1,2-dihalobenzene substrates , including 1-bromo-2- chlorobenzene , 1-chloro-2-iodobenzene , 1,2-dibromobenzene , 1-bromo-2-iodobenzene and 1,2-dichlorobenzene , reacted smoothly with N-(5-chloro-2-mercaptophenyl)acetamide to give 2-chloro-10H-phenothiazine in yields of up to 92 % ( Table 2 , entries 10 \u2212 14 ).",
+    "inputs": {
+      "1-chloro-2-iodobenzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1-chloro-2-iodobenzene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "N-(5-chloro-2-mercaptophenyl)acetamide": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "N-(5-chloro-2-mercaptophenyl)acetamide"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1-bromo-2-iodobenzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1-bromo-2-iodobenzene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1,2-dichlorobenzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1,2-dichlorobenzene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1-bromo-2-chlorobenzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1-bromo-2-chlorobenzene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1,2-dibromobenzene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1,2-dibromobenzene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2-chloro-10H-phenothiazine"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00020a022-10-1-0",
+    "procedure_text": "Under these conditions , both phenyl ring systems were hydro- genated in addition to the C = C double bonds to give the cyclo- hexyl-substituted [ Cp-CH(CH3)Cyl2ZrCI2 diastereoisomers meso-1 and rac-1 in a nearly 1 : 1 ratio ( isolated in almost quan- titative yield ) .",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Cp-CH(CH3)Cyl2ZrCI2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00041-4-1-0",
+    "procedure_text": "Control experiments revealed that a photocatalyst , 4 and visible light were essential for the e\ufb03cient conversion of 1a into 2a ( entries 7 \u2212 10 ).",
+    "inputs": {
+      "4": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "1a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "visiblelight": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "visiblelight"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00641-0-0-0",
+    "procedure_text": "become a powerful tool in synthetic organic chemistry.1 The radical difunctionalization having advantages such as mild reaction conditions , high selectivity , and convenient workup has made it more interesting.2 Thiol \u2212 oxygen co-oxidation reactions ( TOCO ) provide attractive routes to functionalized valuable products with studies focusing mainly on ole\ufb01ns ; 3 only a few have been on alkynes.3a,4 The \ufb01rst example of TOCO of alkynes appeared in the early 1960s when Griesbaum et al.4b reported the reaction of thiophenol with phenylacetylene in an oxygen atmosphere to give the phenylglyoxal hemithioacetal.",
+    "inputs": {
+      "thiophenol": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "thiophenol"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "phenylacetylene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "phenylacetylene"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "phenylglyoxalhemithioacetal."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00028a053-1-2-0",
+    "procedure_text": "Further , we have found that dioxovanadium(V) catalyzes the oxidation of chloride by hydrogen peroxide , and the formation of chlorotrimethoxybenzene ( Cl - TMB ; M+ m / e 202 , 204 ) , al- though the chlorination rate is slower than that for bromination.",
+    "inputs": {
+      "chloride": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "chloride"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "dioxovanadium(V)": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "dioxovanadium(V)"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "hydrogenperoxide": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "hydrogenperoxide"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "chlorotrimethoxybenzene"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja000243r-1-0-0",
+    "procedure_text": "ligand exchange reaction is performed in the presence of diphenylketene , ketene complex 2 is formed in 61 % yield.",
+    "inputs": {
+      "diphenylketene": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "diphenylketene"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00300-2-1-0",
+    "procedure_text": "Considerable optimization of these reaction conditions was required , as documented in Table 1 and in a study of similar \u03b2-enamino ester syntheses from our lab.14 The highlighted conditions ( entry 11 : EDCI , KHCO3 , HOAt15 ) a\ufb00orded the sca\ufb00old with two side chains , 4aa , more e\ufb03ciently than any other set of conditions studied.",
+    "inputs": {
+      "HOAt15": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "HOAt15"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "KHCO3": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "KHCO3"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "EDCI": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "EDCI"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4aa"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00382-3-1-0",
+    "procedure_text": "We were pleased to observe that , with just our \ufb01rst attempt , the substrate (Z)-1a was converted to the desired 2,3,5-trienoate product 2aa , which is exclusively in (E)-con\ufb01guration , and carries a hydroxyl group on the allylic position , almost quantitatively under very mild reaction conditions ; the conversion was complete within just 1 h , when the reaction was performed in the presence of a \u2212CHCl3 ( 0.5 mol % Pd ) and PPh3 ( 2 mol % ) Pd2dba3 combination in MeOH , and under balloon pressure of CO at 25 \u00b0 C ( Table 1 , entry 1 ).",
+    "inputs": {
+      "(Z)-1a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "(Z)-1a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "MeOH": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "MeOH"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      },
+      "PPh3": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "PPh3"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "Pd2dba3": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Pd2dba3"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "\u2212CHCl3": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "\u2212CHCl3"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2aa"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00661-9-1-0",
+    "procedure_text": "Cadiot\u2212 Chodkiewicz coupling between alkyne 10 and alkynyl bromide 31 , which was made by AgNO3 - catalyzed NBS bromination of 30 ( Scheme 6 ) , did not lead to the expected product , and the 1H NMR spectrum of the crude reaction mixture contained mostly the product of oxidative homocoupling of alkyne 10 .",
+    "inputs": {
+      "AgNO3": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "AgNO3"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "30": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "30"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "31"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00020a025-23-0-0",
+    "procedure_text": "On the basis of prior work from our laboratory , we were op- timistic that the hydroboration of olefin 42b would proceed se- lectively to establish the C4 stereocenter with the desired sense Treatment of 42b with thexylborane of asymmetric ( Scheme XI ) followed by an oxidative workup produced a mixture of alcohols , 43a and its C4 epimer , in a ratio of 84 : 16 as determined by capillary GC analysis.",
+    "inputs": {
+      "42b": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "42b"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "thexylborane": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "thexylborane"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "43a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00020a045-1-0-0",
+    "procedure_text": "The anaerobic oxidation of 2 with KMn04 gave a bis(p- oxo)manganese(III,llI) complex ( 3 ) ( Scheme I ).",
+    "inputs": {
+      "KMn04": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "KMn04"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00302-2-2-0",
+    "procedure_text": "Using quinine - derived thiourea I , product 3a was obtained with high enantioselectivity ( 98 % ee ) but moderate diastereoselec- tivity ( 5 : 1 dr ) ( entry 1 ).",
+    "inputs": {
+      "I": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "I"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00024a034-1-2-0",
+    "procedure_text": "On the basis of an observation made earlier by Ingold \" that cyclopropylaminyl radicals undergo fast ring- opening reactions , it was formulated that the cation radical 2 would open to produce the benzyl radical cation intermediate 3 , which then couples to a thiyl radical , itself generated by H - atom transfer to the flavin semiquinone radical ( Scheme I ).",
+    "inputs": {
+      "2": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00139a033-2-2-0",
+    "procedure_text": "The only isolable product in the CAN oxidation of 1 , was 2-(2,4-dimethoxyphenyl)-p-benzoquinone ( yield 8 % ) as was expected .",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2-(2,4-dimethoxyphenyl)-p-benzoquinone"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00025a031-1-0-0",
+    "procedure_text": "Deoxy-Mb thus obtained is reoxidized to met-Mb by adding another 0.04 mM of the quinone.",
+    "inputs": {
+      "Deoxy-Mb": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "Deoxy-Mb"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "quinone.": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "quinone."
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "met-Mb"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00143a026-2-2-0",
+    "procedure_text": "Dissociation of the chelated alkene to generate intermediate I ( Scheme 1 ) followed by recoordination of the opposite face of the alkene is the minimum process needed to interconvert both the gem-methyl groups and the Cp* groups.",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "I"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00145a039-0-1-0",
+    "procedure_text": "By in uitro screening of RNAs for their ability to bind the planar TS* analogue 4 , a 165 nucleotide ( nt ) RNA ( AA6 ) was isolated that catalyzes the isomerization reaction of the diastereomeric biphenyl 1 to its isomer 2.",
+    "inputs": {
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "diastereomericbiphenyl": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "diastereomericbiphenyl"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00025a036-3-1-0",
+    "procedure_text": "The crystalline benzylidene-protected a-methyl glycoside 7 is prepared in one step ( 55 % yield , mp 165-166.5 \u201c C ) from N-acetyl+ galactosamine and serves as the starting material for synthesis",
+    "inputs": {
+      "N-acetyl+galactosamine": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "N-acetyl+galactosamine"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00132a039-2-1-0",
+    "procedure_text": "Treatment of 2 with MeMgBr and 5 mol % 1 leads to the recovery of the starting material , whereas allylic ether 5 , under identical conditions , affords 10 in 70 % yield , as a single regiosiomer ( > 99 : 1 ) and with outstanding control of alkene stereochemistry ( > 49 : 1 ) .",
+    "inputs": {
+      "MeMgBr": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "MeMgBr"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "5": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "10"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00144a004-5-1-0",
+    "procedure_text": "Previously we demonstrated that the production of alcohol adduct ( s ) 36 upon irradiation of 35 in an alcoholic medium resulted from its initial isomerization to [4]paracyclophane 3 followed by the addition of the alcohol to the extremely strained bridgehead carbons ( Scheme 4 ).",
+    "inputs": {
+      "35": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "35"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "alcoholicmedium": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "alcoholicmedium"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "36"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00023a036-0-0-0",
+    "procedure_text": "Abstract : The design , synthesis , and study of a molecular template , 1 la , that catalyzes its own formation from simpler components , 9 and lOd , is described.",
+    "inputs": {
+      "lOd": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "lOd"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "9": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "9"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1la"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00027-3-4-0",
+    "procedure_text": "Diastereoselective reduction of 23 with NaBH4 proceeded successfully to provide the desired alcohol 24 in 98 % yield as the sole diastereomer.",
+    "inputs": {
+      "23": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "23"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "NaBH4": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "NaBH4"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "24"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja0014281-4-5-0",
+    "procedure_text": "In contrast , in water , 3a cyclized much more smoothly and yielded lactone 4a in high yield.",
+    "inputs": {
+      "3a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "3a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "water": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "water"
+              }
+            ],
+            "reaction_role": "SOLVENT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "4a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00131a035-1-16-0",
+    "procedure_text": "( 15 ) Diketopiperazine 12 can be prepared directly , albeit only in 35 % yield , by heating tryptophan methyl ester ( 9 ) at 140 'C for 3 h , thus saving four steps in the synthetic sequence described above.",
+    "inputs": {
+      "9": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "9"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "tryptophanmethylester": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "tryptophanmethylester"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "12"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00823-4-10-0",
+    "procedure_text": "The \ufb01rst attempt , involving diol 6a and alcohol 7a , provided the desired CM 8a product in 23 % yield ( entry 1 ).",
+    "inputs": {
+      "7a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "7a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "6a": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "6a"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "8a"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00132a040-2-0-0",
+    "procedure_text": "In summary , electrochemical oxidation of 1 leads to spon- taneous incorporation of a third oxide to yield 2 with an unusual [Mu03(ri-MeC02)] core.",
+    "inputs": {
+      "1": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "1"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "2"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/acs.joc.5b00794-4-5-0",
+    "procedure_text": "This background reaction was slower than the photocatalyzed reaction , producing product 5 in only 28 % yield after 2 h , although the yield was improved to 67 % after",
+    "inputs": {},
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "5"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.inputs"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja00022a079-2-1-0",
+    "procedure_text": "England Received July 29 , 1991 One of the most important industrial processes utilizing ho- mogeneous transition - metal catalysis is the rhodium and iodide promoted carbonylation of methanol to acetic acid.",
+    "inputs": {
+      "iodide": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "iodide"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      },
+      "methanol": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "methanol"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "rhodium": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "rhodium"
+              }
+            ],
+            "reaction_role": "CATALYST"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "aceticacid."
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  },
+  {
+    "reaction_id": "ord-CRE-passage=10.1021/ja001334r-4-1-0",
+    "procedure_text": "The acetylene complex 11 reacted with an achiral imine 21 to afford an allenylamine 22 virtually as a single isomer.10 This is in marked contrast to the aforementioned aldehyde addition , which usually gave rise to the formation of a mixture of two isomeric alcohols.",
+    "inputs": {
+      "21": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "21"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      },
+      "11": {
+        "components": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "11"
+              }
+            ],
+            "reaction_role": "REACTANT"
+          }
+        ]
+      }
+    },
+    "conditions": {},
+    "outcomes": [
+      {
+        "products": [
+          {
+            "identifiers": [
+              {
+                "type": "NAME",
+                "value": "22"
+              }
+            ],
+            "reaction_role": "PRODUCT"
+          }
+        ]
+      }
+    ],
+    "workups": [],
+    "warning_messages": [
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.conditions"
+      },
+      {
+        "type": "MISSING_IMPORTANT_KEY",
+        "message": "missing key: ord.Reaction.workups"
+      }
+    ]
+  }
+]

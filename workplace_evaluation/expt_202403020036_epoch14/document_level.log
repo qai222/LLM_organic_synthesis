@@ -1,0 +1,38 @@
+2024-03-05 10:15:05.820 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse measurements field: Failed to parse type field: Invalid enum value  for enum type ord.ProductMeasurement.ProductMeasurementType at Reaction.outcomes[0].products[0].measurements[2].type....
+2024-03-05 10:15:05.822 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse measurements field: Message type "ord.Mass" has no field named "" at "Reaction.outcomes[0].products[0].measurements[0].amount.mass".
+ Available Fields(except extensions): "['value', 'precision', 'units']"...
+2024-03-05 10:15:05.825 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse reaction_role field: Invalid enum value  for enum type ord.ReactionRole.ReactionRoleType at Reaction.outcomes[0].products[0].reaction_role...
+2024-03-05 10:15:05.827 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Failed to parse units field: Invalid enum value MOLE for enum type ord.Mass.MassUnit at Reaction.inputs[m1_m2_m5_m6].components[0].amount.mass.units....
+2024-03-05 10:15:05.829 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: repeated field products must be in [] which is  at Reaction.outcomes[0]..
+2024-03-05 10:15:05.830 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "reaction_role" at "Reaction.inputs[m2_m3_m7_m5].components[2].identifiers[0]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-05 10:15:05.831 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "conditions" at "Reaction.workups[11]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-05 10:15:05.835 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Message type "ord.Compound" has no field named "m" at "Reaction.inputs[m0_m1_m2_m3].components[3]".
+ Available Fields(except extensions): "['identifiers', 'amount', 'reactionRole', 'isLimiting', 'preparations', 'source', 'features', 'analyses', 'texture']"..
+2024-03-05 10:15:05.836 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "amount" at "Reaction.inputs[m1_m5].components[0].identifiers[0]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-05 10:15:05.841 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse reaction_role field: Invalid enum value PRODU for enum type ord.ReactionRole.ReactionRoleType at Reaction.outcomes[0].products[0].reaction_role...
+2024-03-05 10:15:05.847 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Message type "ord.ProductCompound" has no field named "" at "Reaction.outcomes[0].products[0]".
+ Available Fields(except extensions): "['identifiers', 'isDesiredProduct', 'measurements', 'isolatedColor', 'texture', 'features', 'reactionRole']"..
+2024-03-05 10:15:05.851 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "t" at "Reaction.workups[2]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-05 10:15:05.852 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "{" at "Reaction.workups[2]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-05 10:15:05.860 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "reaction_role" at "Reaction.inputs[m1].components[0].identifiers[0]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-05 10:15:05.861 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "(100 mL), brine (100 mL)" at "Reaction.workups[1]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-05 10:15:05.862 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "conditions" at "Reaction.inputs[m3].components[0].identifiers[0]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-05 10:15:05.865 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "outcomes" at "Reaction.workups[0]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-05 10:15:05.867 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "i" at "Reaction.workups[1]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-05 10:15:05.868 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "foam" at "Reaction.workups[9]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-05 10:15:05.869 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Failed to parse input field: Failed to parse components field: Failed to parse amount field: Failed to parse units field: Invalid enum value MILLILIT for enum type ord.Volume.VolumeUnit at Reaction.workups[9].input.components[0].amount.volume.units.....
+2024-03-05 10:15:05.873 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:58 - BEFORE REPAIR
+total/invalid JSON/invalid ORD: 10000/42/59
+2024-03-05 10:15:05.873 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:60 - AFTER  REPAIR
+total/invalid JSON/invalid ORD: 10000/0/37

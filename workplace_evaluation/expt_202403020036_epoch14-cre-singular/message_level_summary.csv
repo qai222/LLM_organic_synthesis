@@ -1,0 +1,5 @@
+,n_ref,n_inf,n_removal,n_addition,n_alteration_strict,n_alteration_nonstrict,n_intact_strict,n_intact_nonstrict
+COMPOUND,205 (100.00%),346 (168.78%),14 (6.83%),155 (75.61%),119 (58.05%),101 (49.27%),72 (35.12%),90 (43.90%)
+PRODUCT_COMPOUND,116 (100.00%),118 (101.72%),0 (0.00%),2 (1.72%),110 (94.83%),106 (91.38%),6 (5.17%),10 (8.62%)
+REACTION_CONDITIONS,116 (100.00%),116 (100.00%),0 (0.00%),0 (0.00%),116 (100.00%),116 (100.00%),0 (0.00%),0 (0.00%)
+REACTION_WORKUP,0 (N/A),63 (N/A),0 (N/A),63 (N/A),0 (N/A),0 (N/A),0 (N/A),0 (N/A)
