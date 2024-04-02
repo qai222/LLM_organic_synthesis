@@ -1,0 +1,189 @@
+2024-03-09 15:59:29.200 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "concentration" at "Reaction.inputs[m1_m2].components[1].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 15:59:29.200 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.200 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.201 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.201 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.201 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.202 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "concentration" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7].components[4].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 15:59:29.203 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m5].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.204 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Failed to parse units field: Invalid enum value PARTS for enum type ord.Mass.MassUnit at Reaction.inputs[m1_m2_m3_m4_m5_m6_m7].components[0].amount.mass.units....
+2024-03-09 15:59:29.205 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m6].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.205 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.206 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.208 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8].components[7].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.208 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.209 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m4].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.210 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8_m9_m10_m11].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.210 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.211 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "a" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8_m9].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.212 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m7].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.213 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse {'products': [{'identifiers': [{'type': 'NAME', 'value': '(5-{2-[(3′,4′,5′-Trimethoxy-biphenyl-2-carbonyl)-amino]-phenyl}-thiophen-2-yl)-acetic acid methyl ester'}], 'measurements': [{'type': 'AMOUNT', 'details': 'MASS', 'amount': {'mass': {'value': 58.0, 'units': 'MILLIGRAM'}}}, {'type': 'YIELD', 'details': 'PERCENTYIELD', 'percentage': {'value': 59.0}}], 'reaction_role': 'PRODUCT'}]} field: unhashable type: 'dict'..
+2024-03-09 15:59:29.215 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse {'products': [{'identifiers': [{'type': 'NAME', 'value': '6'}], 'measurements': [{'type': 'AMOUNT', 'details': 'MASS', 'amount': {'mass': {'value': 9.3, 'units': 'MILLIGRAM'}}}, {'type': 'YIELD', 'details': 'PERCENTYIELD', 'percentage': {'value': 48.0}}], 'reaction_role': 'PRODUCT'}]} field: unhashable type: 'dict'..
+2024-03-09 15:59:29.215 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.216 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m5].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.217 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse measurements field: Message type "ord.Amount" has no field named "value" at "Reaction.outcomes[0].products[0].measurements[0].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 15:59:29.217 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.217 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.218 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "NA" at "Reaction.inputs[m1_m2].components[0].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 15:59:29.220 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 15:59:29.221 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6].components[5].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.222 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.222 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m8].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 15:59:29.223 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:69 - BEFORE REPAIR
+total/invalid JSON/invalid ORD: 500/53/271
+2024-03-09 15:59:29.223 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:71 - AFTER  REPAIR
+total/invalid JSON/invalid ORD: 500/0/249
+2024-03-09 16:11:17.785 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "concentration" at "Reaction.inputs[m1_m2].components[1].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:11:17.785 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.785 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.785 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.786 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.786 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.787 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "concentration" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7].components[4].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:11:17.788 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m5].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.789 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Failed to parse units field: Invalid enum value PARTS for enum type ord.Mass.MassUnit at Reaction.inputs[m1_m2_m3_m4_m5_m6_m7].components[0].amount.mass.units....
+2024-03-09 16:11:17.790 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m6].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.790 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.790 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.792 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8].components[7].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.793 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.793 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m4].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.795 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8_m9_m10_m11].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.795 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.796 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "a" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8_m9].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.796 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m7].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.798 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse {'products': [{'identifiers': [{'type': 'NAME', 'value': '(5-{2-[(3′,4′,5′-Trimethoxy-biphenyl-2-carbonyl)-amino]-phenyl}-thiophen-2-yl)-acetic acid methyl ester'}], 'measurements': [{'type': 'AMOUNT', 'details': 'MASS', 'amount': {'mass': {'value': 58.0, 'units': 'MILLIGRAM'}}}, {'type': 'YIELD', 'details': 'PERCENTYIELD', 'percentage': {'value': 59.0}}], 'reaction_role': 'PRODUCT'}]} field: unhashable type: 'dict'..
+2024-03-09 16:11:17.799 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse {'products': [{'identifiers': [{'type': 'NAME', 'value': '6'}], 'measurements': [{'type': 'AMOUNT', 'details': 'MASS', 'amount': {'mass': {'value': 9.3, 'units': 'MILLIGRAM'}}}, {'type': 'YIELD', 'details': 'PERCENTYIELD', 'percentage': {'value': 48.0}}], 'reaction_role': 'PRODUCT'}]} field: unhashable type: 'dict'..
+2024-03-09 16:11:17.800 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.800 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m5].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.801 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse measurements field: Message type "ord.Amount" has no field named "value" at "Reaction.outcomes[0].products[0].measurements[0].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:11:17.801 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.802 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.802 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "NA" at "Reaction.inputs[m1_m2].components[0].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:11:17.804 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:11:17.805 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6].components[5].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.806 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.806 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m8].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:11:17.807 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:69 - BEFORE REPAIR
+total/invalid JSON/invalid ORD: 500/53/271
+2024-03-09 16:11:17.807 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:71 - AFTER  REPAIR
+total/invalid JSON/invalid ORD: 500/0/249
+2024-03-09 16:12:13.708 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "concentration" at "Reaction.inputs[m1_m2].components[1].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:12:13.709 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.709 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.709 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.709 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.710 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.710 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "concentration" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7].components[4].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:12:13.712 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m5].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.713 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Failed to parse units field: Invalid enum value PARTS for enum type ord.Mass.MassUnit at Reaction.inputs[m1_m2_m3_m4_m5_m6_m7].components[0].amount.mass.units....
+2024-03-09 16:12:13.714 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m6].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.714 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.714 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.717 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8].components[7].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.717 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.718 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m4].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.719 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8_m9_m10_m11].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.719 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.720 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "a" at "Reaction.inputs[m1_m2_m3_m4_m5_m6_m7_m8_m9].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.721 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m7].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.722 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse {'products': [{'identifiers': [{'type': 'NAME', 'value': '(5-{2-[(3′,4′,5′-Trimethoxy-biphenyl-2-carbonyl)-amino]-phenyl}-thiophen-2-yl)-acetic acid methyl ester'}], 'measurements': [{'type': 'AMOUNT', 'details': 'MASS', 'amount': {'mass': {'value': 58.0, 'units': 'MILLIGRAM'}}}, {'type': 'YIELD', 'details': 'PERCENTYIELD', 'percentage': {'value': 59.0}}], 'reaction_role': 'PRODUCT'}]} field: unhashable type: 'dict'..
+2024-03-09 16:12:13.724 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse {'products': [{'identifiers': [{'type': 'NAME', 'value': '6'}], 'measurements': [{'type': 'AMOUNT', 'details': 'MASS', 'amount': {'mass': {'value': 9.3, 'units': 'MILLIGRAM'}}}, {'type': 'YIELD', 'details': 'PERCENTYIELD', 'percentage': {'value': 48.0}}], 'reaction_role': 'PRODUCT'}]} field: unhashable type: 'dict'..
+2024-03-09 16:12:13.724 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.725 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m5].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.726 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse measurements field: Message type "ord.Amount" has no field named "value" at "Reaction.outcomes[0].products[0].measurements[0].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:12:13.727 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.727 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.728 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse amount field: Message type "ord.Amount" has no field named "NA" at "Reaction.inputs[m1_m2].components[0].amount".
+ Available Fields(except extensions): "['mass', 'moles', 'volume', 'unmeasured', 'volumeIncludesSolutes']"...
+2024-03-09 16:12:13.729 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Message type "ord.Reaction" has no field named "O" at "Reaction".
+ Available Fields(except extensions): "['identifiers', 'inputs', 'setup', 'conditions', 'notes', 'observations', 'workups', 'outcomes', 'provenance', 'reactionId']"
+2024-03-09 16:12:13.730 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5_m6].components[5].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.731 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "o" at "Reaction.inputs[m1_m2_m3_m4_m5].components[4].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.732 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse inputs field: Failed to parse components field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "m" at "Reaction.inputs[m8].components[0].identifiers[1]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-09 16:12:13.732 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:69 - BEFORE REPAIR
+total/invalid JSON/invalid ORD: 500/53/271
+2024-03-09 16:12:13.732 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:71 - AFTER  REPAIR
+total/invalid JSON/invalid ORD: 500/0/249

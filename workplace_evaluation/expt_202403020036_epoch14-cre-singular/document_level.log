@@ -1,0 +1,8 @@
+2024-03-07 15:33:26.299 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse workups field: Message type "ord.ReactionWorkup" has no field named "outcomes" at "Reaction.workups[0]".
+ Available Fields(except extensions): "['type', 'details', 'duration', 'input', 'amount', 'temperature', 'keepPhase', 'stirring', 'targetPh', 'isAutomated']".
+2024-03-07 15:33:26.299 | ERROR    | ord.evaluation.pair_evaluator:from_texts:53 - Failed to parse outcomes field: Failed to parse products field: Failed to parse identifiers field: Message type "ord.CompoundIdentifier" has no field named "-')-dibenzoyl[n]staffanes" at "Reaction.outcomes[0].products[0].identifiers[0]".
+ Available Fields(except extensions): "['type', 'details', 'value']"...
+2024-03-07 15:33:26.300 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:58 - BEFORE REPAIR
+total/invalid JSON/invalid ORD: 118/2/2
+2024-03-07 15:33:26.300 | CRITICAL | ord.evaluation.evaluate_functions:evaluation_document_level:60 - AFTER  REPAIR
+total/invalid JSON/invalid ORD: 118/0/2
