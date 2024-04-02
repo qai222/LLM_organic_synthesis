@@ -17,10 +17,12 @@ Data processing and inference scripts for OPENAI models can be found in the fold
 These models are fine-tuned with [300 data points](demo_apps/dash_app/assets/data1000_v2.json)
 and evaluated using another set of [50 data points](demo_apps/dash_app/assets/data50_v2_test.json).
 
-### Demo page: OPENAI inference
+[//]: # (### Demo page: OPENAI inference)
 
-The app in [demo_apps/dash_app](demo_apps/dash_app) shows inference results from fine-tuned OPENAI models.
-OPENAI API key is required in [the deployment script](demo_apps/dash_app/test_deploy.sh).
+[//]: # ()
+[//]: # (The app in [demo_apps/dash_app]&#40;demo_apps/dash_app&#41; shows inference results from fine-tuned OPENAI models.)
+
+[//]: # (OPENAI API key is required in [the deployment script]&#40;demo_apps/dash_app/test_deploy.sh&#41;.)
 
 ### Demo page: inferences on the test set
 
@@ -39,15 +41,13 @@ Related scripts can be found in the folder [ord_data](ord_data).
 
 ## About
 
-The current team (06/2023) includes:
+The current team (04/2024) includes:
 
 - Qianxiang Ai
-- Stefan Bringuier
-- Hassan Harb
-- Brenden Pelkie
-- Jacob N Sanders
-- Marcus Schwarting
+- Fanwang Meng
 - Jiale Shi
+- Brenden Pelkie
+- Hassan Harb
 
 This project was conceived during the
 [LLM Hackathon](https://sm.linkedin.com/posts/benblaiszik_llm-march-madness-materials-chemistry-hackathon-activity-7041802764464648192-gjXo)
