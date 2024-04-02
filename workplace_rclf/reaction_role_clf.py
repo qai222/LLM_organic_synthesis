@@ -59,7 +59,6 @@ def plt_confusion_matrix(role_csv: FilePath = "role.csv", mode="all", panel_labe
         name_to_role_train = json_load("name_to_roles_baseline.json")
         for n, roles in name_to_role_train.items():
             role_counter = Counter(roles)
-            # TODO break tie
             baseline_roles = sorted(role_counter.keys(), key=lambda x: role_counter[x])
             baseline_roles = [r for r in baseline_roles if role_counter[r] == role_counter[baseline_roles[-1]]]
             name_to_role_baseline[n] = random.choice(baseline_roles)
@@ -89,7 +88,6 @@ def plt_confusion_matrix(role_csv: FilePath = "role.csv", mode="all", panel_labe
         name_to_role_train = json_load("name_to_roles_baseline.json")
         for n, roles in name_to_role_train.items():
             role_counter = Counter(roles)
-            # TODO break tie
             baseline_roles = sorted(role_counter.keys(), key=lambda x: role_counter[x])
             baseline_roles = [r for r in baseline_roles if role_counter[r] == role_counter[baseline_roles[-1]]]
             name_to_role_baseline[n] = random.choice(baseline_roles)
