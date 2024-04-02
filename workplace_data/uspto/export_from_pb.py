@@ -7,7 +7,7 @@ from ord_schema.message_helpers import load_message
 from ord_schema.proto import dataset_pb2
 from tqdm import tqdm
 
-from ord.data_reaction import ReactionDataError, ReactionData
+from ord.data.data_reaction import ReactionDataError, ReactionData
 from ord.utils import json_load, json_dump
 
 """
