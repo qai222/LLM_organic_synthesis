@@ -10,7 +10,7 @@ from ..utils import flat_list_of_lists
 def get_compound_leaf_type_counter(cd: MDict):
     counter = {clt: 0 for clt in list(CompoundLeafType) + [None, ]}
     for leaf in cd.leafs:
-        counter[leaf.get_compound_leaf_type(leaf)] += 1
+        counter[leaf.get_compound_leaf_type()] += 1
     return counter
 
 

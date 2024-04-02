@@ -7,9 +7,12 @@ import random
 from typing import List
 
 import matplotlib.pyplot as plt
+import parse
 import torch
+from google.protobuf.json_format import ParseDict, MessageToDict
 from loguru import logger
 from matplotlib.patches import Rectangle
+from ord_schema.proto.reaction_pb2 import Reaction, CompoundIdentifier, ProductMeasurement
 from pandas._typing import FilePath
 from pydantic import BaseModel
 from sentencepiece import SentencePieceProcessor
@@ -21,6 +24,10 @@ from ord.utils import json_load, json_dump
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEFAULT_PROMPT_TEMPLATE = "Below is a description of an organic reaction. Extract information from it to an ORD JSON record.\n\n### Procedure:\n{}\n\n### ORD JSON:\n"
+
+
+def prompt_to_procedure(prompt: str) -> str:
+    return parse.parse(DEFAULT_PROMPT_TEMPLATE, prompt)[0]
 
 
 class Tokenizer:
@@ -188,10 +195,12 @@ class LlmDataset(BaseModel):
     def split(
             self, total_size: int, n_token_limit: int, name: str, seed: int = 42,
             train_size: float = 0.8, valid_size: float = 0.1, test_size: float = 0.1,
+            explicit_policy: int = 0,
     ):
         """
         make a train-valid-test split of the dataset
 
+        :param explicit_policy: policy for fields not explicitly present in the procedure text
         :param n_token_limit: max token limit for the dataset
         :param total_size: total number of data points
         :param seed:
@@ -207,6 +216,54 @@ class LlmDataset(BaseModel):
         random.seed(seed)
         data = random.sample(self.data, k=total_size)
         random.shuffle(data)
+
+        # this is probably not the best place to implement explicit policy...
+        new_data = []
+        if explicit_policy == 1:
+            n_shrunk = 0
+            data: list[LlmData]
+            for d in data:
+                procedure_text = prompt_to_procedure(d.prompt)
+                ref_dict = json.loads(d.reference_completion)
+                ref_reaction = ParseDict(ref_dict, Reaction())
+                ref_reaction: Reaction
+                for outcome in ref_reaction.outcomes:
+                    for product in outcome.products:
+
+                        # if product identifier not present explicitly, remove it
+                        to_pop = []
+                        for i, identifier in enumerate(product.identifiers):
+                            identifier: CompoundIdentifier
+                            if identifier.value.lower() not in procedure_text.lower():
+                                to_pop.append(i)
+                        to_pop = sorted(to_pop, reverse=True)
+                        for i in to_pop:
+                            product.identifiers.pop(i)
+
+                        # if a yield value not present explicitly, remove it
+                        to_pop = []
+                        for i, measurement in enumerate(product.measurements):
+                            measurement: ProductMeasurement
+                            if measurement.percentage.value:  # if not a percentage measurement this returns zero
+                                if measurement.percentage.value > 100 or str(
+                                        int(measurement.percentage.value)) not in procedure_text.lower():
+                                    to_pop.append(i)
+                        to_pop = sorted(to_pop, reverse=True)
+                        for i in to_pop:
+                            product.measurements.pop(i)
+                new_d = LlmData(
+                    reaction_id=d.reaction_id,
+                    reference_completion=json.dumps(MessageToDict(ref_reaction, preserving_proto_field_name=True)),
+                    prompt=d.prompt,
+                    n_token=None,
+                )
+                if len(new_d.reference_completion) < len(d.reference_completion):
+                    n_shrunk += 1
+                new_data.append(new_d)
+            if not n_shrunk:
+                logger.warning(
+                    "no record was shrunk after applying explicit policy, this is abnormal if your dataset is large")
+            data = new_data
 
         actual_train_size = round(total_size * train_size)
         actual_valid_size = round(total_size * valid_size)
@@ -244,6 +301,9 @@ class LlmDataset(BaseModel):
         }
 
         save_dir = name
+        if explicit_policy:
+            meta['explicit_policy'] = explicit_policy
+            save_dir += f"_exp{explicit_policy}"
         pathlib.Path(save_dir).mkdir(parents=True, exist_ok=True)
 
         json_dump(os.path.join(save_dir, f"meta.json"), meta, indent=2)

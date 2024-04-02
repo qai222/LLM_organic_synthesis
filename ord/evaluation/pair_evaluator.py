@@ -3,6 +3,7 @@ from __future__ import annotations
 import glob
 import json
 import os.path
+from collections import Counter
 
 import pandas as pd
 from google.protobuf import json_format
@@ -71,14 +72,31 @@ class PairEvaluator(BaseModel):
     @classmethod
     def from_inference_folder_cot(cls, inference_folder_cot: FilePath, dataset_json: FilePath) -> list[PairEvaluator]:
         cot_responses = dict()
+        finish_reasons = []
         for jf in sorted(glob.glob(f"{inference_folder_cot}/ord-*.json")):
             rid = os.path.basename(jf).replace(".json", "")
-            ord_json_string = json_load(jf)['choices'][0]['message']['content']
+            jfd = json_load(jf)
+            fr = jfd['choices'][0]['finish_reason']
+            finish_reasons.append(fr)
+            try:
+                ord_json_string = jfd['choices'][0]['message']['content']
+            except KeyError:
+                ord_json_string = jfd['choices'][0]['text']
             if "###" in ord_json_string:
                 ord_json_string = ord_json_string.split("###")[1]
             cot_responses[rid] = ord_json_string
+        logger.critical(f"stop reason: {Counter(finish_reasons)}")
         data = json_load(dataset_json)
         cot_reference_data = {d["reaction_id"]: d for d in data}
+
+        # data_ids = json_load(dataset_json + "/meta.json")['test_data_identifiers']
+        # data_ids += json_load(dataset_json + "/meta.json")['train_data_identifiers']
+        # data_ids += json_load(dataset_json + "/meta.json")['valid_data_identifiers']
+        # data = json_load(dataset_json + "/test.json")
+        # data += json_load(dataset_json + "/train.json")
+        # data += json_load(dataset_json + "/valid.json")
+        # cot_reference_data = {did: d for d, did in zip(data, data_ids)}
+        # print(len(set(cot_responses.keys()).intersection(set(cot_reference_data.keys()))))
         pes = []
         for rid in cot_responses:
             ref_text = cot_reference_data[rid]['reference_string']
@@ -118,6 +136,35 @@ class PairEvaluator(BaseModel):
     @property
     def reaction_message_inf(self) -> reaction_pb2.Reaction:
         return json_format.Parse(self.inference_text, reaction_pb2.Reaction())
+
+    def eval_role_clf(self) -> list[dict]:
+        messages_inf = get_compounds(self.reaction_message_inf, extracted_from="inputs")
+        messages_ref = get_compounds(self.reaction_message_ref, extracted_from="inputs")
+        diff = MDictListDiff.from_message_list_pair(messages_ref, messages_inf, MessageType.COMPOUND)
+        data = []
+        for i_md1, i_md2 in diff.index_match.items():
+            md1 = diff.md1_list[i_md1]
+            ref_role = md1.d['reaction_role']
+            ref_name = md1.d['identifiers'][0]['value']
+            if i_md2 is None:
+                inf_role = "COMPOUND_MISSING"
+                inf_name = "COMPOUND_MISSING"
+            else:
+                md2 = diff.md2_list[i_md2]
+                try:
+                    inf_role = md2.d['reaction_role']
+                except KeyError:
+                    inf_role = "NOT_PRESENT"
+                try:
+                    inf_name = md2.d['identifiers'][0]['value']
+                except KeyError:
+                    inf_name = "NOT_PRESENT"
+            record = {
+                "reference_role": ref_role, "inference_role": inf_role,
+                "reference_name": ref_name, "inference_name": inf_name,
+            }
+            data.append(record)
+        return data
 
     def eval_message_level(
             self, message_type: MessageType, extracted_from: str,

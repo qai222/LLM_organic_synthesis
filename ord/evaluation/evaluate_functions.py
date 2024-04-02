@@ -12,11 +12,27 @@ from tqdm_joblib import tqdm_joblib
 from .pair_evaluator import PairEvaluator, DeltaType
 
 
-def get_pair_evaluators(inference_folder: FilePath, dataset_folder: FilePath, cot=False):
-    if not cot:
+def get_pair_evaluators(inference_folder: FilePath, dataset_folder: FilePath, cot=False, cre=False):
+    assert not (cot and cre)
+    if not cot and not cre:
         return PairEvaluator.from_inference_folder(inference_folder, dataset_folder)
-    else:
+    elif cot:
         return PairEvaluator.from_inference_folder_cot(inference_folder, dataset_folder)
+    elif cre:
+        return PairEvaluator.from_inference_folder(inference_folder, dataset_folder)
+
+
+def _evaluation_reaction_role(pe: PairEvaluator) -> pd.DataFrame | None:
+    if pe.valid_ord:
+        data = pe.eval_role_clf()
+        return pd.DataFrame.from_records(data)
+
+
+def evaluation_reaction_role(pair_evaluators: list[PairEvaluator], n_jobs=10) -> pd.DataFrame:
+    with tqdm_joblib(tqdm(desc="batch evaluation -- reaction role clf", total=len(pair_evaluators))) as progress_bar:
+        dfs = Parallel(n_jobs=n_jobs)(delayed(_evaluation_reaction_role)(pe) for pe in pair_evaluators)
+    dfs = [df for df in dfs if df is not None]
+    return pd.concat(dfs, axis=0)
 
 
 def _evaluation_leaf_level(pe: PairEvaluator) -> pd.DataFrame | None:

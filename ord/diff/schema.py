@@ -55,9 +55,9 @@ class Leaf(BaseModel):
         if message_type in (MessageType.COMPOUND, MessageType.PRODUCT_COMPOUND) \
                 and self.get_compound_leaf_type() not in (CompoundLeafType.other, CompoundLeafType.reaction_role):
             return True
-        if message_type == MessageType.REACTION_WORKUP:
+        if message_type == MessageType.REACTION_WORKUP and "details" not in self.path_list:
             return True
-        if message_type == MessageType.REACTION_CONDITIONS:
+        if message_type == MessageType.REACTION_CONDITIONS and "details" not in self.path_list:
             return True
         return False
 
